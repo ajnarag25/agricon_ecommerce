@@ -32,43 +32,17 @@
                      <li class="nav-item dropdown">
                         <a class="nav-link" href="index.html" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="about.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="about.html">Agriculture</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="about.html">Construction</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop.html">Shops</a> </li>
                      <li class="nav-item"> <a class="nav-link" href="about.html">Bidding</a> </li>
+                     
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                     <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
-                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                           Recently added item(s)
-                           <ul class="list">
-                              <li class="item">
-                                 <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                 <div class="description"> <a href="#">Sample Course</a> <strong class="price">1 x $44.95</strong> </div>
-                              </li>
-                              <li class="item">
-                                 <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                 <div class="description"> <a href="#">Sample Course</a> <strong class="price">1 x $44.95</strong> </div>
-                              </li>
-                           </ul>
-                           <div class="total">Total: <strong>$44.95</strong></div>
-                           <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
-                     </li>
-                     <li class="login-reg"> <a href="login.html">Login</a> | <a href="signup.html">Signup</a> </li>
+                     <li class="nav-item"> <a href="login.html" class="nav-link">Login</a> </li>
+                     <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
                   </ul>
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
@@ -139,7 +113,28 @@
                         <div class="footer-widget">
                            <h4>Company</h4>
                            <p> AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro. </p>
-                           <a href="#" class="lm">About us</a> 
+                           <a href="#" class="lm" data-toggle="modal" data-target="#aboutus">About us</a> 
+                        </div>
+                        <!-- Modal -->
+                        <div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">About Us</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                                 </button>
+                              </div>
+                              <div class="modal-body">
+                                 <p>AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro. 
+                                    <br><br>
+                                    Launched in 2022, it is a platform specialized for the province, abling the customers enjoy an easy, fast, and secured online purchasing of agricultural and construction or hardware products.
+                                    <br><br>
+                                    AgriCon Mart believes that those types of products should be easily accessible. This is the vision we aspire to deliver and the Mindoreños deserve.
+                                 </p>
+                              </div>
+                           </div>
+                           </div>
                         </div>
                         <!--Footer Widget End--> 
                      </div>
