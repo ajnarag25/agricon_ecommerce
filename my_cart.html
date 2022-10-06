@@ -6,7 +6,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="images/logo.png">
-      <title>AgriCon - My Account</title>
+      <title>AgriCon - My Cart</title>
       <!-- CSS FILES START -->
       <link href="css/custom.css" rel="stylesheet">
       <link href="css/color.css" rel="stylesheet">
@@ -71,7 +71,7 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>My Account</h1>
+               <h1>My Cart</h1>
                <p class="text-white">User: Sample Name</p>
             </div>
          </section>
@@ -79,67 +79,45 @@
          <!--Contact Start-->
          <section class="shop wf100 p80">
             <div class="container">
-               <div class="row">
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-md-4">
-                    <div class="sidebar">
-                        <div class="product-box">
-                            <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
-                            </form>
-                        </div>
-                        <ul>
-                            <li><a href="my_account.html">My Account</a></li>
-                            <li><a href="my_purchases.html">My Purchases</a></li>
-                        </ul>
-                      
-                    </div>
-                  </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-9 col-md-8">
-                    <h3>My Account</h3>
-                    <p>Edit your profile here</p>
-                    <div class="myaccount-form">
-                        <form>
-                            <ul class="row">
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Contact #" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email Address" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="User Name">
-                                    </div>
-                                </li>
-                                <li class="col-md-12">
-                                    <button class="register">Save Changes</button>
-                                </li>
-                            </ul>
-                        </form>
-                    </div>
-                  </div>
-                  <!--Pro Box End--> 
-
-               </div>
+                <h3>My Cart</h3>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Variation</th>
+                        <th scope="col">Quanitity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th scope="row"><img src="images/Products/product1.jpg" width="70px" alt=""></th>
+                            <td>Ortega Construction</td>
+                            <td>09123456789</td>
+                            <td>Powders</td>
+                            <td><input type="number" name="quantity" min="1" max="99" value="2" required></td>
+                            <td>P40.00</td>
+                            <td><button class="btn btn-danger">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <th><input type="checkbox"></th>
+                            <th scope="row"><img src="images/Products/product2.jpg" width="70px" alt=""></th>
+                            <td>Agricultural Shop</td>
+                            <td>09222345478</td>
+                            <td>General Fertilizer</td>
+                            <td><input type="number" name="quantity" min="1" max="99" value="1" required></td>
+                            <td>P80.00</td>
+                            <td><button class="btn btn-danger">Delete</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>Total Price: P160.00</p>
+                <button class="btn btn-success">Checkout</button>
             </div>
          </section>
          <!--Footer Start-->
