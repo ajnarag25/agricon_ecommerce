@@ -6,7 +6,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../images/logo.png">
-      <title>AgriCon - Shops</title>
+      <title>AgriCon - Bidding</title>
       <!-- CSS FILES START -->
       <link href="../css/custom.css" rel="stylesheet">
       <link href="../css/color.css" rel="stylesheet">
@@ -22,18 +22,18 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home_seller.html"><img src="../images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home_seller.php"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home_seller.html" >Home</a>
+                        <a class="nav-link" href="home_seller.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_seller.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_seller.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.html">Order Requests</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="#">My Products</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_seller.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_seller.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.php">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="my_products_seller.php">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -56,74 +56,68 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.html">My Account</a> | <a href="../index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
          </header>
+         <div id="search">
+            <button type="button" class="close">×</button>
+            <form class="search-overlay-form">
+               <input type="search" value="" placeholder="type keyword(s) here" />
+               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
+            </form>
+         </div>
          <!--Header End-->
+         <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>AgriCon Mart Shops</h1>
+               <h1>Bidding</h1>
+               <p class="text-white">User: Sample Name</p>
             </div>
          </section>
-            <!--Current Projects Start-->
-            <section class="wf100 p80 current-projects">
-               <div class="container">
-                  <div class="row">
-                     <div class="col-lg-6">
-                        <div class="section-title-2">
-                           <h5>Our Available</h5>
-                           <h2>Shops</h2>
+         <!--Inner Header End--> 
+         <!--Contact Start-->
+         <section class="shop wf100 p80">
+            <div class="container">
+               <div class="section-title-2 text-center">
+                  <h5>Our Available</h5>
+                  <h2>Cheapest Products</h2>
+               </div>
+               <div class="row">
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="product-box">
+                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                        <div class="pro-txt">
+                           <h6><a href="#">Powders</a></h6>
+                           <p class="pro-price">P19.00</p>
                         </div>
+                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="tab-content" id="myTabContent">
-                           <div class="tab-pane fade show active" id="wildlife" role="tabpanel" aria-labelledby="wildlife-tab">
-                              <div class="cpro-slider owl-carousel owl-theme">
-                                 <div class="item">
-                                    <div class="pro-box">
-                                       <img src="../images/Shops/shop4.jpg" alt="">
-                                       <h5>Agricultural Shop</h5>
-                                       <div class="pro-hover">
-                                          <h6>Agricultural Shop</h6>
-                                          <p>Best Agricultural Shop in the Philippines.</p>
-                                          <a href="shop_details_seller.html">Visit Shop</a> 
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="item">
-                                    <div class="pro-box">
-                                       <img src="../images/Shops/shop1.jpg" alt="">
-                                       <h5>Construction Supplies Shop</h5>
-                                       <div class="pro-hover">
-                                          <h6>Construction Supplies Shop</h6>
-                                          <p>Best Construction Supply Provider.</p>
-                                          <a href="shop_details_seller.html">Visit Shop</a> 
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="item">
-                                    <div class="pro-box">
-                                       <img src="../images/Shops/shop2.jpg" alt="">
-                                       <h5>Ortega Construction</h5>
-                                       <div class="pro-hover">
-                                          <h6>Ortega Construction</h6>
-                                          <p>Best Construction Supplier in ortega place.</p>
-                                          <a href="shop_details_seller.html">Visit Shop</a> 
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="product-box">
+                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
+                        <div class="pro-txt">
+                           <h6><a href="#">Magic Gro Plus</a></h6>
+                           <p class="pro-price">P75.00</p>
                         </div>
+                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-sm-6">
+                     <div class="product-box">
+                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
+                        <div class="pro-txt">
+                           <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
+                           <p class="pro-price">P250.00</p>
+                        </div>
+                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
                </div>
-            </section>
-         <!--Contact End--> 
+            </div>
+         </section>
          <!--Footer Start-->
          <footer class="footer">
             <div class="footer-top wf100">
@@ -136,8 +130,8 @@
                            <p> AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro. </p>
                            <a href="#" class="lm" data-toggle="modal" data-target="#aboutus">About us</a> 
                         </div>
-                          <!-- Modal -->
-                          <div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <!-- Modal -->
+                        <div class="modal fade" id="aboutus" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                            <div class="modal-dialog" role="document">
                            <div class="modal-content">
                               <div class="modal-header">
@@ -154,7 +148,7 @@
                                     AgriCon Mart believes that those types of products should be easily accessible. This is the vision we aspire to deliver and the Mindoreños deserve.
                                  </p>
                               </div>
-                              </div>
+                           </div>
                            </div>
                         </div>
                         <!--Footer Widget End--> 
@@ -186,13 +180,14 @@
             <div class="footer-copyr wf100">
                <div class="container">
                   <div class="row">
-                     <div class="col-md-4 col-sm-4"> <img src="../images/logo.png" alt=""> </div>
+                     <div class="col-md-4 col-sm-4"> <img src="images/logo.png" alt=""> </div>
                   </div>
                </div>
             </div>
          </footer>
          <!--Footer End--> 
       </div>
+
       <!--   JS Files Start  --> 
       <script src="../js/jquery-3.3.1.min.js"></script> 
       <script src="../js/jquery-migrate-1.4.1.min.js"></script> 

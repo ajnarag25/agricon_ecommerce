@@ -1,20 +1,22 @@
 <!doctype html>
 <html lang="en">
+   
+
 <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <link rel="icon" href="images/logo.png">
-      <title>AgriCon - My Cart</title>
+      <link rel="icon" href="../images/logo.png">
+      <title>AgriCon - Feed</title>
       <!-- CSS FILES START -->
-      <link href="css/custom.css" rel="stylesheet">
-      <link href="css/color.css" rel="stylesheet">
-      <link href="css/responsive.css" rel="stylesheet">
-      <link href="css/owl.carousel.min.css" rel="stylesheet">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/prettyPhoto.css" rel="stylesheet">
-      <link href="css/all.min.css" rel="stylesheet">
+      <link href="../css/custom.css" rel="stylesheet">
+      <link href="../css/color.css" rel="stylesheet">
+      <link href="../css/responsive.css" rel="stylesheet">
+      <link href="../css/owl.carousel.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/prettyPhoto.css" rel="stylesheet">
+      <link href="../css/all.min.css" rel="stylesheet">
       <!-- CSS FILES End -->
    </head>
    <body>
@@ -22,16 +24,18 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home_seller.php"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home_seller.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_seller.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_seller.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.php">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="my_products_seller.php">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -54,8 +58,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
-                   
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -71,55 +74,45 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>My Cart</h1>
-               <p class="text-white">User: Sample Name</p>
+               <h1>AgriCon Mart Feed</h1>
             </div>
          </section>
          <!--Inner Header End--> 
-         <!--Contact Start-->
-         <section class="shop wf100 p80">
-            <div class="container">
-                <h3>My Cart</h3>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Shop Name</th>
-                        <th scope="col">Contact</th>
-                        <th scope="col">Variation</th>
-                        <th scope="col">Quanitity</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th scope="row"><img src="images/Products/product1.jpg" width="70px" alt=""></th>
-                            <td>Ortega Construction</td>
-                            <td>09123456789</td>
-                            <td>Powders</td>
-                            <td><input type="number" name="quantity" min="1" max="99" value="2" required></td>
-                            <td>P40.00</td>
-                            <td><button class="btn btn-danger">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <th><input type="checkbox"></th>
-                            <th scope="row"><img src="images/Products/product2.jpg" width="70px" alt=""></th>
-                            <td>Agricultural Shop</td>
-                            <td>09222345478</td>
-                            <td>General Fertilizer</td>
-                            <td><input type="number" name="quantity" min="1" max="99" value="1" required></td>
-                            <td>P80.00</td>
-                            <td><button class="btn btn-danger">Delete</button></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <p>Total Price: P160.00</p>
-                <button class="btn btn-success">Checkout</button>
+         <!--Causes Start-->
+         <section class="wf100 p80 blog">
+            <div class="causes-listing">
+               <div class="container">
+                    <div class="campaign-box">
+                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop1.jpg" alt=""> </div>
+                        <div class="campaign-txt">
+                            <h4><a href="shop_details_seller.php">Construction Supplies Shop</a></h4>
+                            <h5>Best Construction Supply Provider.</h5>
+                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
+                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                        </div>
+                    </div>
+                    <div class="campaign-box">
+                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop4.jpg" alt=""> </div>
+                        <div class="campaign-txt">
+                            <h4><a href="shop_details_seller.php">Agricultural Shop</a></h4>
+                            <h5>Best Agricultural Shop in the Philippines.</h5>
+                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
+                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                        </div>
+                    </div>
+                    <div class="campaign-box">
+                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop2.jpg" alt=""> </div>
+                        <div class="campaign-txt">
+                            <h4><a href="shop_details_seller.php">Ortega Construction</a></h4>
+                            <h5>Best Construction Supplier in ortega place.</h5>
+                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
+                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                        </div>
+                    </div>
+               </div>
             </div>
          </section>
+         <!--Causes End--> 
          <!--Footer Start-->
          <footer class="footer">
             <div class="footer-top wf100">
@@ -182,23 +175,23 @@
             <div class="footer-copyr wf100">
                <div class="container">
                   <div class="row">
-                     <div class="col-md-4 col-sm-4"> <img src="images/logo.png" alt=""> </div>
+                     <div class="col-md-4 col-sm-4"> <img src="../images/logo.png" alt=""> </div>
                   </div>
                </div>
             </div>
          </footer>
          <!--Footer End--> 
       </div>
-
       <!--   JS Files Start  --> 
-      <script src="js/jquery-3.3.1.min.js"></script> 
-      <script src="js/jquery-migrate-1.4.1.min.js"></script> 
-      <script src="js/popper.min.js"></script> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/owl.carousel.min.js"></script> 
-      <script src="js/jquery.prettyPhoto.js"></script> 
-      <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <script src="../js/jquery-3.3.1.min.js"></script> 
+      <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
+      <script src="../js/popper.min.js"></script> 
+      <script src="../js/bootstrap.min.js"></script> 
+      <script src="../js/owl.carousel.min.js"></script> 
+      <script src="../js/jquery.prettyPhoto.js"></script> 
+      <script src="../js/isotope.min.js"></script> 
+      <script src="../js/custom.js"></script>
    </body>
+
 
 </html>

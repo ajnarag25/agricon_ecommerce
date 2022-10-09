@@ -28,22 +28,22 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home.php"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_home.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_home.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_home.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
                     <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li> <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i> </a> </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -215,7 +215,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>

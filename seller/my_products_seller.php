@@ -5,16 +5,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <link rel="icon" href="images/logo.png">
-      <title>AgriCon - My Account</title>
+      <link rel="icon" href="../images/logo.png">
+      <title>AgriCon - My Products</title>
       <!-- CSS FILES START -->
-      <link href="css/custom.css" rel="stylesheet">
-      <link href="css/color.css" rel="stylesheet">
-      <link href="css/responsive.css" rel="stylesheet">
-      <link href="css/owl.carousel.min.css" rel="stylesheet">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/prettyPhoto.css" rel="stylesheet">
-      <link href="css/all.min.css" rel="stylesheet">
+      <link href="../css/custom.css" rel="stylesheet">
+      <link href="../css/color.css" rel="stylesheet">
+      <link href="../css/responsive.css" rel="stylesheet">
+      <link href="../css/owl.carousel.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/prettyPhoto.css" rel="stylesheet">
+      <link href="../css/all.min.css" rel="stylesheet">
       <!-- CSS FILES End -->
    </head>
    <body>
@@ -22,16 +22,18 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home_seller.php"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home_seller.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_seller.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_seller.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.php">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="my_products_seller.php">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -54,8 +56,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
-                   
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -71,75 +72,39 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>My Account</h1>
-               <p class="text-white">User: Sample Name</p>
+               <h1>My Products</h1>
+               <p class="text-white">Seller: Sample Name</p>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Contact Start-->
          <section class="shop wf100 p80">
             <div class="container">
-               <div class="row">
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-md-4">
-                    <div class="sidebar">
-                        <div class="product-box">
-                            <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
-                            </form>
-                        </div>
-                        <ul>
-                            <li><a href="my_account.html">My Account</a></li>
-                            <li><a href="my_purchases.html">My Purchases</a></li>
-                        </ul>
-                      
-                    </div>
-                  </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-9 col-md-8">
-                    <h3>My Account</h3>
-                    <p>Edit your profile here</p>
-                    <div class="myaccount-form">
-                        <form>
-                            <ul class="row">
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Contact #" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email Address" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="User Name">
-                                    </div>
-                                </li>
-                                <li class="col-md-12">
-                                    <button class="register">Save Changes</button>
-                                </li>
-                            </ul>
-                        </form>
-                    </div>
-                  </div>
-                  <!--Pro Box End--> 
-
-               </div>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                    <th scope="col">Image</th>
+                    <th scope="col">Product Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Available Stock</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <th scope="row"><img src="../images/Products/product2.jpg" width="70px" alt=""></th>
+                    <td>General Fertilizers</td>
+                    <td>P80.00</td>
+                    <td>250pcs</td>
+                    <td>General and Special-Purpose Fertilizers. The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient</td>
+                    <td>
+                        <button class="btn btn-primary w-100">Edit</button>
+                        <button class="btn btn-danger w-100">Delete</button>
+                    </td>
+                    </tr>
+                </tbody>
+            </table>
             </div>
          </section>
          <!--Footer Start-->
@@ -213,14 +178,14 @@
       </div>
 
       <!--   JS Files Start  --> 
-      <script src="js/jquery-3.3.1.min.js"></script> 
-      <script src="js/jquery-migrate-1.4.1.min.js"></script> 
-      <script src="js/popper.min.js"></script> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/owl.carousel.min.js"></script> 
-      <script src="js/jquery.prettyPhoto.js"></script> 
-      <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <script src="../js/jquery-3.3.1.min.js"></script> 
+      <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
+      <script src="../js/popper.min.js"></script> 
+      <script src="../js/bootstrap.min.js"></script> 
+      <script src="../js/owl.carousel.min.js"></script> 
+      <script src="../js/jquery.prettyPhoto.js"></script> 
+      <script src="../js/isotope.min.js"></script> 
+      <script src="../js/custom.js"></script>
    </body>
 
 </html>

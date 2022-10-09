@@ -1,12 +1,14 @@
 <!doctype html>
 <html lang="en">
+   
+
 <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../images/logo.png">
-      <title>AgriCon - My Purchases</title>
+      <title>AgriCon - Product Details</title>
       <!-- CSS FILES START -->
       <link href="../css/custom.css" rel="stylesheet">
       <link href="../css/color.css" rel="stylesheet">
@@ -22,18 +24,18 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home_seller.html"><img src="../images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home_seller.php"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home_seller.html" >Home</a>
+                        <a class="nav-link" href="home_seller.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_seller.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_seller.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.html">Order Requests</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="#">My Products</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_seller.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_seller.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.php">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="my_products_seller.php">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -56,7 +58,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.html">My Account</a> | <a href="../index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -68,80 +70,119 @@
                <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
             </form>
          </div>
-         <!--Header End-->
+         <!--Header End--> 
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>My Purchases</h1>
-               <p class="text-white">User: Sample Name</p>
+               <h1>Product Details</h1>
             </div>
          </section>
          <!--Inner Header End--> 
-         <!--Contact Start-->
-         <section class="shop wf100 p80">
-            <div class="container">
-               <div class="row">
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-md-4">
-                    <div class="sidebar">
-                        <div class="product-box">
-                            <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="../images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
-                            </form>
-                        </div>
-                        <ul>
-                            <li><a href="my_account_seller.html">My Account</a></li>
-                            <li><a href="my_purchases_seller.html">My Purchases</a></li>
-                        </ul>
-                      
-                    </div>
-                  </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-9 col-md-8">
-                    <h3>My Purchases</h3>
-                    <p>View all your purchases</p>
-                    <table class="table table-hover table-responsive">
-                        <thead>
-                          <tr>
-                            <th scope="col">Image</th>
-                            <th scope="col">Shop Name</th>
-                            <th scope="col">Contact</th>
-                            <th scope="col">Variation</th>
-                            <th scope="col">Quanitity</th>
-                            <th scope="col">Product Price</th>
-                            <th scope="col">Total Price</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Action</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row"><img src="../images/Products/product1.jpg" width="70px" alt=""></th>
-                            <td>Ortega Construction</td>
-                            <td>09123456789</td>
-                            <td>Powders</td>
-                            <td>2pc/s</td>
-                            <td>P40.00</td>
-                            <td>P80.00</td>
-                            <td>Received</td>
-                            <td><button class="btn btn-danger">Delete</button></td>
-                          </tr>
-                        </tbody>
-                      </table>
-                  </div>
-                  <!--Pro Box End--> 
+         <!--Blog Start-->
+         <section class="wf100 p80 shop">
+            <div class="product-details">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-6">
+                        <div class="pro-large"><img src="../images/Products/product2.jpg" alt=""></div>
+                     </div>
+                     <div class="col-md-6">
+                        <div class="product-text">
+                           <h2>General Fertilizer</h2>
+                           <div class="pro-pricing">P80.00 </div>
+                           <p> What is general fertilizer?
+                              General and Special-Purpose Fertilizers
+                              The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient (N-P-K ratio 12-12-12, for example) or a slightly higher percentage of nitrogen than of phosphorus and potassium (such as a 12-8-6 product).</p>
 
+                           <div class="add-2-cart"> <strong>Quantity:</strong>
+                              <form action="">
+                                 <input type="number" name="quantity" min="1" max="99" required>
+                                 <a type="button" href="home_seller.php" class="btn btn-secondary">Back</a>
+                                 <button type="submit" name="Add to Cart" class="btn btn-success">Add to Cart</button>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="products-tabs wf100 p80">
+                           <nav>
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a> <a class="nav-item nav-link" id="nav-two-tab" data-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="true">Additional Information</a> </div>
+                           </nav>
+                           <div class="tab-content" id="nav-tabContent">
+                              <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+                                 <p> What is general fertilizer?
+                                    General and Special-Purpose Fertilizers
+                                    
+                                    The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient (N-P-K ratio 12-12-12, for example) or a slightly higher percentage of nitrogen than of phosphorus and potassium (such as a 12-8-6 product). </p>
+                              </div>
+                              <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
+                                 <table>
+                                    <tr>
+                                       <td>Weight</td>
+                                       <td>5 kg</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Bevat</td>
+                                       <td>40.0 g/kg</td>
+                                    </tr>
+                                    <tr>
+                                       <td>N</td>
+                                       <td>60.0 g/kg</td>
+                                    </tr>
+                                    <tr>
+                                       <td>P</td>
+                                       <td>40.0 g/kg</td>
+                                    </tr>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
                </div>
             </div>
+            <section class="online-shop wf100">
+               <div class="container">
+                  <div class="row">
+                     <div class="col-md-12">
+                        <h2>Related Products</h2>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-3 col-sm-6">
+                        <div class="product-box">
+                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                           <div class="pro-txt">
+                              <h6><a href="#">Powders</a></h6>
+                              <p class="pro-price">P19.00</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3 col-sm-6">
+                        <div class="product-box">
+                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
+                           <div class="pro-txt">
+                              <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
+                              <p class="pro-price">P250.00</p>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-md-3 col-sm-6">
+                        <div class="product-box">
+                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
+                           <div class="pro-txt">
+                              <h6><a href="#">Magic Gro Plus</a></h6>
+                              <p class="pro-price">P75.00</p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
          </section>
+         <!--Blog End--> 
          <!--Footer Start-->
          <footer class="footer">
             <div class="footer-top wf100">
@@ -211,7 +252,6 @@
          </footer>
          <!--Footer End--> 
       </div>
-
       <!--   JS Files Start  --> 
       <script src="../js/jquery-3.3.1.min.js"></script> 
       <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
@@ -222,5 +262,6 @@
       <script src="../js/isotope.min.js"></script> 
       <script src="../js/custom.js"></script>
    </body>
+
 
 </html>

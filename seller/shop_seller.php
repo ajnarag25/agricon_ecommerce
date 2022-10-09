@@ -5,16 +5,16 @@
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <link rel="icon" href="images/logo.png">
+      <link rel="icon" href="../images/logo.png">
       <title>AgriCon - Shops</title>
       <!-- CSS FILES START -->
-      <link href="css/custom.css" rel="stylesheet">
-      <link href="css/color.css" rel="stylesheet">
-      <link href="css/responsive.css" rel="stylesheet">
-      <link href="css/owl.carousel.min.css" rel="stylesheet">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/prettyPhoto.css" rel="stylesheet">
-      <link href="css/all.min.css" rel="stylesheet">
+      <link href="../css/custom.css" rel="stylesheet">
+      <link href="../css/color.css" rel="stylesheet">
+      <link href="../css/responsive.css" rel="stylesheet">
+      <link href="../css/owl.carousel.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/prettyPhoto.css" rel="stylesheet">
+      <link href="../css/all.min.css" rel="stylesheet">
       <!-- CSS FILES End -->
    </head>
    <body>
@@ -22,16 +22,18 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home_seller.php"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home_seller.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_seller.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_seller.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="order_request_seller.php">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="my_products_seller.php">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_seller.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -54,7 +56,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -83,34 +85,34 @@
                               <div class="cpro-slider owl-carousel owl-theme">
                                  <div class="item">
                                     <div class="pro-box">
-                                       <img src="images/Shops/shop4.jpg" alt="">
+                                       <img src="../images/Shops/shop4.jpg" alt="">
                                        <h5>Agricultural Shop</h5>
                                        <div class="pro-hover">
                                           <h6>Agricultural Shop</h6>
                                           <p>Best Agricultural Shop in the Philippines.</p>
-                                          <a href="shop_details.html">Visit Shop</a> 
+                                          <a href="shop_details_seller.php">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>
                                  <div class="item">
                                     <div class="pro-box">
-                                       <img src="images/Shops/shop1.jpg" alt="">
+                                       <img src="../images/Shops/shop1.jpg" alt="">
                                        <h5>Construction Supplies Shop</h5>
                                        <div class="pro-hover">
                                           <h6>Construction Supplies Shop</h6>
                                           <p>Best Construction Supply Provider.</p>
-                                          <a href="shop_details.html">Visit Shop</a> 
+                                          <a href="shop_details_seller.php">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>
                                  <div class="item">
                                     <div class="pro-box">
-                                       <img src="images/Shops/shop2.jpg" alt="">
+                                       <img src="../images/Shops/shop2.jpg" alt="">
                                        <h5>Ortega Construction</h5>
                                        <div class="pro-hover">
                                           <h6>Ortega Construction</h6>
                                           <p>Best Construction Supplier in ortega place.</p>
-                                          <a href="shop_details.html">Visit Shop</a> 
+                                          <a href="shop_details_seller.php">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>
@@ -184,7 +186,7 @@
             <div class="footer-copyr wf100">
                <div class="container">
                   <div class="row">
-                     <div class="col-md-4 col-sm-4"> <img src="images/logo.png" alt=""> </div>
+                     <div class="col-md-4 col-sm-4"> <img src="../images/logo.png" alt=""> </div>
                   </div>
                </div>
             </div>
@@ -192,14 +194,14 @@
          <!--Footer End--> 
       </div>
       <!--   JS Files Start  --> 
-      <script src="js/jquery-3.3.1.min.js"></script> 
-      <script src="js/jquery-migrate-1.4.1.min.js"></script> 
-      <script src="js/popper.min.js"></script> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/owl.carousel.min.js"></script> 
-      <script src="js/jquery.prettyPhoto.js"></script> 
-      <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <script src="../js/jquery-3.3.1.min.js"></script> 
+      <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
+      <script src="../js/popper.min.js"></script> 
+      <script src="../js/bootstrap.min.js"></script> 
+      <script src="../js/owl.carousel.min.js"></script> 
+      <script src="../js/jquery.prettyPhoto.js"></script> 
+      <script src="../js/isotope.min.js"></script> 
+      <script src="../js/custom.js"></script>
    </body>
 
 </html>

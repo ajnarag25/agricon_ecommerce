@@ -2,12 +2,11 @@
 include('dbconn.php');
 
 session_start();
-$email = "avorbading@gmail.com";
+$email = "avor@gmail.com";
 $kunwareng_login="SELECT * FROM user_info WHERE email='$email'";
 $prompt = mysqli_query($conn, $kunwareng_login);
 $getData = mysqli_fetch_array($prompt);
 $_SESSION['get_data'] = $getData;
-
 
 
 
