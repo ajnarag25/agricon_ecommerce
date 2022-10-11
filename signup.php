@@ -56,48 +56,84 @@
             <div class="container">
                 <div class="myaccount-form">
                     <h3>Register Your Account</h3>
-                    <form>
+                    <form method="POST" action="process.php" enctype="multipart/form-data">
                         <ul class="row">
-                            <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Your Name" required>
-                                </div>
+                            <li class="col-md-4">
+                              <label for="">Firstname <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+                              </div>
+                            </li>
+                            <li class="col-md-4">
+                              <label for="">Middlename <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="mname" placeholder="Enter Middle Name" required>
+                              </div>
+                            </li>
+                            <li class="col-md-4">
+                              <label for="">Lastname <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="lname" placeholder="Enter Lastname" required>
+                              </div>
                             </li>
                             <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Contact #" required>
-                                </div>
+                              <label for="">Username <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="uname" placeholder="Enter Username" required>
+                              </div>
                             </li>
                             <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Email Address" required>
-                                </div>
+                              <label for="">Email <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                              </div>
                             </li>
                             <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="User Name">
-                                </div>
+                              <label for="">Address <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="address" placeholder="Enter Address" required>
+                              </div>
                             </li>
                             <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Password">
-                                </div>
+                              <label for="">Birthday <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="date" class="form-control" name="birthday" placeholder="Enter Birthday" required>
+                              </div>
                             </li>
-                            <li class="col-md-6">
-                                <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Re-enter Password">
-                                </div>
+                            <li class="col-md-4">
+                              <label for="">Upload a picture of your valid ID for KYC verification <span style="color:red">*</span></label>
+                              <br>
+                              <input type="file" name="valid_id" required>
+                            </li>
+                            <li class="col-md-4">
+                              <label for="">Password <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="password" name="pass1" class="form-control" placeholder="Enter Password" required>
+                              </div>
+                            </li>
+                            <li class="col-md-4">
+                              <label for="">Retype Password <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="password" name="pass2" class="form-control" placeholder="Retype Password" required>
+                              </div>
                             </li>
                             <li class="col-md-12">
-                                <div class="input-group form-check">
-                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                <label class="form-check-label" for="exampleCheck1">I agree to the Terms of <a href="#">Services & Privacy Plicy</a></label>
-                                </div>
+                              <label for="">Delivery Address <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <textarea class="form-control" name="del_address" placeholder="Delivery Address" id="" cols="30" rows="5" required></textarea>
+                              </div>
                             </li>
                             <li class="col-md-12">
-                                <button class="register">Register Your Account</button>
+                              <div class="input-group form-check">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                              <label class="form-check-label" for="exampleCheck1">I agree to the Terms of <a href="#">Services & Privacy Plicy</a></label>
+                              </div>
+                            </li>
+                            <li class="col-md-12">
+                              <button type="submit" name="signup" class="register">Register Your Account</button>
                             </li>
                         </ul>
+                       
                     </form>
                 </div>
             </div>

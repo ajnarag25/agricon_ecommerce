@@ -1,3 +1,12 @@
+<?php 
+   include('dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: login.php");
+   }
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -54,7 +63,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -71,7 +80,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>Welcome to AgriCon Mart</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 

@@ -186,6 +186,7 @@
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
       <script src="js/custom.js"></script>
+
    </body>
 
 </html>

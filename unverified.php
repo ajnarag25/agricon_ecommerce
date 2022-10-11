@@ -1,3 +1,12 @@
+<?php 
+   include('dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: login.php");
+   }
+
+?>
+
 <!doctype html>
 <html lang="en">
    
@@ -8,7 +17,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="images/logo.png">
-      <title>AgriCon - Login</title>
+      <title>AgriCon - Unverified</title>
       <!-- CSS FILES START -->
       <link href="css/custom.css" rel="stylesheet">
       <link href="css/color.css" rel="stylesheet">
@@ -25,20 +34,38 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="index.php"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="#"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="index.php" >Home</a>
+                        <a class="nav-link" href="#" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop.php">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding.php">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                     <li class="nav-item"> <a href="login.php" class="nav-link">Login</a> </li>
-                     <li class="nav-item"><a href="signup.php" class="nav-link">Signup</a></li>
+                    <li class="dropdown">
+                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
+                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
+                            Recently added item(s)
+                            <ul class="list">
+                                <li class="item">
+                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
+                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
+                                </li>
+                                <li class="item">
+                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
+                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
+                                </li>
+                            </ul>
+                            <div class="total">Total: <strong>P244.95</strong></div>
+                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
+                        </div>
+                    </li>
+                    <li class="login-reg"> <a href="#">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -47,31 +74,15 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>Login</h1>
+               <h1>Unverified</h1>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Causes Start-->
          <section class="wf100 p80">
             <div class="container">
-               <div class="login-box">
-                  <h3>Login Account</h3>
-                  <form method="POST" action="process.php">
-                     <div class="input-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username" required>
-                     </div>
-                     <div class="input-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
-                     </div>
-                     <div class="input-group">
-                        <button type="submit" name="login" class="login-btn">Login Account</button>
-                        <br><br>
-                     </div>
-                     <a href="#" class="text-white">Forgot Password?</a> 
-                    
-                     <p class="text-white">New to AgriCon Mart?<a href="signup.php" class="signup"> Signup</a> </p>
-                  </form>
-               </div>
+              <h2>Your Account is Unverified</h2>
+              <p>Please wait for your account verification</p>
             </div>
          </section>
          <!--Causes End--> 

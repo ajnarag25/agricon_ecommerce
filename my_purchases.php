@@ -1,3 +1,13 @@
+<?php 
+   include('dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: login.php");
+   }
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -35,7 +45,6 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
                         <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
                         <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
@@ -72,7 +81,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Purchases</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -85,14 +94,22 @@
                     <div class="sidebar">
                         <div class="product-box">
                             <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
+                            <form method="POST" action="process.php" enctype="multipart/form-data">
+                              <a href="#">
+                                 <input type="file" name="valid_id" class="btn btn-success w-100" required>
+                              </a>
+                              <?php 
+                                    $account = $_SESSION['data']['username'];
+                                    $query = "SELECT * FROM users WHERE username='$account' ";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                 ?>
+                              <img src="<?php echo $row['valid_id']; ?>" alt=""></div>
+                              <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                              <?php }; ?>
+                              <br>
+                              <p class="text-center">Change Profile Picture</p>
+                              <button type="submit" name="update_profile" class="btn btn-success w-100">Upload Image</button>
                             </form>
                         </div>
                         <ul>
@@ -219,7 +236,7 @@
       <script src="js/owl.carousel.min.js"></script> 
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <!-- <script src="js/custom.js"></script> -->
    </body>
 
 </html>

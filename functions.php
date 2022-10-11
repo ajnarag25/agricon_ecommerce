@@ -9,7 +9,6 @@ $getData = mysqli_fetch_array($prompt);
 $_SESSION['get_data'] = $getData;
 
 
-
 if (isset($_POST['add_to_cart'])) {
     $user_id = $_SESSION['get_data']['user_id'];
     $imagee  = $_POST['imagee'];
@@ -40,7 +39,7 @@ if (isset($_POST['add_to_cart'])) {
 ?>
 
 
- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
           $(document).ready(function(){
