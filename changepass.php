@@ -8,7 +8,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="images/logo.png">
-      <title>AgriCon - Login</title>
+      <title>AgriCon - Change Password</title>
       <!-- CSS FILES START -->
       <link href="css/custom.css" rel="stylesheet">
       <link href="css/color.css" rel="stylesheet">
@@ -47,7 +47,7 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>Login</h1>
+               <h1>Change Password</h1>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -55,51 +55,20 @@
          <section class="wf100 p80">
             <div class="container">
                <div class="login-box">
-                  <h3>Login Account</h3>
+                  <h3>Change Password</h3>
                   <form method="POST" action="process.php">
                      <div class="input-group">
-                        <input type="text" class="form-control" name="username" placeholder="Username" required>
+                        <input type="password" class="form-control" name="pass1" placeholder="Enter New Password" required>
                      </div>
                      <div class="input-group">
-                        <input type="password" class="form-control" name="password" placeholder="Password" required>
+                        <input type="password" class="form-control" name="pass2" placeholder="Retype Password" required>
                      </div>
                      <div class="input-group">
-                        <button type="submit" name="login" class="login-btn">Login Account</button>
+                        <button type="submit" name="change_pass" class="login-btn">Change Password</button>
                         <br><br>
                      </div>
-                     <a href="#" class="text-white" data-toggle="modal" data-target="#forgot">Forgot Password?</a> 
-                    
-                     <p class="text-white">New to AgriCon Mart?<a href="signup.php" class="signup"> Signup</a> </p>
                </form>
-                  <!-- Modal -->
-                  <div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-hidden="true">
-                     <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                           <div class="modal-header">
-                              <h5 class="modal-title">Reset Password</h5>
-                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                              <span aria-hidden="true">&times;</span>
-                              </button>
-                           </div>
-                           <form method="POST" action="process.php">
-                              <div class="modal-body">
-                                 <div class="login-box">
-                                 <label for="">Enter your Email for resetting your password</label>
-                                    <div class="input-group">
-                                       <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
-                                    </div>
-                                 </div>
-                              </div>
-                              <div class="modal-footer">
-                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                 <button type="submit" name="forgotpass" class="btn btn-success">Submit</button>
-                              </div>
-                           </form>
-                        </div>
-                     </div>
-                  </div>
                </div>
-
             </div>
          </section>
          <!--Causes End--> 

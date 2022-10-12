@@ -359,4 +359,146 @@ if (isset($_POST['update_password'])) {
     }
 }
 
+// forgot password
+if (isset($_POST['forgotpass'])) {
+    $emails = $_POST['email'];
+    $setOTP = rand(0000,9999);
+
+    $sql = "SELECT * FROM users WHERE email='$emails'";
+    $result = mysqli_query($conn, $sql);
+    $check = mysqli_num_rows($result);
+    if ($check == 0){
+        ?>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                icon: 'error',
+                title: 'We could not find your account!',
+                text: 'Something Went Wrong.',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "login.php";
+                    }else{
+                        window.location.href = "login.php";
+                    }
+                })
+                
+            })
+    
+        </script>
+        <?php
+    }else{
+        $conn->query("UPDATE users SET otp='$setOTP' WHERE email='$emails'") or die($conn->error);
+        $_SESSION['otp'] = $emails;
+        include 'otp_email.php';
+        header("Location: otp.php");
+    }
+
+}
+
+ // otp submit
+if (isset($_POST['otp_submit'])) {
+    $otp = $_POST['otp'];
+    $_SESSION['otp'] = $otp;
+    $sql = "SELECT * FROM users WHERE otp='$otp'";
+    $result = mysqli_query($conn, $sql);
+    $check = mysqli_num_rows($result);
+
+    if ($check == 0){
+        ?>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                icon: 'error',
+                title: 'OTP entered is wrong!',
+                text: 'Please check your email for the OTP verification',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "otp.php";
+                    }else{
+                        window.location.href = "otp.php";
+                    }
+                })
+                
+            })
+    
+        </script>
+        <?php
+    }else{
+        header("Location: changepass.php");
+    }
+}
+
+// change password
+if (isset($_POST['change_pass'])) {
+    $password1 = $_POST['pass1'];
+    $password2 = $_POST['pass2'];
+    $get_otp = $_SESSION['otp'];
+    
+    if ($password1 != $password2){
+        ?>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                icon: 'error',
+                title: 'Password does not match!',
+                text: 'Something went wrong',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "changepass.php";
+                    }else{
+                        window.location.href = "changepass.php";
+                    }
+                })
+                
+            })
+    
+        </script>
+        <?php
+    }else{
+        $conn->query("UPDATE users SET password='".password_hash($password1, PASSWORD_DEFAULT)."' WHERE otp='$get_otp'") or die($conn->error);
+        ?>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                icon: 'success',
+                title: 'Successfully changed your password',
+                text: 'Please login your new created password account',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "login.php";
+                    }else{
+                        window.location.href = "login.php";
+                    }
+                })
+                
+            })
+    
+        </script>
+        <?php
+    }
+ 
+
+}
+
 ?>
