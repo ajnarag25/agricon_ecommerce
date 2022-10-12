@@ -8,7 +8,7 @@
     $mail = new PHPMailer;
 
     $email = $emails;
-    $names = "OTP VERIFICATION";
+    $names = "SUCCESSFULLY REGISTERED YOUR ACCOUNT";
 
     //SMTP Settings
     $mail->SMTPDebug = 0; 
@@ -16,7 +16,7 @@
     $mail->IsSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = "acgriconmart@gmail.com";
+    $mail->Username = "agriconmart@gmail.com";
     $mail->Password = "bmyortikksyberfy";
     $mail->Port = 587; //465 for ssl and 587 for tls
     $mail->SMTPSecure = "tls";
@@ -25,8 +25,8 @@
     $mail->isHTML(true);
     $mail->setFrom($email, $names);
     $mail->addAddress($emails);
-    $mail->Subject = "P.E DEPARTMENT";
-    $mail->Body = 'Good day,'.' '.'This is your otp code:'." '". $setOTP."' ".'. Kindly submit this code and change your password. Thank you have nice day.';
+    $mail->Subject = "AGRICON MART";
+    $mail->Body = nl2br('Good day,'."\n".' You have successfully registered your account. For now your account is unverified.'."\n" .' Please wait for your verification of account. Thank you and have a nice day.'."\n \n" .'AgriconMart2022');
 
 
     if ($mail->send())

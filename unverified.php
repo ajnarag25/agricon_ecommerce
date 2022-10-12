@@ -65,7 +65,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="#">My Account</a> | <a href="index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="#">My Account</a> | <a href="process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>

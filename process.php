@@ -65,14 +65,14 @@ if (isset($_POST['signup'])) {
     $middlename = $_POST['mname'];
     $lastname = $_POST['lname'];
     $username = $_POST['uname'];
-    $email = $_POST['email'];
+    $emails = $_POST['email'];
     $address = $_POST['address'];
     $birthday = $_POST['birthday'];
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
     $del_address = $_POST['del_address'];
 
-    $checking = "SELECT * FROM users WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' OR email='$email'";
+    $checking = "SELECT * FROM users WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' OR email='$emails'";
     $prompt = $conn->query($checking);
     $row = mysqli_num_rows($prompt);
 
@@ -117,7 +117,8 @@ if (isset($_POST['signup'])) {
         }else {
           move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
           $conn->query("INSERT INTO users (firstname, middlename, lastname, username, email, address, birthday, valid_id, password, delivery_address, otp, status) 
-          VALUES('$firstname', '$middlename', '$lastname', '$username', '$email', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
+          VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
+          include 'signup_email.php';
           ?>
           <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
