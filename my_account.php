@@ -86,7 +86,7 @@
                               <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
                               <?php }; ?>
                               <br>
-                              <p class="text-center">Change Profile Picture</p>
+                              <p class="text-center">My Valid I.D</p>
                               <button type="submit" name="update_profile" class="btn btn-success w-100">Upload Image</button>
                             </form>
                         </div>

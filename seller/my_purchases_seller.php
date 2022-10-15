@@ -1,3 +1,12 @@
+<?php 
+   include('../dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: ../login.php");
+   }
+
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -37,24 +46,8 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                     <a class="cart-icon" href="my_cart_seller.php" > <i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
@@ -73,11 +66,10 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Purchases</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'],' ', $_SESSION['data']['lastname'] ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
-         <!--Contact Start-->
          <section class="shop wf100 p80">
             <div class="container">
                <div class="row">
@@ -86,14 +78,22 @@
                     <div class="sidebar">
                         <div class="product-box">
                             <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="../images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
+                            <form method="POST" action="../process.php" enctype="multipart/form-data">
+                              <a href="#">
+                                 <input type="file" name="valid_id" class="btn btn-success w-100" required>
+                              </a>
+                              <?php 
+                                    $account = $_SESSION['data']['username'];
+                                    $query = "SELECT * FROM accounts WHERE username='$account' ";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                 ?>
+                              <img src="../<?php echo $row['valid_id']; ?>" alt=""></div>
+                              <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                              <?php }; ?>
+                              <br>
+                              <p class="text-center">My Valid I.D</p>
+                              <button type="submit" name="update_profile_seller" class="btn btn-success w-100">Upload Image</button>
                             </form>
                         </div>
                         <ul>
@@ -220,7 +220,7 @@
       <script src="../js/owl.carousel.min.js"></script> 
       <script src="../js/jquery.prettyPhoto.js"></script> 
       <script src="../js/isotope.min.js"></script> 
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/custom.js"></script> -->
    </body>
 
 </html>

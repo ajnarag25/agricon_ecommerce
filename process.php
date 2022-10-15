@@ -129,7 +129,7 @@ if (isset($_POST['signup'])) {
           move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
           $conn->query("INSERT INTO accounts (firstname, middlename, lastname, username, email, address, birthday, valid_id, password, type, delivery_address, otp, status) 
           VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."', '$type','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
-        //   include 'signup_email.php';
+          include 'signup_email.php';
           ?>
           <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -276,7 +276,7 @@ if (isset($_POST['update_user'])) {
     }
 }
 
-// update user profile picture
+// update user valid id
 if (isset($_POST['update_profile'])) {
     $get_id = $_POST['id'];
     $target_dir = "uploads/";
@@ -308,6 +308,40 @@ if (isset($_POST['update_profile'])) {
         $uploadOk = 0;
     }
 }
+
+// update seller valid id
+if (isset($_POST['update_profile_seller'])) {
+    $get_id = $_POST['id'];
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["valid_id"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["valid_id"]["tmp_name"]);
+
+    if($check !== false) {
+
+        $uploadOk = 1;
+        if ($uploadOk == 0) {
+            echo "<script type=\"text/javascript\">
+            alert(\"Sorry, your file was not uploaded.\");
+            window.location = \"./seller/my_account_seller.php\"
+            </script>";
+    } else {
+    move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
+    }
+        $sql='UPDATE accounts SET valid_id="'.$target_file.'" WHERE id="'.$get_id.'"';
+        $result = mysqli_query($conn, $sql);
+        header('location: ./seller/my_account_seller.php');
+        
+    } else {
+        echo "<script type=\"text/javascript\">
+        alert(\"File is not an image!\");
+        window.location = \"./seller/my_account_seller.php\"
+        </script>";
+        $uploadOk = 0;
+    }
+}
+
 
 // update user password
 if (isset($_POST['update_password'])) {

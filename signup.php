@@ -135,7 +135,7 @@
                             </li>
                             <li class="col-md-12">
                               <div class="input-group form-check">
-                              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                              <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
                               <label class="form-check-label" for="exampleCheck1">I agree to the Terms of <a href="#">Services & Privacy Plicy</a></label>
                               </div>
                             </li>
