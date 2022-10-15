@@ -22,20 +22,20 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="index.php"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="index.html" >Home</a>
+                        <a class="nav-link" href="index.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="about.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="about.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                     <li class="nav-item"> <a href="login.html" class="nav-link">Login</a> </li>
-                     <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                     <li class="nav-item"> <a href="login.php" class="nav-link">Login</a> </li>
+                     <li class="nav-item"><a href="signup.php" class="nav-link">Signup</a></li>
                   </ul>
                </div>
             </nav>
@@ -137,7 +137,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>

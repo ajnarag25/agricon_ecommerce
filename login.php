@@ -25,20 +25,20 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="index.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="index.php"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="index.html" >Home</a>
+                        <a class="nav-link" href="index.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                     <li class="nav-item"> <a href="login.html" class="nav-link">Login</a> </li>
-                     <li class="nav-item"><a href="signup.html" class="nav-link">Signup</a></li>
+                     <li class="nav-item"> <a href="login.php" class="nav-link">Login</a> </li>
+                     <li class="nav-item"><a href="signup.php" class="nav-link">Signup</a></li>
                   </ul>
                </div>
             </nav>
@@ -56,22 +56,50 @@
             <div class="container">
                <div class="login-box">
                   <h3>Login Account</h3>
-                  <form>
+                  <form method="POST" action="process.php">
                      <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Username/Email" required>
+                        <input type="text" class="form-control" name="username" placeholder="Username" required>
                      </div>
                      <div class="input-group">
-                        <input type="password" class="form-control" placeholder="Password" required>
+                        <input type="password" class="form-control" name="password" placeholder="Password" required>
                      </div>
                      <div class="input-group">
-                        <button class="login-btn">Login Account</button>
+                        <button type="submit" name="login" class="login-btn">Login Account</button>
                         <br><br>
                      </div>
-                     <a href="#" class="text-white">Forgot Password?</a> 
+                     <a href="#" class="text-white" data-toggle="modal" data-target="#forgot">Forgot Password?</a> 
                     
-                     <p class="text-white">New to AgriCon Mart?<a href="#" class="signup"> Signup</a> </p>
-                  </form>
+                     <p class="text-white">New to AgriCon Mart?<a href="signup.php" class="signup"> Signup</a> </p>
+               </form>
+                  <!-- Modal -->
+                  <div class="modal fade" id="forgot" tabindex="-1" role="dialog" aria-hidden="true">
+                     <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                           <div class="modal-header">
+                              <h5 class="modal-title">Reset Password</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                              </button>
+                           </div>
+                           <form method="POST" action="process.php">
+                              <div class="modal-body">
+                                 <div class="login-box">
+                                 <label for="">Enter your Email for resetting your password</label>
+                                    <div class="input-group">
+                                       <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="modal-footer">
+                                 <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="submit" name="forgotpass" class="btn btn-success">Submit</button>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
                </div>
+
             </div>
          </section>
          <!--Causes End--> 
@@ -116,7 +144,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>

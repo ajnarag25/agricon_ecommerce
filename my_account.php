@@ -1,3 +1,13 @@
+<?php 
+   include('dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: login.php");
+   }
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,57 +32,34 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home.php"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_home.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_home.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_home.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                    
                   </ul>
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Account</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -85,19 +72,27 @@
                     <div class="sidebar">
                         <div class="product-box">
                             <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
+                            <form method="POST" action="process.php" enctype="multipart/form-data">
+                              <a href="#">
+                                 <input type="file" name="valid_id" class="btn btn-success w-100" required>
+                              </a>
+                              <?php 
+                                    $account = $_SESSION['data']['username'];
+                                    $query = "SELECT * FROM users WHERE username='$account' ";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                 ?>
+                              <img src="<?php echo $row['valid_id']; ?>" alt=""></div>
+                              <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                              <?php }; ?>
+                              <br>
+                              <p class="text-center">Change Profile Picture</p>
+                              <button type="submit" name="update_profile" class="btn btn-success w-100">Upload Image</button>
                             </form>
                         </div>
                         <ul>
-                            <li><a href="my_account.html">My Account</a></li>
-                            <li><a href="my_purchases.html">My Purchases</a></li>
+                            <li><a href="my_account.php">My Account</a></li>
+                            <li><a href="my_purchases.php">My Purchases</a></li>
                         </ul>
                       
                     </div>
@@ -108,33 +103,147 @@
                     <h3>My Account</h3>
                     <p>Edit your profile here</p>
                     <div class="myaccount-form">
-                        <form>
+                        <?php 
+                           $account = $_SESSION['data']['username'];
+                           $query = "SELECT * FROM users WHERE username='$account' ";
+                           $result = mysqli_query($conn, $query);
+                           while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                        <form method="POST" action="process.php">
                             <ul class="row">
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Your Name" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Contact #" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Email Address" required>
-                                    </div>
-                                </li>
-                                <li class="col-md-6">
-                                    <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="User Name">
-                                    </div>
-                                </li>
-                                <li class="col-md-12">
-                                    <button class="register">Save Changes</button>
-                                </li>
+                              <li class="col-md-4">
+                                 <label for="">Firstname</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <label for="">Middlename</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-4">
+                                 <label for="">Lastname</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Username</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="uname" value="<?php echo $row['username'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Email</label>
+                                 <div class="input-group">
+                                 <input type="email" class="form-control" name="email" value="<?php echo $row['email'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Address</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Birthday</label>
+                                 <div class="input-group">
+                                 <input type="text" class="form-control" name="birthday" value="<?php echo $row['birthday'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-12">
+                                 <label for="">Delivery Address</label>
+                                 <div class="input-group">
+                                 <textarea class="form-control" name="del_address" value="<?php echo $row['delivery_address'] ?>" id="" cols="30" rows="5" required><?php echo $row['delivery_address'] ?></textarea>
+                                 </div>
+                              </li>
+                              <li class="col-md-12">
+                                 <button type="button" class="register" data-toggle="modal" data-target="#update<?php echo $row['id'] ?>">Save Changes</button>
+                              </li>
                             </ul>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="update<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                    <h5 class="modal-title">Update Account</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <p>Updating Account of User: <?php echo $row['firstname'], ' ', $row['lastname'] ?></p>
+                                    <h5>Are you sure to update your account?</h5>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                                    <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" name="update_user" class="btn btn-success">Update</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
                         </form>
+
+                        <?php } ?>
+                        <br><br>
+                        
+                        <?php 
+                           $account = $_SESSION['data']['username'];
+                           $query = "SELECT * FROM users WHERE username='$account' ";
+                           $result = mysqli_query($conn, $query);
+                           while ($row = mysqli_fetch_array($result)) {
+                        ?>
+                        <form method="POST" action="process.php">
+                           <ul class="row">
+                              <li class="col-md-6">
+                                 <label for="">New Password</label>
+                                 <div class="input-group">
+                                 <input type="password" class="form-control" name="pass1" placeholder="Enter New Password" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Retype Password</label>
+                                 <div class="input-group">
+                                 <input type="password" class="form-control" name="pass2" placeholder="Retype Password" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-12">
+                                 <button type="button" class="register" data-toggle="modal" data-target="#changepass<?php echo $row['id'] ?>">Change Password</button>
+                              </li>
+                           </ul>
+
+                           <!-- Modal -->
+                           <div class="modal fade" id="changepass<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                 <div class="modal-content">
+                                    <div class="modal-header">
+                                       <h5 class="modal-title">Update Password</h5>
+                                       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                       <span aria-hidden="true">&times;</span>
+                                       </button>
+                                    </div>
+                                    <div class="modal-body">
+                                       <p>Updating Password Account of User: <?php echo $row['firstname'], ' ', $row['lastname'] ?></p>
+                                       <h5>Are you sure to update your account password?</h5>
+                                       <p>You will be automatically logout and kindly login your new password account. This action is irreversible!</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                       <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                                       <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                       <button type="submit" name="update_password" class="btn btn-success">Update</button>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+
+                        <?php } ?>
+                        </form>
+
                     </div>
                   </div>
                   <!--Pro Box End--> 
@@ -183,7 +292,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>
@@ -221,7 +329,7 @@
       <script src="js/owl.carousel.min.js"></script> 
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <!-- <script src="js/custom.js"></script> -->
    </body>
 
 </html>

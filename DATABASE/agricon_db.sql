@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
+<<<<<<< HEAD
 -- Generation Time: Oct 09, 2022 at 05:14 PM
+=======
+-- Generation Time: Oct 12, 2022 at 03:44 PM
+>>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -24,6 +28,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+<<<<<<< HEAD
 -- Table structure for table `cart`
 --
 
@@ -94,12 +99,41 @@ INSERT INTO `user_info` (`user_id`, `firstname`, `middlename`, `lastname`, `addr
 (3, 'dodong', 'b', 'bading', 'bacoor', '12/12/1965', 'fsdfs@gmail.com'),
 (4, 'berting', 'c', 'kalamuga', 'tondo', '12/12/1945', 'fdasdfs@gmail.com'),
 (5, 'neneng', 'd', 'yow', 'malate', '10/12/1985', 'fsgdfgs@gmail.com');
+=======
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `birthday` varchar(100) NOT NULL,
+  `valid_id` text NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `delivery_address` varchar(100) NOT NULL,
+  `otp` int(11) NOT NULL,
+  `status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `address`, `birthday`, `valid_id`, `password`, `delivery_address`, `otp`, `status`) VALUES
+(5, 'Aj', 'Atienza', 'Narag', 'ajnarag25', 'ajnarag25@gmail.com', 'blk 3 lot 8 meadow park subdivision, molino 4', '1999-08-25', 'uploads/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg', '$2y$10$mVW9ckzL3G8Xc0NcBg.y6OXC0IQCFAPbO86kjPwkY3d29TBw4v9GG', 'blk 3 lot 8 meadow park subdivision, molino 4', 2148, 'VERIFIED'),
+(6, 'Cristopher', 'Merano', 'Castillo', 'castillo22', 'cristcastillo14@gmail.com', 'oriental mindoro', '1997-12-18', 'uploads/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg', '$2y$10$I.2J14vMEPzs/7CxG7P7tuLQf2yyHBA11Ybka1roZ93ynOWkMRqAe', 'oriental mindoro', 0, 'UNVERIFIED');
+>>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
 
 --
 -- Indexes for dumped tables
 --
 
 --
+<<<<<<< HEAD
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -118,10 +152,19 @@ ALTER TABLE `user_info`
   ADD PRIMARY KEY (`user_id`);
 
 --
+=======
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
+>>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
+<<<<<<< HEAD
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
@@ -138,6 +181,12 @@ ALTER TABLE `checkout`
 --
 ALTER TABLE `user_info`
   MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+=======
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+>>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

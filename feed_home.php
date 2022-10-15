@@ -24,16 +24,16 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="home.php"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_home.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_home.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_home.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
@@ -56,7 +56,7 @@
                             <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
                         </div>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -81,30 +81,30 @@
             <div class="causes-listing">
                <div class="container">
                     <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.html"><i class="fas fa-link"></i></a> <img src="images/Shops/shop1.jpg" alt=""> </div>
+                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop1.jpg" alt=""> </div>
                         <div class="campaign-txt">
-                            <h4><a href="shop_details.html">Construction Supplies Shop</a></h4>
+                            <h4><a href="shop_details.php">Construction Supplies Shop</a></h4>
                             <h5>Best Construction Supply Provider.</h5>
                             <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.html" class="dn-btn">Visit Shop</a> 
+                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
                         </div>
                     </div>
                     <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.html"><i class="fas fa-link"></i></a> <img src="images/Shops/shop4.jpg" alt=""> </div>
+                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop4.jpg" alt=""> </div>
                         <div class="campaign-txt">
-                            <h4><a href="shop_details.html">Agricultural Shop</a></h4>
+                            <h4><a href="shop_details.php">Agricultural Shop</a></h4>
                             <h5>Best Agricultural Shop in the Philippines.</h5>
                             <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.html" class="dn-btn">Visit Shop</a> 
+                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
                         </div>
                     </div>
                     <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.html"><i class="fas fa-link"></i></a> <img src="images/Shops/shop2.jpg" alt=""> </div>
+                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop2.jpg" alt=""> </div>
                         <div class="campaign-txt">
-                            <h4><a href="shop_details.html">Ortega Construction</a></h4>
+                            <h4><a href="shop_details.php">Ortega Construction</a></h4>
                             <h5>Best Construction Supplier in ortega place.</h5>
                             <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.html" class="dn-btn">Visit Shop</a> 
+                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
                         </div>
                     </div>
                </div>
@@ -152,7 +152,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>

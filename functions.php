@@ -2,13 +2,11 @@
 include('dbconn.php');
 
 session_start();
-$email = "avorbading@gmail.com";
+$email = "avor@gmail.com";
 $kunwareng_login="SELECT * FROM user_info WHERE email='$email'";
 $prompt = mysqli_query($conn, $kunwareng_login);
 $getData = mysqli_fetch_array($prompt);
 $_SESSION['get_data'] = $getData;
-
-
 
 
 if (isset($_POST['add_to_cart'])) {
@@ -41,7 +39,7 @@ if (isset($_POST['add_to_cart'])) {
 ?>
 
 
- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
           $(document).ready(function(){

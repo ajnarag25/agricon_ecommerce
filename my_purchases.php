@@ -1,3 +1,13 @@
+<?php 
+   include('dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: login.php");
+   }
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -22,39 +32,23 @@
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="home.html"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="homephphtml"><img src="images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
-                        <a class="nav-link" href="home.html" >Home</a>
+                        <a class="nav-link" href="home.php" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="feed_home.html">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="shop_home.html">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="bidding_home.html">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="feed_home.php">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="shop_home.php">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_home.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                     <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account.html">My Account</a> | <a href="index.html">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                    
                   </ul>
                </div>
@@ -72,7 +66,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Purchases</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -85,19 +79,27 @@
                     <div class="sidebar">
                         <div class="product-box">
                             <div class="pro-thumb">
-                            <form action="">
-                            <a href="#">
-                                <input type="file" class="btn btn-success w-100" required>
-                            </a>
-                            <img src="images/profile.png" alt=""></div>
-                            <br>
-                            <p class="text-center">Change Profile Picture</p>
-                            <button type="submit" class="btn btn-success w-100">Upload Image</button>
+                            <form method="POST" action="process.php" enctype="multipart/form-data">
+                              <a href="#">
+                                 <input type="file" name="valid_id" class="btn btn-success w-100" required>
+                              </a>
+                              <?php 
+                                    $account = $_SESSION['data']['username'];
+                                    $query = "SELECT * FROM users WHERE username='$account' ";
+                                    $result = mysqli_query($conn, $query);
+                                    while ($row = mysqli_fetch_array($result)) {
+                                 ?>
+                              <img src="<?php echo $row['valid_id']; ?>" alt=""></div>
+                              <input type="hidden" value="<?php echo $row['id'] ?>" name="id">
+                              <?php }; ?>
+                              <br>
+                              <p class="text-center">Change Profile Picture</p>
+                              <button type="submit" name="update_profile" class="btn btn-success w-100">Upload Image</button>
                             </form>
                         </div>
                         <ul>
-                            <li><a href="my_account.html">My Account</a></li>
-                            <li><a href="my_purchases.html">My Purchases</a></li>
+                            <li><a href="my_account.php">My Account</a></li>
+                            <li><a href="my_purchases.php">My Purchases</a></li>
                         </ul>
                       
                     </div>
@@ -182,7 +184,6 @@
                            <h4>Information</h4>
                            <ul class="">
                               <li><a href="#">My Account</a></li>
-                              <li><a href="#">Rewards</a></li>
                               <li><a href="#">Terms and Conditions</a></li>
                               <li><a href="#">Buying Guide </a></li>
                            </ul>
@@ -220,7 +221,7 @@
       <script src="js/owl.carousel.min.js"></script> 
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <!-- <script src="js/custom.js"></script> -->
    </body>
 
 </html>
