@@ -100,27 +100,23 @@
                         ?>
                         
                         <tr class = "quan">
-                              <td><input type="checkbox" class = "cb_class" id = "checkbox_row" onclick = "cb_check()" value = "<?=$papo['id'];?>"></td>
+                              <td><input type="checkbox" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$papo['id'];?>"></td>
                               <td scope="row"><img src="<?= $papo['imagee'];?>" name = "image" width="70px" alt=""></td>
                               <td><?= $papo['shop_name'];?></td>
                               <td><?= $papo['contact'];?></td>
-                              <td><?= $papo['variation'];?></td>
-                             
+                              <td><?= $papo['variation'];?></td>                            
                               <td>
-                                       <div class = "col-md-4">
-                                          <div class = "input-group mb-3" style = "width:130px">
-                                             <button id = "decre" class = "input-group-text decrement-btn" disabled>-</button>
-                                             <input type = "text" id = "qty_id<?= $papo['id'];?>" class = "form-control text-center input-qty bg-white" value = "<?=$papo['quantity'];?>" disabled>
-                                             <button id = "incre" class = "input-group-text increment-btn" disabled>+</button>
-                                          </div>
-                                       </div>
+                              <input type="number" id= "qty_id" value = "<?= $papo['quantity'];?>" class="input_qty" name="quantity" min="1" max="99" onclick = "quants()" onkeyup = "quants()" disabled>
                               </td>
                               
                      
                               <!-- <td><input type="number" id = "quantity_id" name="quantity" min="1" max="99" name = "quantity[]" value="" required></td> -->
                               <td><p class="price"> <?=$papo['price']?></p></td>
                               <td><p class = 'subtotal'></p></td>
-                              <td><button class="btn btn-danger"><i class="fa fa-trash me-2" disabled></i> Delete</button></td>
+
+                              <td>
+                                 <button class="btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</button>
+                              </td>
                               
                            </tr>
                         <?php }?>
@@ -128,7 +124,8 @@
                     </tbody>
                 </table>
 
-                <p id = "total">Total Price: 0</p>
+                <h5>Total: </h5>
+                <h6 id = 'gtotal'></h6>
                 <button class="btn btn-success">Checkout</button>
             </div>
          </section>
@@ -202,7 +199,42 @@
          <!--Footer End--> 
       </div>
       <!--   JS Files Start  --> 
+      <script>
+         var price = document.getElementsByClassName("price");
+         var subtotal = document.getElementsByClassName("subtotal");
+         var quantity = document.getElementsByClassName("input_qty");
+         var total = document.getElementById("gtotal");
+         var overall = 0;
+         for(i=0;price.length>i;i++){
+            subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
+         }
 
+
+         function quants() {
+            overall = 0;
+            var checkBoxes = document.getElementsByClassName("cb_class");
+            for(i=0;price.length>i;i++){
+               if(checkBoxes[i].checked){
+                  subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
+                  overall = (overall) + (price[i].innerText)*(quantity[i].value);
+            }
+         }
+            total.innerText = overall;
+         }
+         function cb_func(){
+            overall = 0;
+
+            var checkBoxes = document.getElementsByClassName("cb_class");
+            var subtotal = document.getElementsByClassName("subtotal");
+            for (var i = 0; i < checkBoxes.length; i++) {
+               if(checkBoxes[i].checked){
+                  quantity[i].disabled = false;
+                  overall = (overall) + (price[i].innerText)*(quantity[i].value);
+               }
+         }
+         total.innerText = overall;
+         }
+      </script>
 
       <!-- <script src="js/jquery-3.3.1.min.js"></script>  -->
       
