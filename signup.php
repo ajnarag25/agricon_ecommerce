@@ -117,7 +117,17 @@
                               <input type="password" name="pass2" class="form-control" placeholder="Retype Password" required>
                               </div>
                             </li>
-                            <li class="col-md-12">
+                            <li class="col-md-4">
+                              <label for="">Register as <span style="color:red">*</span></label>
+                              <div class="input-group">
+                                 <select class="form-control" name="type" id="" required>
+                                    <option value="" selected disabled>Please Choose</option>
+                                    <option value="USER">User</option>
+                                    <option value="SELLER">Seller</option>
+                                 </select>
+                              </div>
+                            </li>
+                            <li class="col-md-8">
                               <label for="">Delivery Address <span style="color:red">*</span></label>
                               <div class="input-group">
                               <textarea class="form-control" name="del_address" placeholder="Delivery Address" id="" cols="30" rows="5" required></textarea>

@@ -17,17 +17,27 @@ if (isset($_POST['login'])) {
     $user = $_POST['username'];
     $pass = $_POST['password'];
 
-    $login="SELECT * FROM users WHERE username='$user'";
+    $login="SELECT * FROM accounts WHERE username='$user'";
     $prompt = mysqli_query($conn, $login);
     $getData = mysqli_fetch_array($prompt);
 
     if (password_verify($pass, $getData['password'])){
         if ($getData['status'] == 'UNVERIFIED'){
-            $_SESSION['data'] = $getData;
-            header('location:unverified.php');
+            if ($getData['type'] == 'USER'){
+                $_SESSION['data'] = $getData;
+                header('location:unverified.php');
+            }else{
+                $_SESSION['data'] = $getData;
+                header('location: ./seller/unverified_seller.php');
+            }
         }else{
-            $_SESSION['data'] = $getData;
-            header('location:home.php');
+            if ($getData['type'] == 'USER'){
+                $_SESSION['data'] = $getData;
+                header('location:home.php');
+            }else{
+                $_SESSION['data'] = $getData;
+                header('location: ./seller/home_seller.php');
+            }
         }
       
     }else{
@@ -70,9 +80,10 @@ if (isset($_POST['signup'])) {
     $birthday = $_POST['birthday'];
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
+    $type = $_POST['type'];
     $del_address = $_POST['del_address'];
 
-    $checking = "SELECT * FROM users WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' OR email='$emails'";
+    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' OR email='$emails'";
     $prompt = $conn->query($checking);
     $row = mysqli_num_rows($prompt);
 
@@ -116,9 +127,9 @@ if (isset($_POST['signup'])) {
                 </script>";
         }else {
           move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
-          $conn->query("INSERT INTO users (firstname, middlename, lastname, username, email, address, birthday, valid_id, password, delivery_address, otp, status) 
-          VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
-          include 'signup_email.php';
+          $conn->query("INSERT INTO accounts (firstname, middlename, lastname, username, email, address, birthday, valid_id, password, type, delivery_address, otp, status) 
+          VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."', '$type','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
+        //   include 'signup_email.php';
           ?>
           <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -206,14 +217,14 @@ if (isset($_POST['update_user'])) {
     $birthday = $_POST['birthday'];
     $del_address = $_POST['del_address'];
 
-    $checking = "SELECT * FROM users WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND
+    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND
     address='$address' AND birthday='$birthday' AND delivery_address='$del_address'";
     $prompt = $conn->query($checking);
     $row = mysqli_num_rows($prompt);
 
 
     if ($row == 0){
-        $conn->query("UPDATE users SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email',
+        $conn->query("UPDATE accounts SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email',
         address='$address', birthday='$birthday', delivery_address='$del_address' WHERE id='$id'") or die($conn->error);
 
         ?>
@@ -285,7 +296,7 @@ if (isset($_POST['update_profile'])) {
     } else {
     move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
     }
-        $sql='UPDATE users SET valid_id="'.$target_file.'" WHERE id="'.$get_id.'"';
+        $sql='UPDATE accounts SET valid_id="'.$target_file.'" WHERE id="'.$get_id.'"';
         $result = mysqli_query($conn, $sql);
         header('location: my_account.php');
         
@@ -330,7 +341,7 @@ if (isset($_POST['update_password'])) {
         </script>
         <?php
     }else{
-        $conn->query("UPDATE users SET password='".password_hash($password1, PASSWORD_DEFAULT)."' WHERE id='$id'") or die($conn->error);
+        $conn->query("UPDATE accounts SET password='".password_hash($password1, PASSWORD_DEFAULT)."' WHERE id='$id'") or die($conn->error);
         session_destroy();
         ?>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -364,7 +375,7 @@ if (isset($_POST['forgotpass'])) {
     $emails = $_POST['email'];
     $setOTP = rand(0000,9999);
 
-    $sql = "SELECT * FROM users WHERE email='$emails'";
+    $sql = "SELECT * FROM accounts WHERE email='$emails'";
     $result = mysqli_query($conn, $sql);
     $check = mysqli_num_rows($result);
     if ($check == 0){
@@ -393,7 +404,7 @@ if (isset($_POST['forgotpass'])) {
         </script>
         <?php
     }else{
-        $conn->query("UPDATE users SET otp='$setOTP' WHERE email='$emails'") or die($conn->error);
+        $conn->query("UPDATE accounts SET otp='$setOTP' WHERE email='$emails'") or die($conn->error);
         $_SESSION['otp'] = $emails;
         include 'otp_email.php';
         header("Location: otp.php");
@@ -405,7 +416,7 @@ if (isset($_POST['forgotpass'])) {
 if (isset($_POST['otp_submit'])) {
     $otp = $_POST['otp'];
     $_SESSION['otp'] = $otp;
-    $sql = "SELECT * FROM users WHERE otp='$otp'";
+    $sql = "SELECT * FROM accounts WHERE otp='$otp'";
     $result = mysqli_query($conn, $sql);
     $check = mysqli_num_rows($result);
 
@@ -471,7 +482,7 @@ if (isset($_POST['change_pass'])) {
         </script>
         <?php
     }else{
-        $conn->query("UPDATE users SET password='".password_hash($password1, PASSWORD_DEFAULT)."' WHERE otp='$get_otp'") or die($conn->error);
+        $conn->query("UPDATE accounts SET password='".password_hash($password1, PASSWORD_DEFAULT)."' WHERE otp='$get_otp'") or die($conn->error);
         ?>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>

@@ -85,7 +85,7 @@
                               </a>
                               <?php 
                                     $account = $_SESSION['data']['username'];
-                                    $query = "SELECT * FROM users WHERE username='$account' ";
+                                    $query = "SELECT * FROM accounts WHERE username='$account' ";
                                     $result = mysqli_query($conn, $query);
                                     while ($row = mysqli_fetch_array($result)) {
                                  ?>

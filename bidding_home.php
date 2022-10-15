@@ -31,7 +31,7 @@
                      </li>
                      <li class="nav-item"> <a class="nav-link" href="feed_home.php">Feed</a> </li>
                      <li class="nav-item"> <a class="nav-link" href="shop_home.php">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="about.php">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="bidding_home.php">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
