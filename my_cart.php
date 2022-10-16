@@ -151,14 +151,16 @@
                                  <span aria-hidden="true">&times;</span>
                                  </button>
                               </div>
+                              <?php 
+                                 $query = "SELECT * FROM admin";
+                                 $result = mysqli_query($conn, $query);
+                                 while ($row = mysqli_fetch_array($result)) {
+
+                              ?>
                               <div class="modal-body">
-                                 <p>AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro. 
-                                    <br><br>
-                                    Launched in 2022, it is a platform specialized for the province, abling the customers enjoy an easy, fast, and secured online purchasing of agricultural and construction or hardware products.
-                                    <br><br>
-                                    AgriCon Mart believes that those types of products should be easily accessible. This is the vision we aspire to deliver and the Mindoreños deserve.
-                                 </p>
+                                 <p><?php echo $row['about'] ?></p>
                               </div>
+                              <?php } ?>
                            </div>
                            </div>
                         </div>

@@ -1,3 +1,7 @@
+<?php 
+ include('../dbconn.php');
+?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -12,6 +16,12 @@
     <link href="dist/css/style.css" rel="stylesheet">
 
 </head>
+
+<style>
+    .no-result-div{
+        display:none;
+    }
+</style>
 
 <body>
     <div class="preloader">
@@ -58,7 +68,7 @@
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="dashboard.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-av-timer"></i>
                                 <span class="hide-menu">Dashboard</span>
@@ -87,7 +97,7 @@
                         </li>
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="logout.php"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-arrow-left"></i>
                                 <span class="hide-menu">Logout</span>
@@ -105,7 +115,7 @@
                     <div class="col-5 align-self-center">
                         <h4 class="page-title">Users Data</h4>
                         <div class="col-lg-10" style="display: inline-flex;">
-                            <input type="search" class="form-control rounded"  placeholder="Search" onkeyup="studentSearch()" id="searchStudent" />
+                            <input type="search" class="form-control rounded"  placeholder="Search" onkeyup="userSearch()" id="searchUser" />
                             <span class="input-group-text bg-success text-white"><i class='mdi mdi-magnify'></i></span>
                         </div>
                     </div>
@@ -129,88 +139,85 @@
                     <div class="col-12">
                         <div class="card card-body">
                             <div class="container-fluid">
-                                <div class="card-body overflow-auto">
-                                    <table class="table table-hover" id="studentTable">
+                                <div class="card-body overflow-auto table-responsive">
+                                    <table class="table table-hover" id="userTable">
                                         <thead class="thead-dark">
                                           <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">Student No.</th>
                                             <th scope="col">Name</th>
-                                            <th scope="col">Username</th>
-                                            <th scope="col">Contact no.</th>
+                                            <th scope="col">Category</th>
                                             <th scope="col">Email</th>
-                                            <th scope="col">Course</th>
-                                            <th scope="col">Year & Section</th>
+                                            <th scope="col">Address</th>
                                             <th scope="col">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php 
+                                            $query = "SELECT * FROM accounts ";
+                                            $result = mysqli_query($conn, $query);
+                                            while ($row = mysqli_fetch_array($result)) {
 
-                                  
+                                        ?>
                                           <tr>
-                                            <th><?php echo $row['id']; ?></th>
-                                            <td><?php echo $row['student_no']; ?></td>
-                                            <td><?php echo $row['name']?></td>
-                                            <td><?php echo $row['username']; ?></td>
-                                            <td><?php echo $row['contact']; ?></td>
+                                            <td><?php echo $row['firstname']; ?> <?php echo $row['middlename']; ?> <?php echo $row['lastname']; ?></td>
+                                            <td><?php echo $row['type']; ?></td>
                                             <td><?php echo $row['email']; ?></td>
-                                            <td><?php echo $row['course']; ?></td>
-                                            <td><?php echo $row['yr_section']; ?></td>
+                                            <td><?php echo $row['address']; ?></td>
                                             <td>
-                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $row['id'] ?>"> <i class="mdi mdi-pencil"></i></button>
-                                                <button type="button" class="btn btn-danger" style="color:white" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
+                                                <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#detailsModal<?php echo $row['id'] ?>"> <i class="mdi mdi-account"></i></button>
+                                                <button type="button" class="btn btn-danger" style="color:white" data-bs-toggle="modal" data-bs-target="#suspendModal<?php echo $row['id'] ?>"> <i class="mdi mdi-alert-circle-outline"></i></button>
                                             </td>
                                           </tr>
                                         </tbody>
 
-                                         <!-- Modal Delete-->
-                                         <div class="modal fade" id="deleteModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <!-- Modal Suspend-->
+                                         <div class="modal fade" id="suspendModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['name'] ?></h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Suspend User <?php echo $row['firstname']; ?> <?php echo $row['middlename']; ?> <?php echo $row['lastname']; ?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <h4>Are you sure you want to delete this student?</h4>
+                                                <h4>Are you sure you want to suspend this user account?</h4>
+                                                <p> This Action is Irreversible!</p>
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" style="color:white" href="functions.php?deleteStudent=<?php echo $row["id"] ?>">Delete</a>
+                                                <a class="btn btn-danger" style="color:white" href="process.php?suspendUser=<?php echo $row["id"] ?>">Suspend</a>
                                                 </div>
                                             </div>
                                             </div>
                                         </div>
                                         
-                                         <!-- Modal Edit -->
-                                         <div class="modal fade" id="editModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                         <!-- Modal Account Details -->
+                                         <div class="modal fade" id="detailsModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Edit Details for Student: <?php echo $row['name'] ?></h5>
+                                                <h5 class="modal-title" id="exampleModalLabel">Account Details for User: <?php echo $row['firstname']; ?> <?php echo $row['middlename']; ?> <?php echo $row['lastname']; ?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <form action="functions.php" method="POST">
                                                 <div class="modal-body">
                                                     <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
                                                     <label for="">Name</label>
-                                                    <input type="text" class="form-control" name="name" value="<?php echo $row['name'] ?>">
+                                                    <input type="text" class="form-control"  value="<?php echo $row['firstname']; ?> <?php echo $row['middlename']; ?> <?php echo $row['lastname']; ?>" readonly>
                                                     <label for="">Username</label>
-                                                    <input type="text" class="form-control" name="uname" value="<?php echo $row['username'] ?>">
-                                                    <label for="">Student Number</label>
-                                                    <input type="text" class="form-control" name="sno" value="<?php echo $row['student_no'] ?>">
-                                                    <label for="">Contact No.</label>
-                                                    <input type="number" class="form-control" name="contact" value="<?php echo $row['contact'] ?>">
+                                                    <input type="text" class="form-control"  value="<?php echo $row['username'] ?>" readonly>
                                                     <label for="">Email</label>
-                                                    <input type="text" class="form-control" name="mail" value="<?php echo $row['email'] ?>">
-                                                    <label for="">Course</label>
-                                                    <input type="text" class="form-control" name="course" value="<?php echo $row['course'] ?>">
-                                                    <label for="">Year & Section</label>
-                                                    <input type="text" class="form-control" name="yrsec" value="<?php echo $row['yr_section'] ?>">
+                                                    <input type="text" class="form-control"  value="<?php echo $row['email'] ?>" readonly>
+                                                    <label for="">Address</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['address'] ?>" readonly>
+                                                    <label for="">Birthday</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['birthday'] ?>" readonly>
+                                                    <label for="">Category</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['type'] ?>" readonly>
+                                                    <label for="">Status</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['status'] ?>" readonly>
+                                                    <label for="">Delivery Address</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['delivery_address'] ?>" readonly>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary" name="updateStudent">Save changes</button>
                                                 </div>
                                             </form>
                                             </div>
@@ -218,13 +225,19 @@
                                         </div>
 
                            
-
+                                        <?php } ?>
                                       </table>
                                       <br>
-                                 
+                                                
+                                    <?php 
+                                        $sql = "SELECT * FROM accounts ";
+                                        $result=mysqli_query($conn, $sql);
+                                        $row = mysqli_num_rows($result);
+                                    ?>
                                     <p>Showing <?php echo $row; ?> entries </p>
+                        
                                     
-                                    <div class="no-result-div mt-4 text-center" id="no-student">
+                                    <div class="no-result-div mt-4 text-center" id="no-user">
                                         <div class="div">
                                             <img src="assets/images/search.svg" width="150" height="150" alt="">
                                             <h4 class="mt-3">Search not found...</h4>
@@ -249,9 +262,7 @@
     <script src="dist/js/waves.js"></script>
     <script src="dist/js/sidebarmenu.js"></script>
     <script src="dist/js/custom.min.js"></script>
-    <script src="assets/libs/chartist/dist/chartist.min.js"></script>
-    <script src="assets/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <script src="dist/js/pages/dashboards/dashboard1.js"></script>
+    <script src="dist/js/functions.js"></script>
 </body>
 
 </html>

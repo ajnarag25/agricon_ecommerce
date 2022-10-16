@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
     <link href="assets/images/users/logo.png" rel="icon">
-    <title>AgriconMart - Website Information</title>
+    <title>AgriconMart - Admin</title>
     <link href="assets/libs/chartist/dist/chartist.min.css" rel="stylesheet">
     <link href="dist/css/style.css" rel="stylesheet">
 
@@ -108,112 +108,79 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Website Information:</h4>
+                        <h4 class="page-title">Dashboard</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href="index.php">Home</a>
+                                        <a href="#">Home</a>
                                     </li>
-                                    <li class="breadcrumb-item active" aria-current="page">Website Information</li>
+                                    <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                                 </ol>
                             </nav>
                         </div>
                     </div>
                 </div>
             </div>
+            <br><br>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-4 col-xlg-3">
+                    <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-body"> <small class="text-muted">About: </small>
-                                <?php 
-                                    $query = "SELECT * FROM admin";
-                                    $result = mysqli_query($conn, $query);
-                                    while ($row = mysqli_fetch_array($result)) {
-
-                                ?>
-                                <form method="POST" action="process.php">
-                                    <textarea class="form-control" name="about" id="" cols="30" rows="10"><?php echo $row['about'] ?></textarea>
+                            <div class="card-body" style="background-color: rgba(255, 255, 0, 0.534);">
+                                <div class="text-center">
                                     <br>
-                                    <button type="submit" class="btn btn-success w-100" name="update_about">Update</button>
-                                </form>
-                                <?php } ?>
+                                    <img src="assets/images/user.png" width="100" alt="">
+                                    <br><br>
+                                    <h2 class="card-title">Registered Users</h2>
+                                                    
+                                    <?php 
+                                        $sql = "SELECT * FROM accounts WHERE type='USER'";
+                                        $result=mysqli_query($conn, $sql);
+                                        $row = mysqli_num_rows($result);
+                                    ?>
+                                    <h2><?php echo $row ?></h2>    
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body" style="background-color: rgba(116, 212, 72, 0.534);">
+                                <div class="text-center">
+                                    <br>
+                                    <img src="assets/images/order.png" width="100" alt="">
+                                    <br><br>
+                                    <h2 class="card-title">Ordered Products</h2>
+               
+                                    <h2>134</h2>           
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-8 col-xlg-9">
+                    <div class="col-lg-4">
                         <div class="card">
-                            <div class="card-body">
-                                <form class="form-horizontal form-material mx-2" action="process.php" method="POST">
+                            <div class="card-body" style="background-color: #72FFDE;">
+                                <div class="text-center">
+                                    <br>
+                                    <img src="assets/images/seller.jpg" width="97" alt="">
+                                    <br><br>
+                                    <h2 class="card-title">Seller/Shops Available   </h2>
                                     <?php 
-                                        $query = "SELECT * FROM admin";
-                                        $result = mysqli_query($conn, $query);
-                                        while ($row = mysqli_fetch_array($result)) {
-
+                                        $sql = "SELECT * FROM accounts WHERE type='SELLER'";
+                                        $result=mysqli_query($conn, $sql);
+                                        $row = mysqli_num_rows($result);
                                     ?>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Username</label>
-                                        <div class="col-md-12">
-                                            <input type="text" name="user" value="<?php echo $row['username'] ?>" 
-                                                class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" name="pass1" value="<?php echo $row['password'] ?>" 
-                                                class="form-control form-control-line" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Retype Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" name="pass2" value="<?php echo $row['password'] ?>" 
-                                                class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
-                                        <div class="col-md-12">
-                                            <input type="email" name="mail" value="<?php echo $row['email'] ?>"
-                                                class="form-control form-control-line" >
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-sm-12">
-                                            <button type="button" data-bs-toggle="modal" data-bs-target="#changeModal" class="btn btn-success text-white">Update Profile</button>
-                                        </div>
-
-                                        <!-- Change Profile-->
-                                        <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                    <div class="modal-body">
-                                                        <h5>Update profile now?</h5>
-                                                        <h5>* After you change your account it will automatically <b>logout</b> and simply login your new updated account credentials *</h5>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" style="color:white">No</button>
-                                                        <button type="submit" class="btn btn-success" name="updateAdmin" style="color:white">Yes</button>
-                                                    </div>
-                                            </div>
-                                        <?php } ?>
-                                            </div>
-                                    </div>
-                                </form>
+                                    <h2><?php echo $row ?></h2>     
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+           
             </div>
-
 
             <footer class="footer text-center">
                 AgriconMart
