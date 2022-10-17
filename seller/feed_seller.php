@@ -1,5 +1,9 @@
 <?php 
    include('../dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: ../login.php");
+   }
 ?>
 
 <!doctype html>
@@ -43,26 +47,10 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart_seller.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -79,6 +67,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>AgriCon Mart Feed</h1>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'],' ', $_SESSION['data']['lastname'] ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -86,33 +75,66 @@
          <section class="wf100 p80 blog">
             <div class="causes-listing">
                <div class="container">
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop1.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details_seller.php">Construction Supplies Shop</a></h4>
-                            <h5>Best Construction Supply Provider.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                     <?php 
+                        $account = $_SESSION['data']['email'];
+                        $query = "SELECT * FROM shops WHERE email='$account' ";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                     ?>
+                     <button class="btn btn-success w-100" data-toggle="modal" data-target="#publish<?php echo $row['id'] ?>">PUBLISH A POST</button>
+
+                     <!-- Modal Publish Post-->
+                     <div class="modal fade" id="publish<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Create Post</h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                              <form method="POST" action="process.php" enctype="multipart/form-data">
+                                 <div class="modal-body">
+                                    <label for="">Shop Name</label>
+                                    <input type="text" class="form-control" name="feed_name" value="<?php echo $row['name'] ?>" readonly>
+                                    <label for="">Upload Image</label>
+                                    <input type="file" class="form-control" name="feed_image" required>
+                                    <label for="">Header</label>
+                                    <input type="text" class="form-control" name="feed_header" required>
+                                    <label for="">Description</label>
+                                    <textarea class="form-control" name="feed_det" id="" cols="30" rows="5" required></textarea>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" name="publish_post">Publish</button>
+                                 </div>
+                              </form>
+                           </div>
                         </div>
-                    </div>
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop4.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details_seller.php">Agricultural Shop</a></h4>
-                            <h5>Best Agricultural Shop in the Philippines.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
-                        </div>
-                    </div>
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="../images/Shops/shop2.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details_seller.php">Ortega Construction</a></h4>
-                            <h5>Best Construction Supplier in ortega place.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
-                        </div>
-                    </div>
+                     </div>
+
+                     <?php } ?>
+                     
+                     <br><br>
+
+                     <?php 
+                        $query = "SELECT * FROM feed";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                           
+                     ?>
+
+                     <div class="campaign-box">
+                           <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="<?php echo $row['image'] ?>" alt=""> </div>
+                           <div class="campaign-txt">
+                              <h4><a href="shop_details_seller.php"><?php echo $row['shop'] ?></a></h4>
+                              <h5><?php echo $row['header'] ?></h5>
+                              <p><?php echo $row['description'] ?></p>
+                              <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                           </div>
+                     </div>
+
+                     <?php } ?>
                </div>
             </div>
          </section>

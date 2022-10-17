@@ -85,33 +85,24 @@
          <section class="wf100 p80 blog">
             <div class="causes-listing">
                <div class="container">
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop1.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details.php">Construction Supplies Shop</a></h4>
-                            <h5>Best Construction Supply Provider.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
-                        </div>
-                    </div>
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop4.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details.php">Agricultural Shop</a></h4>
-                            <h5>Best Agricultural Shop in the Philippines.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
-                        </div>
-                    </div>
-                    <div class="campaign-box">
-                        <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="images/Shops/shop2.jpg" alt=""> </div>
-                        <div class="campaign-txt">
-                            <h4><a href="shop_details.php">Ortega Construction</a></h4>
-                            <h5>Best Construction Supplier in ortega place.</h5>
-                            <p>Buy now to avail our newest Promo!!! Quick! Quick! Quick!</p>
-                            <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
-                        </div>
-                    </div>
+                     <?php 
+                        $query = "SELECT * FROM feed";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                           
+                     ?>
+
+                     <div class="campaign-box">
+                           <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="./seller/<?php echo $row['image'] ?>" alt=""> </div>
+                           <div class="campaign-txt">
+                              <h4><a href="shop_details.php"><?php echo $row['shop'] ?></a></h4>
+                              <h5><?php echo $row['header'] ?></h5>
+                              <p><?php echo $row['description'] ?></p>
+                              <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
+                           </div>
+                     </div>
+
+                     <?php } ?>
                </div>
             </div>
          </section>

@@ -49,7 +49,7 @@
                     <li class="dropdown">
                      <a class="cart-icon" href="my_cart_seller.php" > <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>

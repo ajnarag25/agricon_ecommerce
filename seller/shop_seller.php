@@ -1,5 +1,9 @@
 <?php 
    include('../dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: ../login.php");
+   }
 ?>
 
 <!doctype html>
@@ -41,26 +45,10 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart_seller.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -69,6 +57,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>AgriCon Mart Shops</h1>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'],' ', $_SESSION['data']['lastname'] ?></p>
             </div>
          </section>
             <!--Current Projects Start-->
@@ -87,39 +76,26 @@
                         <div class="tab-content" id="myTabContent">
                            <div class="tab-pane fade show active" id="wildlife" role="tabpanel" aria-labelledby="wildlife-tab">
                               <div class="cpro-slider owl-carousel owl-theme">
+                              <?php 
+                                 $query = "SELECT * FROM shops";
+                                 $result = mysqli_query($conn, $query);
+                                 while ($row = mysqli_fetch_array($result)) {
+                                    
+                              ?>
                                  <div class="item">
                                     <div class="pro-box">
-                                       <img src="../images/Shops/shop4.jpg" alt="">
-                                       <h5>Agricultural Shop</h5>
+                                       <img src="<?php echo $row['image'] ?>" alt="">
+                                       <h5><?php echo $row['name'] ?></h5>
                                        <div class="pro-hover">
-                                          <h6>Agricultural Shop</h6>
-                                          <p>Best Agricultural Shop in the Philippines.</p>
+                                          <h6><?php echo $row['name'] ?></h6>
+                                          <p><?php echo $row['details'] ?></p>
                                           <a href="shop_details_seller.php">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>
-                                 <div class="item">
-                                    <div class="pro-box">
-                                       <img src="../images/Shops/shop1.jpg" alt="">
-                                       <h5>Construction Supplies Shop</h5>
-                                       <div class="pro-hover">
-                                          <h6>Construction Supplies Shop</h6>
-                                          <p>Best Construction Supply Provider.</p>
-                                          <a href="shop_details_seller.php">Visit Shop</a> 
-                                       </div>
-                                    </div>
-                                 </div>
-                                 <div class="item">
-                                    <div class="pro-box">
-                                       <img src="../images/Shops/shop2.jpg" alt="">
-                                       <h5>Ortega Construction</h5>
-                                       <div class="pro-hover">
-                                          <h6>Ortega Construction</h6>
-                                          <p>Best Construction Supplier in ortega place.</p>
-                                          <a href="shop_details_seller.php">Visit Shop</a> 
-                                       </div>
-                                    </div>
-                                 </div>
+                              
+                              <?php } ?>
+                         
                               </div>
                            </div>
                         </div>

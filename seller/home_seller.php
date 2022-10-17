@@ -46,11 +46,10 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
+                        <a class="cart-icon" href="my_cart_seller.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
-                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -79,54 +78,25 @@
                   <h2>Products</h2>
                </div>
                <div class="row">
-                  <!--Pro Box Start-->
+               <?php 
+                  $query = "SELECT * FROM products";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_array($result)) {
+                     
+               ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="<?php echo $row['image'] ?>" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="#">Powders</a></h6>
-                           <p class="pro-price">P19.00</p>
+                           <h6><a href="#"><?php echo $row['product'] ?></a></h6>
+                           <p class="pro-price">P<?php echo $row['price'] ?></p>
                         </div>
                         <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product2.jpg"alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">General Fertilizers</a></h6>
-                           <p class="pro-price">P80.00</p>
-                        </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                           <p class="pro-price">P250.00</p>
-                        </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
-                  <!--Pro Box End--> 
-                  <!--Pro Box Start-->
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Magic Gro Plus</a></h6>
-                           <p class="pro-price">P75.00</p>
-                        </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
-                  <!--Pro Box End--> 
+               
+               <?php } ?>
+               
                </div>
             </div>
          </section>

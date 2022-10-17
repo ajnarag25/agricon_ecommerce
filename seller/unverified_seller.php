@@ -47,7 +47,7 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li class="login-reg"> <a href="#">My Account</a> | <a href="../index.php">Logout</a> </li>
+                    <li class="login-reg"> <a href="#">My Account</a> | <a href="../process.php?logout">Logout</a> </li>
                   </ul>
                </div>
             </nav>

@@ -450,4 +450,107 @@ if (isset($_GET['deleteProduct'])) {
     header("Location: my_products_seller.php");
 }
 
+// publish post 
+if (isset($_POST['publish_post'])) { 
+    $name = $_POST['feed_name'];
+    $header = $_POST['feed_header'];
+    $details = $_POST['feed_det'];
+
+    $checking = "SELECT * FROM feed WHERE header='$header' AND description='$details'";
+    $prompt = $conn->query($checking);
+    $row = mysqli_num_rows($prompt);
+
+    $target_dir = "uploads/";
+    $target_file = $target_dir . basename($_FILES["feed_image"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["feed_image"]["tmp_name"]);
+
+
+    if($row == 0){
+        if($check !== false) {
+            $uploadOk = 1;
+            if ($uploadOk == 0) {
+                echo "<script type=\"text/javascript\">
+                alert(\"Sorry, your file was not uploaded.\");
+                window.location = \"feed_seller.php\"
+                </script>";
+            }else{
+                move_uploaded_file($_FILES["feed_image"]["tmp_name"], $target_file);
+                $conn->query("INSERT INTO feed (image, shop, header, description) 
+                VALUES('$target_file', '$name', '$header', '$details')") or die($conn->error);
+                ?>
+                <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                <script>
+                    $(document).ready(function(){
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'Successfully Published your Post',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'Okay'
+                        }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "feed_seller.php";
+                            }else{
+                                window.location.href = "feed_seller.php";
+                            }
+                        })
+                    })
+                </script>
+                <?php
+            }
+        }else {
+            $uploadOk = 0;
+            ?>
+            <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+            <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    icon: 'warning',
+                    title: 'File is not an image!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'Okay'
+                    }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "feed_seller.php";
+                        }else{
+                            window.location.href = "feed_seller.php";
+                        }
+                    })
+                    
+                })
+            </script>
+            <?php
+    
+        }
+    }else{
+        ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                Swal.fire({
+                icon: 'warning',
+                title: 'You already created that post',
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Okay'
+                }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "feed_seller.php";
+                    }else{
+                        window.location.href = "feed_seller.php";
+                    }
+                })
+                
+            })
+    
+        </script>
+        <?php
+    }
+
+}
+
+
 ?>
