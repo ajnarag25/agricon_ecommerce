@@ -17,7 +17,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="../images/logo.png">
-      <title>AgriCon - Shops</title>
+      <title>AgriCon - Unverified</title>
       <!-- CSS FILES START -->
       <link href="../css/custom.css" rel="stylesheet">
       <link href="../css/color.css" rel="stylesheet">
@@ -47,10 +47,6 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
-                    <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                    </li>
                     <li class="login-reg"> <a href="#">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>

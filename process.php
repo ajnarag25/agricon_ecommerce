@@ -30,7 +30,16 @@ if (isset($_POST['login'])) {
                 $_SESSION['data'] = $getData;
                 header('location: ./seller/unverified_seller.php');
             }
-        }else{
+        }else if($getData['status'] == 'DENIED'){
+            if ($getData['type'] == 'USER'){
+                $_SESSION['data'] = $getData;
+                header('location:denied.php');
+            }else{
+                $_SESSION['data'] = $getData;
+                header('location: ./seller/denied_seller.php');
+            }
+        }
+        else{
             if ($getData['type'] == 'USER'){
                 $_SESSION['data'] = $getData;
                 header('location:home.php');

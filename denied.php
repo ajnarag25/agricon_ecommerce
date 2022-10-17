@@ -17,7 +17,7 @@
       <meta name="description" content="">
       <meta name="author" content="">
       <link rel="icon" href="images/logo.png">
-      <title>AgriCon - Unverified</title>
+      <title>AgriCon - Denied</title>
       <!-- CSS FILES START -->
       <link href="css/custom.css" rel="stylesheet">
       <link href="css/color.css" rel="stylesheet">
@@ -56,15 +56,14 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>Unverified</h1>
+               <h1>Denied</h1>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Causes Start-->
          <section class="wf100 p80">
             <div class="container">
-              <h2>Your Account is Unverified</h2>
-              <p>Please wait for your account verification</p>
+              <h2>Your Account is Denied</h2>
             </div>
          </section>
          <!--Causes End--> 

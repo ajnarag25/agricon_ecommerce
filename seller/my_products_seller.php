@@ -1,5 +1,9 @@
 <?php 
    include('../dbconn.php');
+   session_start();
+   if (!isset($_SESSION['data']['username'])) {
+      header("Location: ../login.php");
+   }
 ?>
 
 <!doctype html>
@@ -41,24 +45,8 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart_seller.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="login-reg"> <a href="my_account_seller.php">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
@@ -77,38 +65,202 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Products</h1>
-               <p class="text-white">Seller: Sample Name</p>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'],' ', $_SESSION['data']['lastname'] ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Contact Start-->
          <section class="shop wf100 p80">
-            <div class="container">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                    <th scope="col">Image</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Available Stock</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <th scope="row"><img src="../images/Products/product2.jpg" width="70px" alt=""></th>
-                    <td>General Fertilizers</td>
-                    <td>P80.00</td>
-                    <td>250pcs</td>
-                    <td>General and Special-Purpose Fertilizers. The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient</td>
-                    <td>
-                        <button class="btn btn-primary w-100">Edit</button>
-                        <button class="btn btn-danger w-100">Delete</button>
-                    </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="container table-responsive">
+               <!-- Button trigger modal -->
+               <?php 
+                  $account = $_SESSION['data']['email'];
+                  $query = "SELECT * FROM shops WHERE email='$account' ";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_array($result)) {
+                  $get_shop = $row['name'];
+               ?>
+               <div class="row">
+                  <div class="col-md-4">
+                     <h5>My Current Shop: <br> <span style="color:green"><?php echo $row['name'] ?></span></h5>
+                     <img src="<?php echo $row['image'] ?>" width="250px" alt="">
+                  </div>
+                  <div class="col-md-4">
+                     <ul>
+                        <li> <h6>Owner: <?php echo $row['owner'] ?></h6></li>
+                        <li> <h6>Address: <?php echo $row['address'] ?></h6></li>
+                        <li> <h6>Contact: <?php echo $row['contact'] ?></h6></li>
+                        <li> <h6>Details: <?php echo $row['details'] ?></h6></li>
+                     </ul>
+                  </div>
+               </div>
+               <br><br>
+               <?php } ?>
+               <?php 
+                  $account = $_SESSION['data']['username'];
+                  $query = "SELECT * FROM accounts WHERE username='$account' ";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_array($result)) {
+               ?>
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addshop<?php echo $row['id'] ?>"> <i class="fas fa-plus"></i> Add Shop </button>
+               <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addproduct<?php echo $row['id'] ?>"> <i class="fas fa-plus"></i> Add Product </button>
+               <br><br>
+               <!-- Modal Add Shop-->
+               <div class="modal fade" id="addshop<?php echo $row['id'] ?>"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Shop</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form method="POST" action="process.php" enctype="multipart/form-data">
+                           <div class="modal-body">
+                              <p><strong>*Note: 1 Shop only per account of seller*</strong></p>
+                              <label for="">Owner:</label>
+                              <input type="text" class="form-control" name="owner" value="<?php echo $row['firstname'] ?> <?php echo $row['middlename'] ?> <?php echo $row['lastname'] ?>" readonly>
+                              <label for="">Address:</label>
+                              <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>" readonly>
+                              <input type="hidden" class="form-control" name="email" value="<?php echo $row['email'] ?>">
+                              <br>
+                              <label for="">Upload Shop Image <span style="color:red">*</span></label>
+                              <input type="file" class="form-control" name="shop_image" required>
+                              <label for="">Shop Name <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="shop_name" required>
+                              <label for="">Shop Contact No. <span style="color:red">*</span></label>
+                              <input type="number" class="form-control" name="shop_contact" required>
+                              <label for="">Shop Details <span style="color:red">*</span></label>
+                              <textarea class="form-control" name="shop_det" id="" cols="30" rows="5" required></textarea>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-success" name="addshop">Create Shop</button>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+
+               <!-- Modal Add Product-->
+               <div class="modal fade" id="addproduct<?php echo $row['id'] ?>"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <form method="POST" action="process.php" enctype="multipart/form-data">
+                           <div class="modal-body">
+                              <input type="hidden" class="form-control" name="email" value="<?php echo $row['email'] ?>">
+                              <label for="">Upload Product Image <span style="color:red">*</span></label>
+                              <input type="file" class="form-control" name="product_image" required>
+                              <label for="">Product Name <span style="color:red">*</span></label>
+                              <input type="text" class="form-control" name="product_name" required>
+                              <label for="">Product Price <span style="color:red">*</span></label>
+                              <input type="number" class="form-control" name="product_price" required>
+                              <label for="">Quantity <span style="color:red">*</span></label>
+                              <input type="number" class="form-control" name="product_quants" required>
+                              <label for="">Product Details <span style="color:red">*</span></label>
+                              <textarea class="form-control" name="product_det" id="" cols="30" rows="5" required></textarea>
+                           </div>
+                           <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              <button type="submit" class="btn btn-success" name="addproduct">Add Product</button>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+               </div>
+
+               <?php } ?>
+
+               <table class="table table-hover">
+                  <thead>
+                     <tr>
+                     <th scope="col">Image</th>
+                     <th scope="col">Product Name</th>
+                     <th scope="col">Price</th>
+                     <th scope="col">Available Stock</th>
+                     <th scope="col">Description</th>
+                     <th scope="col">Action</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  <?php 
+                     $account = $_SESSION['data']['email'];
+                     $query = "SELECT * FROM products WHERE email='$account' ";
+                     $result = mysqli_query($conn, $query);
+                     while ($row = mysqli_fetch_array($result)) {
+                  ?>
+                     <tr>
+                     <th scope="row"><img src="<?php echo $row['image'] ?>" width="70px" alt=""></th>
+                     <td><?php echo $row['product'] ?></td>
+                     <td>P<?php echo $row['price'] ?></td>
+                     <td><?php echo $row['stock'] ?>pc/s</td>
+                     <td><?php echo $row['details'] ?></td>
+                     <td>
+                        <button class="btn btn-primary w-100" data-toggle="modal" data-target="#editproduct<?php echo $row['id'] ?>">Edit</button>
+                        <button class="btn btn-danger w-100" data-toggle="modal" data-target="#deleteproduct<?php echo $row['id'] ?>">Delete</button>
+                     </td>
+                     </tr>
+
+                     <!-- Modal Edit-->
+                     <div class="modal fade" id="editproduct<?php echo $row['id'] ?>"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit Product: <?php echo $row['product'] ?></h5>
+                              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                 <span aria-hidden="true">&times;</span>
+                              </button>
+                              </div>
+                              <form method="POST" action="process.php">
+                                 <div class="modal-body">
+                                    <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ?>">
+                                    <label for="">Product Name</label>
+                                    <input type="text" class="form-control" name="product_name" value="<?php echo $row['product'] ?>">
+                                    <label for="">Product Price</label>
+                                    <input type="number" class="form-control" name="product_price" value="<?php echo $row['price'] ?>">
+                                    <label for="">Available Stock</label>
+                                    <input type="number" class="form-control" name="product_quants" value="<?php echo $row['stock'] ?>">
+                                    <label for="">Product Details</label>
+                                    <textarea class="form-control" name="product_det" id="" cols="30" rows="5" required><?php echo $row['details'] ?></textarea>
+                                 </div>
+                                 <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success" name="update_product">Save Changes</button>
+                                 </div>
+                              </form>
+                           </div>
+                        </div>
+                     </div>
+                     
+                     <!-- Modal Delete-->
+                     <div class="modal fade" id="deleteproduct<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Deleting Product: <?php echo $row['product'] ?></h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                              <h5>Are you sure you want to delete this product?</h5>
+                              <p> This Action is Irreversible!</p>
+                              </div>
+                              <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                              <a class="btn btn-danger" style="color:white" href="process.php?deleteProduct=<?php echo $row["id"] ?>">Delete</a>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+
+                  <?php } ?>
+                  </tbody>
+               </table>
             </div>
          </section>
          <!--Footer Start-->
@@ -191,7 +343,7 @@
       <script src="../js/owl.carousel.min.js"></script> 
       <script src="../js/jquery.prettyPhoto.js"></script> 
       <script src="../js/isotope.min.js"></script> 
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/custom.js"></script> -->
    </body>
 
 </html>

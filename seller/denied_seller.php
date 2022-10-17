@@ -1,8 +1,8 @@
 <?php 
-   include('dbconn.php');
+   include('../dbconn.php');
    session_start();
    if (!isset($_SESSION['data']['username'])) {
-      header("Location: login.php");
+      header("Location: ../login.php");
    }
 
 ?>
@@ -12,42 +12,42 @@
    
 
 <head>
-      <meta charset="utf-8">
+    <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <meta name="description" content="">
       <meta name="author" content="">
-      <link rel="icon" href="images/logo.png">
-      <title>AgriCon - Unverified</title>
+      <link rel="icon" href="../images/logo.png">
+      <title>AgriCon - Denied</title>
       <!-- CSS FILES START -->
-      <link href="css/custom.css" rel="stylesheet">
-      <link href="css/color.css" rel="stylesheet">
-      <link href="css/responsive.css" rel="stylesheet">
-      <link href="css/owl.carousel.min.css" rel="stylesheet">
-      <link href="css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/prettyPhoto.css" rel="stylesheet">
-      <link href="css/all.min.css" rel="stylesheet">
-      <link href="https://fonts.googleapis.com/css2?family=Rubik&display=swap" rel="stylesheet">
-      <!-- CSS FILES End -->
+      <link href="../css/custom.css" rel="stylesheet">
+      <link href="../css/color.css" rel="stylesheet">
+      <link href="../css/responsive.css" rel="stylesheet">
+      <link href="../css/owl.carousel.min.css" rel="stylesheet">
+      <link href="../css/bootstrap.min.css" rel="stylesheet">
+      <link href="../css/prettyPhoto.css" rel="stylesheet">
+      <link href="../css/all.min.css" rel="stylesheet">
    </head>
    <body>
       <div class="wrapper">
          <!--Header Start-->
          <header class="header-style-2">
             <nav class="navbar navbar-expand-lg">
-               <a class="navbar-brand" href="#"><img src="images/logo.png" width="200px" alt=""></a>
+               <a class="navbar-brand" href="#"><img src="../images/logo.png" width="200px" alt=""></a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"> <i class="fas fa-bars"></i> </button>
                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav mr-auto">
                      <li class="nav-item dropdown">
                         <a class="nav-link" href="#" >Home</a>
                      </li>
-                     <li class="nav-item"> <a class="nav-link" href="">Feed</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="">Shops</a> </li>
-                     <li class="nav-item"> <a class="nav-link" href="">Bidding</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="#">Feed</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="#">Shops</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="#">Order Requests</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="#">My Products</a> </li>
+                     <li class="nav-item"> <a class="nav-link" href="#">Bidding</a> </li>
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li class="login-reg"> <a href="#">My Account</a> | <a href="process.php?logout">Logout</a> </li>
+                    <li class="login-reg"> <a href="#">My Account</a> | <a href="../index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
@@ -56,15 +56,14 @@
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
-               <h1>Unverified</h1>
+               <h1>Denied</h1>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Causes Start-->
          <section class="wf100 p80">
             <div class="container">
-              <h2>Your Account is Unverified</h2>
-              <p>Please wait for your account verification</p>
+              <h2>Your Account is Denied</h2>
             </div>
          </section>
          <!--Causes End--> 
@@ -140,14 +139,14 @@
          <!--Footer End--> 
       </div>
       <!--   JS Files Start  --> 
-      <script src="js/jquery-3.3.1.min.js"></script> 
-      <script src="js/jquery-migrate-1.4.1.min.js"></script> 
-      <script src="js/popper.min.js"></script> 
-      <script src="js/bootstrap.min.js"></script> 
-      <script src="js/owl.carousel.min.js"></script> 
-      <script src="js/jquery.prettyPhoto.js"></script> 
-      <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <script src="../js/jquery-3.3.1.min.js"></script> 
+      <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
+      <script src="../js/popper.min.js"></script> 
+      <script src="../js/bootstrap.min.js"></script> 
+      <script src="../js/owl.carousel.min.js"></script> 
+      <script src="../js/jquery.prettyPhoto.js"></script> 
+      <script src="../js/isotope.min.js"></script> 
+      <script src="../js/custom.js"></script>
    </body>
 
 
