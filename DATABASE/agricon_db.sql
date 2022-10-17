@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Oct 09, 2022 at 05:14 PM
-=======
--- Generation Time: Oct 12, 2022 at 03:44 PM
->>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
+-- Generation Time: Oct 17, 2022 at 01:38 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -28,82 +24,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
-<<<<<<< HEAD
--- Table structure for table `cart`
+-- Table structure for table `accounts`
 --
 
-CREATE TABLE `cart` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `contact` int(11) NOT NULL,
-  `variation` varchar(50) NOT NULL,
-  `quantity` int(11) NOT NULL,
-  `price` int(11) NOT NULL,
-  `shop_name` varchar(100) DEFAULT NULL,
-  `imagee` varchar(300) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `cart`
---
-
-INSERT INTO `cart` (`id`, `user_id`, `contact`, `variation`, `quantity`, `price`, `shop_name`, `imagee`) VALUES
-(1, 1, 9564654, 'General Fertilizers', 5, 80, 'Krusty Krab', 'uploads/sample.jpg'),
-(13, 1, 9564654, 'Pempem Machine', 5, 80, 'Pempem Enterprise', 'uploads/sample.jpg'),
-(14, 1, 9564654, 'ss Machine', 5, 80, 'Pempem Enterprise', 'uploads/sample.jpg'),
-(16, 2, 9564654, 'ss fbghfg', 10, 80, 'Pempem Enterprise', 'uploads/sample.jpg'),
-(17, 1, 9564654, 'ss fbghfg', 5, 80, 'Pempem Enterprise', 'uploads/sample.jpg'),
-(18, 4, 9564654, 'ss fbghfg', 2, 80, 'Pempem Enterprise', 'uploads/sample.jpg'),
-(19, 4, 564654, 'tutoy machine', 2, 20, 'Jacool-It Company', 'uploads/sample.jpg'),
-(20, 1, 564654, 'tutoy machine', 5, 20, 'Jacool-It Company', 'uploads/sample.jpg'),
-(21, 2, 564654, 'tutoy machine', 10, 20, 'Jacool-It Company', 'uploads/sample.jpg'),
-(22, 2, 564654, 'asdf machine', 10, 100, 'Jacool-It Company', 'uploads/sample.jpg'),
-(23, 1, 564654, 'asdf machine', 5, 100, 'Jacool-It Company', 'uploads/sample.jpg'),
-(24, 2, 65448, 'aasdfgdfhgh', 18, 100, 'Jacool-It Company', 'uploads/sample.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `checkout`
---
-
-CREATE TABLE `checkout` (
-  `id` int(11) NOT NULL,
-  `products` varchar(500) NOT NULL,
-  `price` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_info`
---
-
-CREATE TABLE `user_info` (
-  `user_id` int(11) NOT NULL,
-  `firstname` varchar(200) NOT NULL,
-  `middlename` varchar(50) NOT NULL,
-  `lastname` varchar(50) NOT NULL,
-  `address` varchar(300) NOT NULL,
-  `birthday` text NOT NULL,
-  `email` varchar(200) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user_info`
---
-
-INSERT INTO `user_info` (`user_id`, `firstname`, `middlename`, `lastname`, `address`, `birthday`, `email`) VALUES
-(1, 'michael', 'suarez', 'rilan', 'bacoor', '10/02/1999', 'micorilan1999@gmail.com'),
-(2, 'avor', 'atienza', 'narag', 'bacoor', '08/08/1969', 'avorbading@gmail.com'),
-(3, 'dodong', 'b', 'bading', 'bacoor', '12/12/1965', 'fsdfs@gmail.com'),
-(4, 'berting', 'c', 'kalamuga', 'tondo', '12/12/1945', 'fdasdfs@gmail.com'),
-(5, 'neneng', 'd', 'yow', 'malate', '10/12/1985', 'fsgdfgs@gmail.com');
-=======
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
+CREATE TABLE `accounts` (
   `id` int(11) NOT NULL,
   `firstname` varchar(100) NOT NULL,
   `middlename` varchar(100) NOT NULL,
@@ -114,79 +38,131 @@ CREATE TABLE `users` (
   `birthday` varchar(100) NOT NULL,
   `valid_id` text NOT NULL,
   `password` varchar(100) NOT NULL,
+  `type` varchar(100) NOT NULL,
   `delivery_address` varchar(100) NOT NULL,
   `otp` int(11) NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table `accounts`
 --
 
-INSERT INTO `users` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `address`, `birthday`, `valid_id`, `password`, `delivery_address`, `otp`, `status`) VALUES
-(5, 'Aj', 'Atienza', 'Narag', 'ajnarag25', 'ajnarag25@gmail.com', 'blk 3 lot 8 meadow park subdivision, molino 4', '1999-08-25', 'uploads/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg', '$2y$10$mVW9ckzL3G8Xc0NcBg.y6OXC0IQCFAPbO86kjPwkY3d29TBw4v9GG', 'blk 3 lot 8 meadow park subdivision, molino 4', 2148, 'VERIFIED'),
-(6, 'Cristopher', 'Merano', 'Castillo', 'castillo22', 'cristcastillo14@gmail.com', 'oriental mindoro', '1997-12-18', 'uploads/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg', '$2y$10$I.2J14vMEPzs/7CxG7P7tuLQf2yyHBA11Ybka1roZ93ynOWkMRqAe', 'oriental mindoro', 0, 'UNVERIFIED');
->>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
+INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `address`, `birthday`, `valid_id`, `password`, `type`, `delivery_address`, `otp`, `status`) VALUES
+(1, 'Aj', 'Atienza', 'Narag', 'ajnarag25', 'ajnarag25@gmail.com', 'blk 3 lot 8 meadow park subdivision, molino 4', '1999-08-25', 'uploads/6525a08f1df98a2e3a545fe2ace4be47.jpg', '$2y$10$kf0bW8KhMxYPeFMpaGv9B./VdqRG4Zeka3OS5lvhtbmtkWzkcahl6', 'SELLER', 'blk 3 lot 8 meadow park subdivision, molino 4', 0, 'VERIFIED'),
+(2, 'Mark Zelon', 'Atienza', 'Narag', 'markzelon25', 'markzelon@gmail.com', 'blk 3 lot 8 meadow park subdivision, molino 4', '2008-09-25', 'uploads/6525a08f1df98a2e3a545fe2ace4be47.jpg', '$2y$10$zfKLnQJaFbrKZ1Y7HNjQgedzmCAM9r3bu7i8OtaE2rPRK7V7E6vxm', 'USER', 'blk 3 lot 8 meadow park subdivision, molino 4', 0, 'DENIED'),
+(4, 'Vinix Matthew', 'Atienza', 'Narag', 'vinix11', 'vinix@gmail.com', 'blk 3 lot 8 meadow park subdivision, molino 4', '2000-12-11', 'uploads/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg', '$2y$10$wHcw4U18HlEocyf5oIL7w.L7KGjo6wz/OStp2ik.sAiz3u.RGnkF.', 'SELLER', 'blk 3 lot 8 meadow park subdivision, molino 4', 0, 'VERIFIED');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `about` text NOT NULL,
+  `otp` int(11) NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `username`, `password`, `about`, `otp`, `email`) VALUES
+(1, 'administrator', 'admin123', 'AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro.Launched in 2022, \r\n\r\nit is a platform specialized for the province, abling the customers enjoy an easy, fast, \r\n\r\nand secured online purchasing of agricultural and construction or hardware products.\r\n\r\nAgriCon Mart believes that those types of products should be easily accessible. \r\n\r\nThis is the vision we aspire to deliver and the Mindoreños deserve.\r\n', 0, 'cristcastillo14@gmail.com');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `id` int(11) NOT NULL,
+  `product` varchar(100) NOT NULL,
+  `image` text NOT NULL,
+  `price` int(11) NOT NULL,
+  `stock` int(11) NOT NULL,
+  `details` text NOT NULL,
+  `email` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shops`
+--
+
+CREATE TABLE `shops` (
+  `id` int(11) NOT NULL,
+  `owner` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `image` text NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `contact` varchar(100) NOT NULL,
+  `details` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
 --
 
 --
-<<<<<<< HEAD
--- Indexes for table `cart`
+-- Indexes for table `accounts`
 --
-ALTER TABLE `cart`
+ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `checkout`
+-- Indexes for table `admin`
 --
-ALTER TABLE `checkout`
+ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user_info`
+-- Indexes for table `products`
 --
-ALTER TABLE `user_info`
-  ADD PRIMARY KEY (`user_id`);
-
---
-=======
--- Indexes for table `users`
---
-ALTER TABLE `users`
+ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
->>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
+-- Indexes for table `shops`
+--
+ALTER TABLE `shops`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
-<<<<<<< HEAD
--- AUTO_INCREMENT for table `cart`
+-- AUTO_INCREMENT for table `accounts`
 --
-ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+ALTER TABLE `accounts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `checkout`
+-- AUTO_INCREMENT for table `admin`
 --
-ALTER TABLE `checkout`
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `user_info`
+-- AUTO_INCREMENT for table `shops`
 --
-ALTER TABLE `user_info`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-=======
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
->>>>>>> eae961d065f61c9a3d31a8294dd73e571fc7130e
+ALTER TABLE `shops`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
