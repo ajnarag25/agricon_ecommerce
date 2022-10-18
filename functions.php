@@ -2,15 +2,15 @@
 include('dbconn.php');
 
 session_start();
-$email = "avor@gmail.com";
-$kunwareng_login="SELECT * FROM user_info WHERE email='$email'";
+$email = "micorilan1999@gmail.com";
+$kunwareng_login="SELECT * FROM accounts WHERE email='$email'";
 $prompt = mysqli_query($conn, $kunwareng_login);
 $getData = mysqli_fetch_array($prompt);
 $_SESSION['get_data'] = $getData;
 
 
 if (isset($_POST['add_to_cart'])) {
-    $user_id = $_SESSION['get_data']['user_id'];
+    $user_id = $_SESSION['get_data']['id'];
     $imagee  = $_POST['imagee'];
     $shopname = $_POST['shop_name'];
     $contact = $_POST['contact'];

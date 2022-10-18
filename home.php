@@ -105,7 +105,10 @@
                               <h6><a href="#"><?php echo $row['product'] ?></a></h6>
                               <p class="pro-price">P<?php echo $row['price'] ?></p>
                            </div>
-                           <a href="product_details.php" class="btn btn-success w-100">Check Details</a>
+                           <?php
+                           $getID = "product_details.php?id=". $row["id"];
+                           ?>
+                           <a href="<?php echo $getID; ?>" class="btn btn-success w-100">Check Details</a>
                         </div>
                      </div>
                   

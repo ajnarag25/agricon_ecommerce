@@ -90,7 +90,7 @@
                      <tbody>
                      <?php
                            $user_id = $_SESSION['get_data']['user_id'];
-                           $populate_data="SELECT id,imagee,shop_name,contact,variation,quantity,price FROM cart where user_id = $user_id";
+                           $populate_data="SELECT id,imagee,shop_name,contact,variation,quantity,price FROM cart where USER_ID = $user_id";
                            $prompt = mysqli_query($conn, $populate_data);
                            
                           foreach ($prompt as $papo) {
