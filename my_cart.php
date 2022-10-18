@@ -78,7 +78,6 @@
                         <th scope="col">Image</th>
                         <th scope="col">Shop Name</th>
                         <th scope="col">Contact</th>
-                        <th scope="col">Variation</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Subtotal</th>
@@ -89,8 +88,8 @@
 
                      <tbody>
                      <?php
-                           $user_id = $_SESSION['get_data']['user_id'];
-                           $populate_data="SELECT id,imagee,shop_name,contact,variation,quantity,price FROM cart where USER_ID = $user_id";
+                           $user_id = $_SESSION['data']['id'];
+                           $populate_data="SELECT id,imagee,shop_name,contact,quantity,price FROM cart where USER_ID = $user_id";
                            $prompt = mysqli_query($conn, $populate_data);
                            
                           foreach ($prompt as $papo) {
@@ -101,10 +100,9 @@
                         
                         <tr class = "quan">
                               <td><input type="checkbox" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$papo['id'];?>"></td>
-                              <td scope="row"><img src="<?= $papo['imagee'];?>" name = "image" width="70px" alt=""></td>
+                              <td scope="row"><img src="seller/<?= $papo['imagee'];?>" name = "image" width="70px" alt=""></td>
                               <td><?= $papo['shop_name'];?></td>
-                              <td><?= $papo['contact'];?></td>
-                              <td><?= $papo['variation'];?></td>                            
+                              <td><?= $papo['contact'];?></td>                           
                               <td>
                               <input type="number" id= "qty_id" value = "<?= $papo['quantity'];?>" class="input_qty" name="quantity" min="1" max="99" onclick = "quants()" onkeyup = "quants()" disabled>
                               </td>

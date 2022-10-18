@@ -106,7 +106,7 @@
                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addproduct<?php echo $row['id'] ?>"> <i class="fas fa-plus"></i> Add Product </button>
                <br><br>
                <!-- Modal Add Shop-->
-               <div class="modal fade" id="addshop<?php echo $row['id'] ?>"" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal fade" id="addshop<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                      <div class="modal-content">
                         <div class="modal-header">

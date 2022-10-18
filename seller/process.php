@@ -254,7 +254,6 @@ if (isset($_POST['addproduct'])) {
     $checking1 = "SELECT * FROM shops WHERE email='$email'";
     $prompt1 = $conn->query($checking1);
     $row1 = mysqli_num_rows($prompt1);
-      
     $checking2 = "SELECT * FROM products WHERE product='$name' AND email='$email'";
     $prompt2 = $conn->query($checking2);
     $row2 = mysqli_num_rows($prompt2);

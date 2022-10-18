@@ -16,7 +16,6 @@ if (isset($_GET['logout'])) {
 if (isset($_POST['login'])) {
     $user = $_POST['username'];
     $pass = $_POST['password'];
-
     $login="SELECT * FROM accounts WHERE username='$user'";
     $prompt = mysqli_query($conn, $login);
     $getData = mysqli_fetch_array($prompt);
@@ -556,3 +555,128 @@ if (isset($_POST['change_pass'])) {
 }
 
 ?>
+
+<?php
+if (isset($_POST['add_to_cart'])) {
+    $email = $_POST['email'];
+    $imagee = $_POST['imagee'];
+    $price = $_POST['price'];
+    $shop_name = $_POST['shop_name'];
+    $contact = $_POST['contact'];
+    $quantity = $_POST['quantity'];
+    $product_name = $_POST['product_name'];
+    $user_id = $_POST['user_id'];
+
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'";
+    $prompt = mysqli_query($conn, $check_exist);
+    $check = mysqli_num_rows($prompt);
+    
+    
+    if ($check == 0 or $check == null) {
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,user_id) 
+        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$user_id')") or die($conn->error);
+    }
+    else {
+        $fetch = mysqli_fetch_array($prompt);
+        $id = $fetch[0];
+        $rc = $fetch[1];
+        $int_quantity_input = (int)$quantity;
+        $int_quantity_db = (int)$rc;
+        $add_quantity = $int_quantity_db + $int_quantity_input;
+        $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
+    }
+
+}
+?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product Added to Cart',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "home.php";
+            })
+
+            })
+
+</script>
+
+<?php
+if (isset($_GET["id"])){
+//product_table
+    $getid = $_GET["id"];
+    $email = null;
+    $image = null;
+    $price = null;
+    $product_name = null;
+
+//shop_table
+    $shop_name = null;
+    $contact = null;
+
+//user_logged_in
+    $quantity = 1;
+    $user_id =  $_SESSION['data']['id'];
+
+
+    $query = "SELECT * FROM products WHERE  id = $getid";
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_array($result)) {
+        $email = $row['email'];
+        $image = $row['image'];
+        $price = $row['price'];
+        $product_name = $row['product'];
+    }
+    $query1 = "SELECT name,contact FROM shops WHERE email = '$email'";
+    $result1 = mysqli_query($conn, $query1);
+    while ($row1 = mysqli_fetch_array($result1)) {
+        $shop_name = $row1['name'];
+        $contact = $row1['contact'];
+    }
+
+    
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'";
+    $prompt = mysqli_query($conn, $check_exist);
+    $check = mysqli_num_rows($prompt);
+    
+    
+    if ($check == 0 or $check == null) {
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,user_id) 
+        VALUES('$image','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$user_id')") or die($conn->error);
+    }
+    else {
+        $fetch = mysqli_fetch_array($prompt);
+        $id = $fetch[0];
+        $rc = $fetch[1];
+        $int_quantity_input = (int)$quantity;
+        $int_quantity_db = (int)$rc;
+        $add_quantity = $int_quantity_db + $int_quantity_input;
+        $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
+    }
+
+}
+?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product Added to Cart',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "home.php";
+            })
+
+            })
+
+</script>

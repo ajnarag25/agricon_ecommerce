@@ -44,22 +44,7 @@
                   <ul class="navbar-nav mr-auto">
                     <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>

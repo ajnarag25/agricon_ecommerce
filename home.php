@@ -46,22 +46,7 @@
                   <ul class="navbar-nav mr-auto">
                     <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li class="dropdown">
-                        <a class="cart-icon" href="#" role="button" id="cartdropdown" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                        <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="process.php?logout">Logout</a> </li>
                   </ul>
@@ -93,21 +78,21 @@
                </div>
                <div class="row">
                   <?php 
+                     
                      $query = "SELECT * FROM products";
                      $result = mysqli_query($conn, $query);
                      while ($row = mysqli_fetch_array($result)) {
+                        $getID = "product_details.php?id=". $row["id"];
+                        $getID2 = "process.php?id=". $row["id"];
                         
                   ?>
                      <div class="col-lg-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="./seller/<?php echo $row['image'] ?>" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php echo $getID2; ?>">Add To Cart</a> <img style = "width:500; height:150px;" src="./seller/<?php echo $row['image'] ?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="#"><?php echo $row['product'] ?></a></h6>
+                              <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
                               <p class="pro-price">P<?php echo $row['price'] ?></p>
                            </div>
-                           <?php
-                           $getID = "product_details.php?id=". $row["id"];
-                           ?>
                            <a href="<?php echo $getID; ?>" class="btn btn-success w-100">Check Details</a>
                         </div>
                      </div>

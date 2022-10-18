@@ -68,6 +68,8 @@
             <div class="product-details">
                <div class="container">
                <?php 
+                     $getpakingemail = null;
+                     $getpakingproduct = null;
                      $getid = $_GET["id"];
                      $query = "SELECT * FROM products WHERE  id = $getid";
                      $result = mysqli_query($conn, $query);
@@ -76,22 +78,45 @@
                   ?>
                   <div class="row">
                      <div class="col-md-6">
-                        <div class="pro-large"><img src="seller/<?php echo $row['image']?>" alt=""></div>
+                        <div class="pro-large"><img style = "width:500px; height:500px;" src="seller/<?php echo $row['image']?>" alt=""></div>
                      </div>
                      
                      <div class="col-md-6">
                         <div class="product-text">
-                           <h2><?php echo $row['product'] ?></h2>
+                           <h2><?php echo $row['product']; $getpakingproduct = $row['product']?></h2>
                            <div class="pro-pricing">P<?php echo $row['price']?>.00 </div>
                            <p><?php echo $row['details'] ?></p>
-                              <form action="functions.php" method="POST" enctype="multipart/form-data">
-                                 <input type="hidden" name = "imagee" value = "uploads/sample.jpg">
-                                 <input type="hidden" name = "shop_name" value = "Jacool-It Company">
-                                 <input type="hidden" name = "contact" value = "65448">
-                                 <input type="hidden" name = "variation" value = "aasdfgdfhgh">
-                                 <input type="hidden" name = "price" value = "100">
+                              <form action="process.php" method="POST" enctype="multipart/form-data">
+                                 <input type="hidden" name = "email" value = "<?php echo $row['email'];$getpakingemail =$row['email'] ?>">
+                                 <input type="hidden" name = "imagee" value = "<?php echo $row['image']?>">
+                                 <input type="hidden" name = "price" value = "<?php echo $row['price']?>">
+                                 <?php 
+                                    $emailget = $row['email'];
+                                    $query1 = "SELECT name,contact FROM shops WHERE email = '$emailget'";
+                                    $result1 = mysqli_query($conn, $query1);
+                                    while ($row1 = mysqli_fetch_array($result1)) {
+                        
+                                 ?>
+                                 <input type="hidden" name = "shop_name" value = "<?php echo $row1['name']; ?>">
+                                 <input type="hidden" name = "contact" value = "<?php echo $row1['contact']; ?>">
+                                 <input type="hidden" name = "user_id" value = "<?php echo $_SESSION['data']['id']?>">
+                                 
+                                 <?php 
+                                    }
+                                 ?>
+
+                                 <?php 
+                                    $query2 = "SELECT product FROM products WHERE  id = '$getid'";
+                                    $result2 = mysqli_query($conn, $query2);
+                                    while ($row2 = mysqli_fetch_array($result2)) {
+                        
+                                 ?>
+                                 <input type="hidden" name = "product_name" value = "<?php echo $row2['product']; ?>">
+                                 <?php 
+                                    }
+                                 ?>
                                  <div class="add-2-cart"> <strong>Quantity:</strong>
-                                    <input type="number" name="quantity" min="1" max="<?php echo $row['stock']?>" required>
+                                    <input type="number" name="quantity" min="1" max="<?php echo $row['stock']?>">
                                     <a type="button" href="home.php" class="btn btn-secondary">Back</a>
                                     <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
                                  </div>
@@ -113,35 +138,29 @@
                         <h2>Related Products</h2>
                      </div>
                   </div>
+
                   <div class="row">
+                  <?php
+                  $query2 = "SELECT * FROM products WHERE  email = '$getpakingemail' AND product <> '$getpakingproduct' LIMIT 5";
+                  $result2 = mysqli_query($conn, $query2);
+                  while ($row2 = mysqli_fetch_array($result2)) {
+                     $getID2 = "process.php?id=". $row2["id"];
+                  ?>
                      <div class="col-md-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product1.jpg" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php $getID2?>">Add To Cart</a> <img style= "width = 300px; height: 300px" src="seller/<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="#">Powders</a></h6>
-                              <p class="pro-price">P19.00</p>
+                              <h6><a href="<?php $getID2?>"><?php echo $row2['product']?></a></h6>
+                              <p class="pro-price"><?php echo $row2['price']?></p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product3.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                              <p class="pro-price">P250.00</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product4.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Magic Gro Plus</a></h6>
-                              <p class="pro-price">P75.00</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                     <?php 
+                  }
+                  ?>
+                  </div><!---end of row----->
+
+
                </div>
             </section>
          </section>
