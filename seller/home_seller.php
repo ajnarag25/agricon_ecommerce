@@ -82,7 +82,6 @@
                   $query = "SELECT * FROM products";
                   $result = mysqli_query($conn, $query);
                   while ($row = mysqli_fetch_array($result)) {
-                     
                ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
@@ -91,7 +90,8 @@
                            <h6><a href="#"><?php echo $row['product'] ?></a></h6>
                            <p class="pro-price">P<?php echo $row['price'] ?></p>
                         </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
+                        
+                        <a href="product_details_seller.php?id_product=<?php echo $row['id'] ?>" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
                

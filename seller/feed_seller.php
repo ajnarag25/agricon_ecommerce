@@ -125,12 +125,13 @@
                      ?>
 
                      <div class="campaign-box">
-                           <div class="campaign-thumb"> <a href="shop_details_seller.php"><i class="fas fa-link"></i></a> <img src="<?php echo $row['image'] ?>" alt=""> </div>
+
+                           <div class="campaign-thumb"> <a href="shop_details_seller.php?shop=<?php echo $row['shop'] ?>"><i class="fas fa-link"></i></a> <img src="<?php echo $row['image'] ?>" alt=""> </div>
                            <div class="campaign-txt">
-                              <h4><a href="shop_details_seller.php"><?php echo $row['shop'] ?></a></h4>
+                              <h4><a href="shop_details_seller.php?shop=<?php echo $row['shop'] ?>"><?php echo $row['shop'] ?></a></h4>
                               <h5><?php echo $row['header'] ?></h5>
                               <p><?php echo $row['description'] ?></p>
-                              <a href="shop_details_seller.php" class="dn-btn">Visit Shop</a> 
+                              <a href="shop_details_seller.php?shop=<?php echo $row['shop'] ?>" class="dn-btn">Visit Shop</a> 
                            </div>
                      </div>
 

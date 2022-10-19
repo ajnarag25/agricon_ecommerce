@@ -74,23 +74,29 @@
          <section class="wf100 p80 shop">
             <div class="product-details">
                <div class="container">
+                  <?php 
+                     $get_shop =  $_GET['shop'];
+                     $query = "SELECT * FROM shops WHERE name='$get_shop'";
+                     $result = mysqli_query($conn, $query);
+                     while ($row = mysqli_fetch_array($result)) {
+                  ?>
                   <div class="row">
                      <div class="col-md-6">
-                        <div class="pro-large"><img src="../images/Shops/shop4.jpg" alt=""></div>
+                        <div class="pro-large"><img src="<?php echo $row['image'] ?>" alt=""></div>
                      </div>
                      <div class="col-md-6">
                         <div class="product-text">
-                            <h2>Yanna's Organic Shop</h2>
-                            <p>"Blackstrap Molasses, Agrilime/Apog and Epsom Salt for agriculture and livestock use"</p>
+                            <h2><?php echo $row['name'] ?></h2>
+                            <p><?php echo $row['details'] ?></p>
                             <ul>
-                                <li>Address: Home at Victoria Homes Subdivision, Ruby Park, BL RC 3A LOT 9 CLOVER ST, Muntinlupa, 1773</li>
-                                <li>Contact: 0915 574 5170</li>
-                                <li>Facebook Page: <a href="https://www.facebook.com/profile.php?id=100070294057406" target="_blank">Yanna's Organic Shop</a></li>
+                                <li>Address: <?php echo $row['address'] ?></li>
+                                <li>Contact: <?php echo $row['contact'] ?></li>
+                                <li>Email: <?php echo $row['email'] ?></li>
                             </ul>
                         </div>
                      </div>
                   </div>
-
+                  <?php } ?>
                </div>
             </div>
             <section class="online-shop wf100 p80">

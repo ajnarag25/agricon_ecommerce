@@ -89,7 +89,7 @@
                                        <div class="pro-hover">
                                           <h6><?php echo $row['name'] ?></h6>
                                           <p><?php echo $row['details'] ?></p>
-                                          <a href="shop_details_seller.php">Visit Shop</a> 
+                                          <a href="shop_details_seller.php?shop=<?php echo $row['name'] ?>">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>

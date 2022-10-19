@@ -75,16 +75,20 @@
             <div class="product-details">
                <div class="container">
                   <div class="row">
+                     <?php 
+                        $get_product =  $_GET['id_product'];
+                        $query = "SELECT * FROM products WHERE id='$get_product'";
+                        $result = mysqli_query($conn, $query);
+                        while ($row = mysqli_fetch_array($result)) {
+                     ?>
                      <div class="col-md-6">
-                        <div class="pro-large"><img src="../images/Products/product2.jpg" alt=""></div>
+                        <div class="pro-large"><img src="<?php echo $row['image'] ?>" alt=""></div>
                      </div>
                      <div class="col-md-6">
                         <div class="product-text">
-                           <h2>General Fertilizer</h2>
-                           <div class="pro-pricing">P80.00 </div>
-                           <p> What is general fertilizer?
-                              General and Special-Purpose Fertilizers
-                              The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient (N-P-K ratio 12-12-12, for example) or a slightly higher percentage of nitrogen than of phosphorus and potassium (such as a 12-8-6 product).</p>
+                           <h2><?php echo $row['product'] ?></h2>
+                           <div class="pro-pricing">P<?php echo $row['price'] ?> </div>
+                           <p> <?php echo $row['details'] ?></p>
 
                            <div class="add-2-cart"> <strong>Quantity:</strong>
                               <form action="">
@@ -100,39 +104,18 @@
                      <div class="col-md-12">
                         <div class="products-tabs wf100 p80">
                            <nav>
-                              <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a> <a class="nav-item nav-link" id="nav-two-tab" data-toggle="tab" href="#nav-two" role="tab" aria-controls="nav-two" aria-selected="true">Additional Information</a> </div>
+                              <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a>
                            </nav>
+
                            <div class="tab-content" id="nav-tabContent">
                               <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
-                                 <p> What is general fertilizer?
-                                    General and Special-Purpose Fertilizers
-                                    
-                                    The various products labeled “general-purpose fertilizers” contain either equal amounts of each major nutrient (N-P-K ratio 12-12-12, for example) or a slightly higher percentage of nitrogen than of phosphorus and potassium (such as a 12-8-6 product). </p>
-                              </div>
-                              <div class="tab-pane fade" id="nav-two" role="tabpanel" aria-labelledby="nav-two-tab">
-                                 <table>
-                                    <tr>
-                                       <td>Weight</td>
-                                       <td>5 kg</td>
-                                    </tr>
-                                    <tr>
-                                       <td>Bevat</td>
-                                       <td>40.0 g/kg</td>
-                                    </tr>
-                                    <tr>
-                                       <td>N</td>
-                                       <td>60.0 g/kg</td>
-                                    </tr>
-                                    <tr>
-                                       <td>P</td>
-                                       <td>40.0 g/kg</td>
-                                    </tr>
-                                 </table>
+                                 <p> <?php echo $row['details'] ?> </p>
                               </div>
                            </div>
                         </div>
                      </div>
                   </div>
+                  <?php } ?>
                </div>
             </div>
             <section class="online-shop wf100">
