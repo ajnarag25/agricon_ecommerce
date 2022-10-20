@@ -21,7 +21,6 @@
       <link href="css/prettyPhoto.css" rel="stylesheet">
       <link href="css/all.min.css" rel="stylesheet">
       <!-- CSS FILES End -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="js/custom1.js"></script>
    </head>
    <body>
@@ -63,7 +62,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Cart</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -72,11 +71,14 @@
             <div class="container">
                 <h3>My Cart</h3>
                 
-                <table class="table table-hover">
+
+                <form action="process.php" method="post" enctype="multipart/form-data">
+                <table id = "table_cart" class="table table-hover">
                     <thead>
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Image</th>
+                        <th scope="col">Product Name</th>
                         <th scope="col">Shop Name</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Quantity</th>
@@ -90,7 +92,7 @@
                      <tbody>
                      <?php
                            $user_id = $_SESSION['data']['id'];
-                           $populate_data="SELECT id,imagee,shop_name,contact,quantity,price FROM cart where USER_ID = $user_id";
+                           $populate_data="SELECT id,imagee,product_name,shop_name,contact,quantity,price FROM cart where USER_ID = $user_id";
                            $prompt = mysqli_query($conn, $populate_data);
                            
                           foreach ($prompt as $papo) {
@@ -100,12 +102,14 @@
                         ?>
                         
                         <tr class = "quan">
-                              <td><input type="checkbox" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$papo['id'];?>"></td>
-                              <td scope="row"><img src="seller/<?= $papo['imagee'];?>" name = "image" width="70px" alt=""></td>
+                              
+                              <td><input type="checkbox" name = "purchase_id[]" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$papo['id'];?>"></td>
+                              <td scope="row"><img src="seller/<?= $papo['imagee'];?>" name = "image" style = "width:70px;height:80px;" alt=""></td>
+                              <td><?= $papo['product_name'];?></td>
                               <td><?= $papo['shop_name'];?></td>
                               <td><?= $papo['contact'];?></td>                           
                               <td>
-                              <input type="number" id= "qty_id" value = "<?= $papo['quantity'];?>" class="input_qty" name="quantity" min="1" max="99" onclick = "quants()" onkeyup = "quants()" disabled>
+                              <input type="number" id= "qty_id" value = "<?= $papo['quantity'];?>" class="input_qty" name="quantity[]" min="1" max="99" onclick = "quants()" onkeyup = "quants()" disabled>
                               </td>
                               
                      
@@ -114,7 +118,8 @@
                               <td><p class = 'subtotal'></p></td>
 
                               <td>
-                                 <button class="btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</button>
+                                    <?php $getID_del = "process.php?iddelzxc=". $papo["id"];?>
+                                    <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
                               </td>
                               
                            </tr>
@@ -125,8 +130,11 @@
 
                 <h5>Total: </h5>
                 <h6 id = 'gtotal'></h6>
-                <button class="btn btn-success">Checkout</button>
-            </div>
+               <!----Check out button----->
+                <button type= "submit" name="checkout" class="btn btn-success" id = "checkout" disabled>Checkout</button>
+                </form>
+
+               </div>
          </section>
          <!--Footer Start-->
          <footer class="footer">
@@ -199,12 +207,17 @@
          </footer>
          <!--Footer End--> 
       </div>
+
+
       <!--   JS Files Start  --> 
       <script>
+      
          var price = document.getElementsByClassName("price");
          var subtotal = document.getElementsByClassName("subtotal");
          var quantity = document.getElementsByClassName("input_qty");
          var total = document.getElementById("gtotal");
+         var checkout = document.getElementById("checkout");
+         // checkout.disabled = false;
          var overall = 0;
          for(i=0;price.length>i;i++){
             subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
@@ -212,12 +225,19 @@
 
 
          function quants() {
+            var xmlhttp = new XMLHttpRequest();
+
             overall = 0;
             var checkBoxes = document.getElementsByClassName("cb_class");
             for(i=0;price.length>i;i++){
                if(checkBoxes[i].checked){
-                  subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
-                  overall = (overall) + (price[i].innerText)*(quantity[i].value);
+                  var get_qty = quantity[i].value;
+                  var cb_id = checkBoxes[i].value;
+
+                   subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
+                   overall = (overall) + (price[i].innerText)*(quantity[i].value);
+                  // xmlhttp.open("GET", "process.php?id="+cb_id+"", true);
+
             }
          }
             total.innerText = overall;
@@ -229,12 +249,42 @@
             for (var i = 0; i < checkBoxes.length; i++) {
                if(checkBoxes[i].checked){
                   quantity[i].disabled = false;
+                  checkout.disabled = false;
                   overall = (overall) + (price[i].innerText)*(quantity[i].value);
+               }
+               else if(checkBoxes[i].checked == false){
+                  quantity[i].disabled = true;
                }
          }
          total.innerText = overall;
          }
+
+      
       </script>
+
+      <!-- <script>
+         $(document).ready(function(){
+               $("#checkout").click(function(){
+
+                  var purchase_id_list  = [];
+                  $("input[name='purchase_id']:checked").each(function(){
+                  purchase_id_list.push(this.value);
+                });
+               $.ajax({
+                  url:'process.php',
+                  type:'post',
+                  data:{purchase_id_list:purchase_id_list},
+                  dataType:'JSON'
+
+
+               });
+               });
+
+         });
+
+          
+
+      </script> -->
 
       <!-- <script src="js/jquery-3.3.1.min.js"></script>  -->
       

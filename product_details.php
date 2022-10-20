@@ -233,12 +233,14 @@
                   </div>
                </div>
             </div>
+
          </footer>
          <!--Footer End--> 
       </div>
       <!--   JS Files Start  --> 
       
       <!-- <script src="js/jquery-3.3.1.min.js"></script>  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
       <script src="js/jquery-migrate-1.4.1.min.js"></script> 
       <script src="js/popper.min.js"></script> 
       <script src="js/bootstrap.min.js"></script> 

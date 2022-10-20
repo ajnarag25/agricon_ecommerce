@@ -585,10 +585,8 @@ if (isset($_POST['add_to_cart'])) {
         $add_quantity = $int_quantity_db + $int_quantity_input;
         $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
     }
-
-}
-?>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
           $(document).ready(function(){
@@ -600,7 +598,7 @@ if (isset($_POST['add_to_cart'])) {
             timer: 1500
             }).then((result)=>{
 
-                window.location.href = "home.php";
+                window.location.href = "cart.php";
             })
 
             })
@@ -608,6 +606,13 @@ if (isset($_POST['add_to_cart'])) {
 </script>
 
 <?php
+}
+?>
+
+<?php
+
+//add_to_cart
+
 if (isset($_GET["id"])){
 //product_table
     $getid = $_GET["id"];
@@ -659,10 +664,8 @@ if (isset($_GET["id"])){
         $add_quantity = $int_quantity_db + $int_quantity_input;
         $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
     }
-
-}
 ?>
-<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script>
           $(document).ready(function(){
@@ -674,9 +677,54 @@ if (isset($_GET["id"])){
             timer: 1500
             }).then((result)=>{
 
-                window.location.href = "home.php";
+                window.location.href = "my_cart.php";
             })
 
             })
 
 </script>
+<?php
+}
+?>
+<?php
+//delete on add to cart table
+if (isset($_GET["iddelzxc"])){
+    $fetched_id = $_GET['iddelzxc'];
+    $sql = "DELETE FROM cart WHERE id= $fetched_id";
+    if (mysqli_query($conn, $sql)) {
+?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'Product Deleted',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "my_cart.php";
+            })
+            })
+
+</script>    
+<?php
+    }
+}
+?>
+<?php
+if(isset($_POST['checkout'])){
+    $quantity = $_POST('quantity');
+    if(!empty($_POST['purchase_id'])) {
+
+        $purchase = implode(",",$_POST['purchase_id']);
+
+        foreach($_POST['purchase_id'] as $value){
+            echo "value : ".$value[0].'<br/>';
+    }
+
+}
+}
+?>
