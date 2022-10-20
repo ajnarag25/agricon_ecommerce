@@ -224,7 +224,6 @@
          }
          function cb_func(){
             overall = 0;
-
             var checkBoxes = document.getElementsByClassName("cb_class");
             var subtotal = document.getElementsByClassName("subtotal");
             for (var i = 0; i < checkBoxes.length; i++) {
