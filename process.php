@@ -670,7 +670,7 @@ if (isset($_GET["id"])){
         <script>
           $(document).ready(function(){
             Swal.fire({
-            position: 'top-end',
+            position: 'middle',
             icon: 'success',
             title: 'Product Added to Cart',
             showConfirmButton: false,
@@ -698,7 +698,7 @@ if (isset($_GET["iddelzxc"])){
 <script>
           $(document).ready(function(){
             Swal.fire({
-            position: 'top-end',
+            position: 'middle',
             icon: 'success',
             title: 'Product Deleted',
             showConfirmButton: false,
