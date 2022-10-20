@@ -1,6 +1,9 @@
 <?php 
   include('dbconn.php');
   session_start();
+  if (!isset($_SESSION['data']['username'])) {
+     header("Location: login.php");
+  }
 ?>
 
 <!doctype html>
