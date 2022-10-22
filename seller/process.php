@@ -968,3 +968,33 @@ if(isset($_GET['reject_cart_id'])){
 }
 
 ?>
+
+<?php
+//delete on add to cart table
+if (isset($_GET["del_purchase"])){
+    $fetched_id = $_GET['del_purchase'];
+    $sql = "DELETE FROM checkout WHERE id= $fetched_id";
+    if (mysqli_query($conn, $sql)) {
+?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Product Deleted',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "my_purchases_seller.php";
+            })
+            })
+
+</script>    
+<?php
+    }
+}
+?>
+

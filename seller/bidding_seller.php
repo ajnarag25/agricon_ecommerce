@@ -86,7 +86,7 @@
                         <div class="pro-thumb"> <a href="<?php echo $getID2; ?>">Add To Cart</a> <img src="<?php echo $row['image']?>" style = "width:500; height:150px;" alt=""></div>
                         <div class="pro-txt">
                            <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
-                           <p class="pro-price"><?php echo $row['price'] ?></p>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
                         <a href="<?php echo $getID;?>" class="btn btn-success w-100">Check Details</a>
                      </div>
@@ -100,8 +100,8 @@
                      <div class="product-box">
                         <div class="pro-thumb"> <img src="<?php echo $row['image']?>" style = "width:500; height:150px;" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
-                           <p class="pro-price"><?php echo $row['price'] ?></p>
+                           <h6><?php echo $row['product'] ?></h6>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
                      </div>
                   </div>

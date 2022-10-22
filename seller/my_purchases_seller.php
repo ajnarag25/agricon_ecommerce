@@ -120,6 +120,7 @@
                             <th scope="col">Total Price</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
+                            <th scope="col">Delete</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -138,6 +139,10 @@
                             <td>P<?= $p_row['price'];?>.00</td>
                             <td>P<?= $p_row['total'];?>.00</td>
                             <td><?= $p_row['status'];?></td>
+                            <td>
+                              <?php $getID_del = "process.php?del_purchase=". $p_row["id"];?>
+                              <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
+                           </td>
                            
                           </tr>
                           <?php

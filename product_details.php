@@ -148,7 +148,7 @@
                            <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> <img style= "width = 300px; height: 300px" src="seller/<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
                               <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
-                              <p class="pro-price"><?php echo $row2['price']?></p>
+                              <p class="pro-price">P<?php echo $row2['price']?>.00</p>
                            </div>
                         </div>
                      </div>

@@ -99,7 +99,7 @@
                         <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> <img src="<?php echo $row['image'] ?>" alt=""></div>
                         <div class="pro-txt">
                            <h6><a href="#"><?php echo $row['product'] ?></a></h6>
-                           <p class="pro-price">P<?php echo $row['price'] ?></p>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
                         
                         <a href="<?php echo $getID?>" class="btn btn-success w-100">Check Details</a>

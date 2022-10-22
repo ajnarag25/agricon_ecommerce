@@ -102,13 +102,13 @@
                               <td><?= $p_row['shop_name'];?></td>
                               <td><?= $p_row['contact'];?></td>                           
                               <td>
-                                 <p class="input_qty"> <?= $p_row['quantity'];?></p>
+                                 <p><span class = "input_qty"><?=$p_row['quantity']?></span>pc/s</p>
                               </td>
                               
                      
                               <!-- <td><input type="number" id = "quantity_id" name="quantity" min="1" max="99" name = "quantity[]" value="" required></td> -->
-                              <td><p class="price"> <?=$p_row['price']?></p></td>
-                              <td><p class = 'subtotal'></p></td>
+                              <td><p>P <span class = "price"><?=$p_row['price']?></span>.00</p></td>
+                              <td><p>P <span class = "subtotal"></span>.00</p></p></td>
 
                               <td>
                                     <?php $getID_del = "process.php?iddelzxc=". $p_row["id"];?>

@@ -106,11 +106,11 @@
                            <td><?= $p_row['shop_name'];?></td>
                            <td><?= $p_row['contact'];?></td>
                            <td>
-                              <p class="input_qty"> <?= $p_row['quantity'];?></p>
+                              <p class="input_qty"> <?= $p_row['quantity'];?></p>pc/s
                            </td>
                               
-                           <td><p class="price"> <?=$p_row['price']?></p></td>
-                           <td><p class = 'subtotal'></p></td>
+                           <td><p>P <span class = "price"><?=$p_row['price']?></span>.00</p></td>
+                           <td><p>P <span class = "subtotal"></span>.00</p></td>
                            <td>
                               <?php $getID_del = "process.php?iddelzxc=". $p_row["id"];?>
                               <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
