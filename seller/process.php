@@ -394,6 +394,7 @@ if (isset($_POST['update_product'])) {
 
     if ($row == 0){
         $conn->query("UPDATE products SET product='$name', price='$price', stock='$stock', details='$details' WHERE id='$id'") or die($conn->error);
+        $conn->query("UPDATE cart SET product_name='$name', price='$price' WHERE product_id='$id'") or die($conn->error);
         ?>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

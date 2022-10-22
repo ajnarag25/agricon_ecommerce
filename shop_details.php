@@ -1,5 +1,9 @@
 <?php 
   include('dbconn.php');
+  session_start();
+  if (!isset($_SESSION['data']['username'])) {
+   header("Location: login.php");
+}
 ?>
 
 <!doctype html>
@@ -41,42 +45,23 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
-                    <li class="dropdown">
-                        <a class="cart-icon" href="my_cart.php" role="button" data-toggle="dropdown"> <i class="fas fa-shopping-cart"></i></a>
-                        <div class="dropdown-menu cart-box" aria-labelledby="cartdropdown">
-                            Recently added item(s)
-                            <ul class="list">
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 1</a> <strong class="price">1 x P50.95</strong> </div>
-                                </li>
-                                <li class="item">
-                                <a href="#" class="preview-image"><img class="preview" src="images/pro.jpg" alt=""></a>
-                                <div class="description"> <a href="#">Sample Product 2</a> <strong class="price">2 x P144.00</strong> </div>
-                                </li>
-                            </ul>
-                            <div class="total">Total: <strong>P244.95</strong></div>
-                            <div class="view-link"><a href="#">Proceed to Checkout</a> <a href="#">View cart </a></div>
-                        </div>
+                  
+                  <li class="dropdown">
+                        <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
+         
          <!--Header End--> 
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>Shop Details</h1>
+               <?php $getid = $_GET["id"];?>
+               <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -84,23 +69,34 @@
          <section class="wf100 p80 shop">
             <div class="product-details">
                <div class="container">
+               <?php 
+                     $get_s_email = null;
+                     
+                     $getid = $_GET["id"];
+                     $query = "SELECT * FROM shops WHERE  id = $getid";
+                     $result = mysqli_query($conn, $query);
+                     while ($row = mysqli_fetch_array($result)) {
+                        
+                  ?>
                   <div class="row">
                      <div class="col-md-6">
-                        <div class="pro-large"><img src="images/Shops/shop4.jpg" alt=""></div>
+                        <div class="pro-large"><img src="seller/<?php echo $row['image']?>" alt=""></div>
                      </div>
                      <div class="col-md-6">
                         <div class="product-text">
-                            <h2>Yanna's Organic Shop</h2>
-                            <p>"Blackstrap Molasses, Agrilime/Apog and Epsom Salt for agriculture and livestock use"</p>
+                            <h2><?php echo $row['name']?></h2>
+                            <p><?php echo $row['details']?></p>
                             <ul>
-                                <li>Address: Home at Victoria Homes Subdivision, Ruby Park, BL RC 3A LOT 9 CLOVER ST, Muntinlupa, 1773</li>
-                                <li>Contact: 0915 574 5170</li>
-                                <li>Facebook Page: <a href="https://www.facebook.com/profile.php?id=100070294057406" target="_blank">Yanna's Organic Shop</a></li>
+                                <li>Address: <?php echo $row['address']?></li>
+                                <li>Contact: <?php echo $row['contact']?></li>
+                                <?php $get_s_email = $row['email']?>
                             </ul>
-                        </div>
-                     </div>
-                  </div>
-
+                        </div><!---product-text---->
+                     </div><!---end of col-md-6---->
+                  </div><!---end of row---->
+                        <?php 
+                        }
+                        ?>
                </div>
             </div>
             <section class="online-shop wf100 p80">
@@ -110,34 +106,28 @@
                         <h2>Products</h2>
                      </div>
                   </div>
+
                   <div class="row">
+                  <?php
+                  $query2 = "SELECT * FROM products WHERE  email = '$get_s_email' LIMIT 5";
+                  $result2 = mysqli_query($conn, $query2);
+                  while ($row2 = mysqli_fetch_array($result2)) {
+                     $getID2 = "process.php?id=". $row2["id"];
+                  ?>
                      <div class="col-md-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product1.jpg" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> 
+                           <img src="seller/<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="#">Powders</a></h6>
-                              <p class="pro-price">P19.00</p>
+                              <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
+                              <p class="pro-price">P<?php echo $row2['price']?>.00</p>
                            </div>
                         </div>
+                       
                      </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product3.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                              <p class="pro-price">P250.00</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product4.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Magic Gro Plus</a></h6>
-                              <p class="pro-price">P75.00</p>
-                           </div>
-                        </div>
-                     </div>
+                     <?php
+                  }
+                  ?>
                   </div>
                </div>
             </section>

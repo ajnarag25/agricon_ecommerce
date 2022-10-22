@@ -43,7 +43,7 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
+                    
                     <li> <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i> </a> </li>
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
@@ -77,6 +77,7 @@
                                  $query = "SELECT * FROM shops";
                                  $result = mysqli_query($conn, $query);
                                  while ($row = mysqli_fetch_array($result)) {
+                                    $getID = "shop_details.php?id=". $row["id"];
                                     
                               ?>
                                  <div class="item">
@@ -86,7 +87,7 @@
                                        <div class="pro-hover">
                                           <h6><?php echo $row['name'] ?></h6>
                                           <p><?php echo $row['details'] ?></p>
-                                          <a href="shop_details.php">Visit Shop</a> 
+                                          <a href="<?php echo $getID;?>">Visit Shop</a> 
                                        </div>
                                     </div>
                                  </div>

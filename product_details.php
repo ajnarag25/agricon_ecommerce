@@ -1,6 +1,9 @@
 <?php 
   include('dbconn.php');
   session_start();
+  if (!isset($_SESSION['data']['username'])) {
+   header("Location: login.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +44,6 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
                     <li> <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i> </a> </li>
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                   </ul>
@@ -68,8 +70,8 @@
             <div class="product-details">
                <div class="container">
                <?php 
-                     $getpakingemail = null;
-                     $getpakingproduct = null;
+                     $get_p_email = null;
+                     $get_p_product = null;
                      $getid = $_GET["id"];
                      $query = "SELECT * FROM products WHERE  id = $getid";
                      $result = mysqli_query($conn, $query);
@@ -83,11 +85,11 @@
                      
                      <div class="col-md-6">
                         <div class="product-text">
-                           <h2><?php echo $row['product']; $getpakingproduct = $row['product']?></h2>
+                           <h2><?php echo $row['product']; $get_p_product = $row['product']?></h2>
                            <div class="pro-pricing">P<?php echo $row['price']?>.00 </div>
                            <p><?php echo $row['details'] ?></p>
                               <form action="process.php" method="POST" enctype="multipart/form-data">
-                                 <input type="hidden" name = "email" value = "<?php echo $row['email'];$getpakingemail =$row['email'] ?>">
+                                 <input type="hidden" name = "email" value = "<?php echo $row['email'];$get_p_email =$row['email'] ?>">
                                  <input type="hidden" name = "imagee" value = "<?php echo $row['image']?>">
                                  <input type="hidden" name = "price" value = "<?php echo $row['price']?>">
                                  <?php 
@@ -95,8 +97,8 @@
                                     $query1 = "SELECT name,contact FROM shops WHERE email = '$emailget'";
                                     $result1 = mysqli_query($conn, $query1);
                                     while ($row1 = mysqli_fetch_array($result1)) {
-                        
                                  ?>
+                                 
                                  <input type="hidden" name = "shop_name" value = "<?php echo $row1['name']; ?>">
                                  <input type="hidden" name = "contact" value = "<?php echo $row1['contact']; ?>">
                                  <input type="hidden" name = "user_id" value = "<?php echo $_SESSION['data']['id']?>">
@@ -141,16 +143,16 @@
 
                   <div class="row">
                   <?php
-                  $query2 = "SELECT * FROM products WHERE  email = '$getpakingemail' AND product <> '$getpakingproduct' LIMIT 5";
+                  $query2 = "SELECT * FROM products WHERE  email = '$get_p_email' AND product <> '$get_p_product' LIMIT 5";
                   $result2 = mysqli_query($conn, $query2);
                   while ($row2 = mysqli_fetch_array($result2)) {
                      $getID2 = "process.php?id=". $row2["id"];
                   ?>
                      <div class="col-md-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="<?php $getID2?>">Add To Cart</a> <img style= "width = 300px; height: 300px" src="seller/<?php echo $row2['image']?>" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> <img style= "width = 300px; height: 300px" src="seller/<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="<?php $getID2?>"><?php echo $row2['product']?></a></h6>
+                              <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
                               <p class="pro-price"><?php echo $row2['price']?></p>
                            </div>
                         </div>

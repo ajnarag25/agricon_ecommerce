@@ -45,7 +45,7 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
+                    
                     <li class="dropdown">
                         <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
@@ -54,13 +54,7 @@
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
+      
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">

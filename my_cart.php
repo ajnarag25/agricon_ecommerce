@@ -21,9 +21,10 @@
       <link href="css/prettyPhoto.css" rel="stylesheet">
       <link href="css/all.min.css" rel="stylesheet">
       <!-- CSS FILES End -->
-      <script src="js/custom1.js"></script>
+      
    </head>
    <body>
+      
       <div class="wrapper">
          <!--Header Start-->
          <header class="header-style-2">
@@ -41,7 +42,7 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
+      
          
                     <li class="login-reg"> <a href="my_account.php">My Account</a> | <a href="index.php">Logout</a> </li>
                    
@@ -49,32 +50,24 @@
                </div>
             </nav>
          </header>
-         <!-----gfdgdfgsdfg-->
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
+         
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>My Cart</h1>
+               
                <p class="text-white">User: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
          <!--Contact Start-->
+        
          <section class="shop wf100 p80">
             <div class="container">
                 <h3>My Cart</h3>
-                
-
-                <form action="process.php" method="post" enctype="multipart/form-data">
                 <table id = "table_cart" class="table table-hover">
-                    <thead>
+                     <thead>
                         <tr>
                         <th scope="col">#</th>
                         <th scope="col">Image</th>
@@ -86,16 +79,16 @@
                         <th scope="col">Subtotal</th>
                         <th scope="col">Delete</th>
                         </tr>
-                    </thead>
-
-
+                     </thead>
+                     
                      <tbody>
                      <?php
                            $user_id = $_SESSION['data']['id'];
-                           $populate_data="SELECT id,imagee,product_name,shop_name,contact,quantity,price FROM cart where USER_ID = $user_id";
+                           $populate_data="SELECT id,imagee,product_name,shop_name,contact,quantity,price,product_id FROM cart where USER_ID = $user_id";
                            $prompt = mysqli_query($conn, $populate_data);
-                           
-                          foreach ($prompt as $papo) {
+
+
+                          foreach ($prompt as $p_row) {
                           
                           
                            //$check = mysqli_num_rows($prompt);
@@ -103,36 +96,107 @@
                         
                         <tr class = "quan">
                               
-                              <td><input type="checkbox" name = "purchase_id[]" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$papo['id'];?>"></td>
-                              <td scope="row"><img src="seller/<?= $papo['imagee'];?>" name = "image" style = "width:70px;height:80px;" alt=""></td>
-                              <td><?= $papo['product_name'];?></td>
-                              <td><?= $papo['shop_name'];?></td>
-                              <td><?= $papo['contact'];?></td>                           
+                              <td><input type="checkbox" form="for_checkout" name = "purchase_id[]" class = "cb_class" onclick = "cb_func()" id = "checkbox_row" value = "<?=$p_row['id'];?>"></td>
+                              <td scope="row"><img src="seller/<?= $p_row['imagee'];?>" name = "image" style = "width:70px;height:80px;" alt=""></td>
+                              <td><?= $p_row['product_name'];?></td>
+                              <td><?= $p_row['shop_name'];?></td>
+                              <td><?= $p_row['contact'];?></td>                           
                               <td>
-                              <input type="number" id= "qty_id" value = "<?= $papo['quantity'];?>" class="input_qty" name="quantity[]" min="1" max="99" onclick = "quants()" onkeyup = "quants()" disabled>
+                              <?php 
+                              $populate_data2="SELECT stock FROM products where id =".$p_row['product_id'];
+                              $prompt2 = mysqli_query($conn, $populate_data2);
+                              
+                              foreach ($prompt2 as $stock) {
+                              ?>
+                              <p class="input_qty"> <?= $p_row['quantity'];?></p>
+                              <!-- <input type="number" id= "qty_id" value = "<?= $p_row['quantity'];?>" class="input_qty" name="quantity[]" min="1" max="<?= $stock['stock'];?>" onclick = "quants('id=<?=$p_row['id'];?>')" onkeyup = "quants('id=<?=$p_row['id'];?>')" disabled> -->
+                              <?php
+                              }
+                              ?>
                               </td>
                               
                      
                               <!-- <td><input type="number" id = "quantity_id" name="quantity" min="1" max="99" name = "quantity[]" value="" required></td> -->
-                              <td><p class="price"> <?=$papo['price']?></p></td>
+                              <td><p class="price"> <?=$p_row['price']?></p></td>
                               <td><p class = 'subtotal'></p></td>
 
                               <td>
-                                    <?php $getID_del = "process.php?iddelzxc=". $papo["id"];?>
+                                    <?php $getID_del = "process.php?iddelzxc=". $p_row["id"];?>
                                     <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit_row<?=$p_row['id'] ?>">
+                                       Edit
+                                    </button>
                               </td>
                               
-                           </tr>
+                           </tr>                                
+                           <!-- Modal_Edit_row -->
+                           <div class="modal fade" id="edit_row<?=$p_row['id']?>" tabindex="-1" role="dialog" aria-labelledby="edit_row" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                 <h5 class="modal-title" id="edit_row">Edit Quantity</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <form method="POST" action="process.php" >
+
+                                    <input type="hidden" name = "id" value= "<?= $p_row['id'];?>">
+                                    
+                                    <label for="">Product Name <span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="product_name" value= "<?= $p_row['product_name'];?>" readonly>
+
+                                    <label for="">Shop Name <span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="shop_name" value= "<?= $p_row['shop_name'];?>" readonly>
+
+                                    <label for="">Contact Number <span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="contact" value= "<?= $p_row['contact'];?>" readonly>
+
+                                    <label for="">Price <span style="color:red">*</span></label>
+                                    <input type="text" class="form-control" name="price" value= "<?= $p_row['price'];?>" readonly>
+
+                              
+                                    <label for="">Quantity <span style="color:red">*</span></label>
+                                    <?php
+                                    $populate_data2="SELECT stock FROM products where id =".$p_row['product_id'];
+                                    $prompt2 = mysqli_query($conn, $populate_data2);
+                                    foreach ($prompt2 as $stock) {
+                                    ?>
+                                    <input type="number" class="form-control" name="quantity" value= "<?= $p_row['quantity'];?>"  min="1" max="<?= $stock['stock'];?>" required>
+                                       <?php
+                                    }
+                                       ?>
+                                   
+                                 </div>
+                                 <div class="modal-footer">
+                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                 <button type="submit" name = "edit_quantity" class="btn btn-primary">Save Quantity</button>
+                                 </div>
+                                 </form>
+                              </div>
+                           </div>
+                           </div>
                         <?php }?>
                         
                     </tbody>
                 </table>
 
+
+               <!----Grand Total--->
                 <h5>Total: </h5>
                 <h6 id = 'gtotal'></h6>
-               <!----Check out button----->
-                <button type= "submit" name="checkout" class="btn btn-success" id = "checkout" disabled>Checkout</button>
-                </form>
+
+                  <!----Check out button----->
+                  <form id="for_checkout" action="process.php" method="post">
+                    
+                     <button type= "submit" name="checkout" class="btn btn-success" id = "checkout" disabled>Checkout</button>
+
+                  </form>
+                  
+                
+
+
 
                </div>
          </section>
@@ -211,7 +275,6 @@
 
       <!--   JS Files Start  --> 
       <script>
-      
          var price = document.getElementsByClassName("price");
          var subtotal = document.getElementsByClassName("subtotal");
          var quantity = document.getElementsByClassName("input_qty");
@@ -220,28 +283,25 @@
          // checkout.disabled = false;
          var overall = 0;
          for(i=0;price.length>i;i++){
-            subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
+            subtotal[i].innerText = (price[i].innerText)*(quantity[i].innerText);
          }
 
 
-         function quants() {
-            var xmlhttp = new XMLHttpRequest();
+         // function quants(params) {
 
-            overall = 0;
-            var checkBoxes = document.getElementsByClassName("cb_class");
-            for(i=0;price.length>i;i++){
-               if(checkBoxes[i].checked){
-                  var get_qty = quantity[i].value;
-                  var cb_id = checkBoxes[i].value;
+         //    overall = 0;
+         //    var checkBoxes = document.getElementsByClassName("cb_class");
 
-                   subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
-                   overall = (overall) + (price[i].innerText)*(quantity[i].value);
-                  // xmlhttp.open("GET", "process.php?id="+cb_id+"", true);
-
-            }
-         }
-            total.innerText = overall;
-         }
+         //    for(i=0;price.length>i;i++){
+         //       if(checkBoxes[i].checked){
+         //          var get_qty = quantity[i].value;
+         //          var cb_id = checkBoxes[i].value;
+         //           subtotal[i].innerText = (price[i].innerText)*(quantity[i].value);
+         //           overall = (overall) + (price[i].innerText)*(quantity[i].value);
+         //    }
+         // }
+         //    total.innerText = overall;
+         // }
          function cb_func(){
             overall = 0;
             var checkBoxes = document.getElementsByClassName("cb_class");
@@ -250,7 +310,7 @@
                if(checkBoxes[i].checked){
                   quantity[i].disabled = false;
                   checkout.disabled = false;
-                  overall = (overall) + (price[i].innerText)*(quantity[i].value);
+                  overall = (overall) + (price[i].innerText)*(quantity[i].innerText);
                }
                else if(checkBoxes[i].checked == false){
                   quantity[i].disabled = true;
@@ -261,40 +321,18 @@
 
       
       </script>
-
-      <!-- <script>
-         $(document).ready(function(){
-               $("#checkout").click(function(){
-
-                  var purchase_id_list  = [];
-                  $("input[name='purchase_id']:checked").each(function(){
-                  purchase_id_list.push(this.value);
-                });
-               $.ajax({
-                  url:'process.php',
-                  type:'post',
-                  data:{purchase_id_list:purchase_id_list},
-                  dataType:'JSON'
-
-
-               });
-               });
-
-         });
-
-          
-
-      </script> -->
-
       <!-- <script src="js/jquery-3.3.1.min.js"></script>  -->
-      
+      <!-- <script src="js/jquery-3.3.1.min.js"></script> -->
+      <!-- <script src="js/jquery-3.3.1.min.js"></script>  -->
+      <!-- <script src="../js/jquery-3.3.1.min.js"></script>  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="js/jquery-migrate-1.4.1.min.js"></script> 
       <script src="js/popper.min.js"></script> 
       <script src="js/bootstrap.min.js"></script> 
       <script src="js/owl.carousel.min.js"></script> 
       <script src="js/jquery.prettyPhoto.js"></script> 
-      <script src="js/isotope.min.js"></script> 
-      <script src="js/custom.js"></script>
+      <script src="js/isotope.min.js"></script>
+      
    </body>
 
 </html>
