@@ -77,7 +77,7 @@
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
                         <th scope="col">Subtotal</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Action</th>
                         </tr>
                      </thead>
                      
@@ -102,17 +102,7 @@
                               <td><?= $p_row['shop_name'];?></td>
                               <td><?= $p_row['contact'];?></td>                           
                               <td>
-                              <?php 
-                              $populate_data2="SELECT stock FROM products where id =".$p_row['product_id'];
-                              $prompt2 = mysqli_query($conn, $populate_data2);
-                              
-                              foreach ($prompt2 as $stock) {
-                              ?>
-                              <p class="input_qty"> <?= $p_row['quantity'];?></p>
-                              <!-- <input type="number" id= "qty_id" value = "<?= $p_row['quantity'];?>" class="input_qty" name="quantity[]" min="1" max="<?= $stock['stock'];?>" onclick = "quants('id=<?=$p_row['id'];?>')" onkeyup = "quants('id=<?=$p_row['id'];?>')" disabled> -->
-                              <?php
-                              }
-                              ?>
+                                 <p class="input_qty"> <?= $p_row['quantity'];?></p>
                               </td>
                               
                      
@@ -176,7 +166,7 @@
                                  </form>
                               </div>
                            </div>
-                           </div>
+                           </div><!--end of modal--->
                         <?php }?>
                         
                     </tbody>

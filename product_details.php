@@ -50,13 +50,6 @@
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
          <!--Header End--> 
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
@@ -92,6 +85,8 @@
                                  <input type="hidden" name = "email" value = "<?php echo $row['email'];$get_p_email =$row['email'] ?>">
                                  <input type="hidden" name = "imagee" value = "<?php echo $row['image']?>">
                                  <input type="hidden" name = "price" value = "<?php echo $row['price']?>">
+                                 <input type="hidden" name = "product_id" value = "<?php echo $getid?>">
+
                                  <?php 
                                     $emailget = $row['email'];
                                     $query1 = "SELECT name,contact FROM shops WHERE email = '$emailget'";
@@ -165,7 +160,7 @@
 
                </div>
             </section>
-         </section>
+         </section><!---end of section cv-->
          <!--Blog End--> 
          <!--Footer Start-->
          <footer class="footer">

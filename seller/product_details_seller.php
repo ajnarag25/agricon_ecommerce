@@ -55,13 +55,6 @@
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
          <!--Header End--> 
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
@@ -74,50 +67,70 @@
          <section class="wf100 p80 shop">
             <div class="product-details">
                <div class="container">
+               <?php 
+                     $get_p_email = null;
+                     $get_p_product = null;
+                     $getid = $_GET["id"];
+
+                     $query = "SELECT * FROM products WHERE  id = $getid";
+                     $result = mysqli_query($conn, $query);
+                     while ($row = mysqli_fetch_array($result)) {
+                        
+                  ?>
                   <div class="row">
-                     <?php 
-                        $get_product =  $_GET['id_product'];
-                        $query = "SELECT * FROM products WHERE id='$get_product'";
-                        $result = mysqli_query($conn, $query);
-                        while ($row = mysqli_fetch_array($result)) {
-                     ?>
                      <div class="col-md-6">
-                        <div class="pro-large"><img src="<?php echo $row['image'] ?>" alt=""></div>
+                        <div class="pro-large"><img style = "width:500px; height:500px;" src="<?php echo $row['image']?>" alt=""></div>
                      </div>
+                     
                      <div class="col-md-6">
                         <div class="product-text">
-                           <h2><?php echo $row['product'] ?></h2>
-                           <div class="pro-pricing">P<?php echo $row['price'] ?> </div>
-                           <p> <?php echo $row['details'] ?></p>
+                           <h2><?php echo $row['product']; $get_p_product = $row['product']?></h2>
+                           <div class="pro-pricing">P<?php echo $row['price']?>.00 </div>
+                           <p><?php echo $row['details'] ?></p>
+                              <form action="process.php" method="POST" enctype="multipart/form-data">
+                                 <input type="hidden" name = "email" value = "<?php echo $row['email'];$get_p_email =$row['email'] ?>">
+                                 <input type="hidden" name = "imagee" value = "<?php echo $row['image']?>">
+                                 <input type="hidden" name = "price" value = "<?php echo $row['price']?>">
+                                 <?php 
+                                    $emailget = $row['email'];
+                                    $query1 = "SELECT name,contact FROM shops WHERE email = '$emailget'";
+                                    $result1 = mysqli_query($conn, $query1);
+                                    while ($row1 = mysqli_fetch_array($result1)) {
+                                 ?>
+                                 <input type="hidden" name = "shop_name" value = "<?php echo $row1['name']; ?>">
+                                 <input type="hidden" name = "contact" value = "<?php echo $row1['contact']; ?>">
+                                 <input type="hidden" name = "user_idd" value = "<?php echo $_SESSION['data']['id'];?>">
+                                 
+                                 <?php 
+                                    }
+                                 ?>
 
-                           <div class="add-2-cart"> <strong>Quantity:</strong>
-                              <form action="">
-                                 <input type="number" name="quantity" min="1" max="99" required>
-                                 <a type="button" href="home_seller.php" class="btn btn-secondary">Back</a>
-                                 <button type="submit" name="Add to Cart" class="btn btn-success">Add to Cart</button>
+                                 <?php 
+                                    $query2 = "SELECT product FROM products WHERE  id = '$getid'";
+                                    $result2 = mysqli_query($conn, $query2);
+                                    while ($row2 = mysqli_fetch_array($result2)) {
+                        
+                                 ?>
+                                 <input type="hidden" name = "product_name" value = "<?php echo $row2['product']; ?>">
+                                 <?php 
+                                    }
+                                 ?>
+                                 <div class="add-2-cart"> <strong>Quantity:</strong>
+                                    <input type="number" name="quantity" min="1" max="<?php echo $row['stock']?>">
+                                    <a type="button" href="home_seller.php" class="btn btn-secondary">Back</a>
+                                    <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
+                                 </div>
                               </form>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="row">
-                     <div class="col-md-12">
-                        <div class="products-tabs wf100 p80">
-                           <nav>
-                              <div class="nav nav-tabs" id="nav-tab" role="tablist"> <a class="nav-item nav-link active" id="nav-one-tab" data-toggle="tab" href="#nav-one" role="tab" aria-controls="nav-one" aria-selected="true">Description</a>
-                           </nav>
+                           
 
-                           <div class="tab-content" id="nav-tabContent">
-                              <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
-                                 <p> <?php echo $row['details'] ?> </p>
-                              </div>
-                           </div>
                         </div>
-                     </div>
-                  </div>
-                  <?php } ?>
-               </div>
-            </div>
+                     </div><!---end of col-md-6--->
+                     <?php
+                     }
+                     ?>
+                  </div><!----end of row--->
+               </div> <!---end of container----->
+            </div><!---end of product details----->
             <section class="online-shop wf100">
                <div class="container">
                   <div class="row">
@@ -125,38 +138,32 @@
                         <h2>Related Products</h2>
                      </div>
                   </div>
+
                   <div class="row">
+                  <?php
+                  $query2 = "SELECT * FROM products WHERE  email = '$get_p_email' AND product <> '$get_p_product' LIMIT 5";
+                  $result2 = mysqli_query($conn, $query2);
+                  while ($row2 = mysqli_fetch_array($result2)) {
+                     $getID2 = "process.php?id=". $row2["id"];
+                  ?>
                      <div class="col-md-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> <img style= "width = 300px; height: 300px" src="<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="#">Powders</a></h6>
-                              <p class="pro-price">P19.00</p>
+                              <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
+                              <p class="pro-price"><?php echo $row2['price']?></p>
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                              <p class="pro-price">P250.00</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Magic Gro Plus</a></h6>
-                              <p class="pro-price">P75.00</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                     <?php 
+                  }
+                  ?>
+                  </div><!---end of row----->
+
+
                </div>
             </section>
-         </section>
+         </section><!---end of section cv-->
          <!--Blog End--> 
          <!--Footer Start-->
          <footer class="footer">

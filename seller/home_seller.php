@@ -79,23 +79,36 @@
                </div>
                <div class="row">
                <?php 
-                  $query = "SELECT * FROM products";
+                  $fetch_email = $_SESSION['data']['email'];
+      
+                  $query = "SELECT * FROM products where email <>'$fetch_email'";
                   $result = mysqli_query($conn, $query);
+                  $check = mysqli_num_rows($result);
+                  if ($check == 0 or $check == null) {
+                     echo "<center><h5> No Products in the Database</h5></center>";
+                  }
+                  else {
+                     
+
                   while ($row = mysqli_fetch_array($result)) {
+                     $getID = "product_details_seller.php?id=". $row["id"];
+                     $getID2 = "process.php?id=". $row["id"];
                ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="<?php echo $row['image'] ?>" alt=""></div>
+                        <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> <img src="<?php echo $row['image'] ?>" alt=""></div>
                         <div class="pro-txt">
                            <h6><a href="#"><?php echo $row['product'] ?></a></h6>
                            <p class="pro-price">P<?php echo $row['price'] ?></p>
                         </div>
                         
-                        <a href="product_details_seller.php?id_product=<?php echo $row['id'] ?>" class="btn btn-success w-100">Check Details</a>
+                        <a href="<?php echo $getID?>" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
                
-               <?php } ?>
+               <?php }
+                  }
+               ?>
                
                </div>
             </div>

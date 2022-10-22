@@ -566,6 +566,7 @@ if (isset($_POST['add_to_cart'])) {
     $quantity = $_POST['quantity'];
     $product_name = $_POST['product_name'];
     $user_id = $_POST['user_id'];
+    $product_id = $_POST['product_id'];
 
     $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'";
     $prompt = mysqli_query($conn, $check_exist);
@@ -573,8 +574,8 @@ if (isset($_POST['add_to_cart'])) {
     
     
     if ($check == 0 or $check == null) {
-        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,user_id) 
-        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$user_id')") or die($conn->error);
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,product_id,user_id) 
+        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$product_id','$user_id')") or die($conn->error);
     }
     else {
         $fetch = mysqli_fetch_array($prompt);
@@ -591,14 +592,14 @@ if (isset($_POST['add_to_cart'])) {
         <script>
           $(document).ready(function(){
             Swal.fire({
-            position: 'top-end',
+            position: 'middle',
             icon: 'success',
             title: 'Product Added to Cart',
             showConfirmButton: false,
             timer: 1500
             }).then((result)=>{
 
-                window.location.href = "cart.php";
+                window.location.href = "my_cart.php";
             })
 
             })
@@ -646,7 +647,7 @@ if (isset($_GET["id"])){
     }
 
     
-    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'";
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name' AND user_id = $user_id";
     $prompt = mysqli_query($conn, $check_exist);
     $check = mysqli_num_rows($prompt);
     
@@ -793,7 +794,7 @@ if(isset($_POST['checkout'])){
         $result = mysqli_query($conn, $query);
         while ($row = mysqli_fetch_array($result)) {
             $product_id = $row['product_id'];
-            $statuss = "pending";
+            $statuss = "PENDING";
             $imagee = $row['imagee'];
             $shop_name = $row['shop_name'];
             $contact = $row['contact'];
@@ -829,7 +830,6 @@ if(isset($_POST['checkout'])){
                  }
             else {
                 $conn->query("UPDATE checkout SET quantity= '$quantity_total',total='$gtotall' WHERE id='$id_checkout'") or die($conn->error);
-                     
                  }
     
             }

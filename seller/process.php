@@ -554,3 +554,417 @@ if (isset($_POST['publish_post'])) {
 
 
 ?>
+
+
+
+
+
+
+
+<?php //START OF ADD TO CART-> DELETE FRCM CART, EDIT CART, AND CHECKOUT?>
+
+
+<?php
+if (isset($_POST['add_to_cart'])) {
+    $email = $_POST['email'];
+    $imagee = $_POST['imagee'];
+    $price = $_POST['price'];
+    $shop_name = $_POST['shop_name'];
+    $contact = $_POST['contact'];
+    $quantity = $_POST['quantity'];
+    $product_name = $_POST['product_name'];
+    $user_id = $_POST['user_idd'];
+
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'AND user_id = '$user_id'";
+    $prompt = mysqli_query($conn, $check_exist);
+    $check = mysqli_num_rows($prompt);
+    
+    
+    if ($check == 0 or $check == null) {
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,user_id) 
+        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$user_id')") or die($conn->error);
+    }
+    else {
+        $fetch = mysqli_fetch_array($prompt);
+        $id = $fetch[0];
+        $rc = $fetch[1];
+        $int_quantity_input = (int)$quantity;
+        $int_quantity_db = (int)$rc;
+        $add_quantity = $int_quantity_db + $int_quantity_input;
+        $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
+    }
+    ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Product Added to Cart',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "my_cart_seller.php";
+            })
+
+            })
+
+</script>
+
+<?php
+}
+?>
+
+
+
+<?php
+
+//add_to_cart
+
+if (isset($_GET["id"])){
+//product_table
+    $getid = $_GET["id"];
+    $email = null;
+    $image = null;
+    $price = null;
+    $product_name = null;
+
+//shop_table
+    $shop_name = null;
+    $contact = null;
+
+//user_logged_in
+    $quantity = 1;
+    $user_id =  $_SESSION['data']['id'];
+    
+
+
+    $query = "SELECT * FROM products WHERE  id = $getid";
+    $result = mysqli_query($conn, $query);
+    while ($row = mysqli_fetch_array($result)) {
+        $email = $row['email'];
+        $image = $row['image'];
+        $price = $row['price'];
+        $product_name = $row['product'];
+    }
+    $query1 = "SELECT name,contact FROM shops WHERE email = '$email'";
+    $result1 = mysqli_query($conn, $query1);
+    while ($row1 = mysqli_fetch_array($result1)) {
+        $shop_name = $row1['name'];
+        $contact = $row1['contact'];
+    }
+
+    
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name' AND user_id = '$user_id'";
+    $prompt = mysqli_query($conn, $check_exist);
+    $check = mysqli_num_rows($prompt);
+    
+    
+    if ($check == 0 or $check == null) {
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,product_id,user_id) 
+        VALUES('$image','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$getid','$user_id')") or die($conn->error);
+    }
+    else {
+        $fetch = mysqli_fetch_array($prompt);
+        $id = $fetch[0];
+        $rc = $fetch[1];
+        $int_quantity_input = (int)$quantity;
+        $int_quantity_db = (int)$rc;
+        $add_quantity = $int_quantity_db + $int_quantity_input;
+        $conn->query("UPDATE cart SET quantity= '$add_quantity' WHERE id='$id'") or die($conn->error);
+    }
+?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Product Added to Cart',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "my_cart_seller.php";
+            })
+            })
+
+</script>
+<?php
+}
+?>
+<?php
+//delete on add to cart table
+if (isset($_GET["iddelzxc"])){
+    $fetched_id = $_GET['iddelzxc'];
+    $sql = "DELETE FROM cart WHERE id= $fetched_id";
+    if (mysqli_query($conn, $sql)) {
+?>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+          $(document).ready(function(){
+            Swal.fire({
+            position: 'middle',
+            icon: 'success',
+            title: 'Product Deleted',
+            showConfirmButton: false,
+            timer: 1500
+            }).then((result)=>{
+
+                window.location.href = "my_cart_seller.php";
+            })
+            })
+
+</script>    
+<?php
+    }
+}
+?>
+
+
+
+<?php
+if(isset($_POST['edit_quantity'])){
+    $id = $_POST['id'];
+    $quantity = $_POST['quantity'];
+    if ($id != 0) {
+        $sql='UPDATE cart SET quantity="'.$quantity.'" WHERE id="'.$id.'"';
+        $result = mysqli_query($conn, $sql);
+
+        ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Quantity Updated',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "my_cart_seller.php";
+                    })
+                    })
+        </script>
+<?php
+    }
+    else {
+        
+    
+ ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'error',
+                    title: 'Invalid Quantity Input',
+                    showConfirmButton: false,
+                    timer: 800
+                    }).then((result)=>{
+
+                        window.location.href = "my_cart.php";
+                    })
+                    })
+        </script>
+<?php
+}
+}
+?>
+
+<?php
+//checkout
+if(isset($_POST['checkout'])){
+
+    if(!empty($_POST['purchase_id'])) {
+        $purchase_id = implode(",",$_POST['purchase_id']);
+        $product_id = null;
+        $statuss = null;
+        $imagee = null;
+        $shop_name =null;
+        $contact =null;
+        $price =null;
+        $quantityy =null;
+        $email = null;
+        $product_name =null;
+        $user_id = null;
+
+        $id_checkout =null;
+        $quantity_checkout =null;
+        
+
+        $query = "SELECT * FROM cart where id in($purchase_id)";
+        $result = mysqli_query($conn, $query);
+        while ($row = mysqli_fetch_array($result)) {
+            $product_id = $row['product_id'];
+            $statuss = "PENDING";
+            $imagee = $row['imagee'];
+            $shop_name = $row['shop_name'];
+            $contact = $row['contact'];
+            $price = $row['price'];
+            $quantityy = $row['quantity'];
+            $email = $row['email'];
+            $product_name = $row['product_name'];
+            $user_id = $row['user_id'];
+            
+            $intprice = (int)$price;
+            $intquan = (int)$quantityy;
+            $totall = bcmul($intprice,$intquan);
+            $gtotall = null;
+            $quantity_total = null;
+
+
+            $check_exist="SELECT id,quantity FROM CHECKOUT WHERE user_id ='$user_id' and product_id = '$product_id' ";
+            $prompt = mysqli_query($conn, $check_exist);
+            while ($row1 = mysqli_fetch_array($prompt)) {
+                $id_checkout = $row1['id'];
+                $quantity_checkout = $row1['quantity'];
+                $int_quantity_checkout = (int)$quantity_checkout;
+                $quantity_total = $int_quantity_checkout + $quantityy;
+                $gtotall = bcmul($intprice,$quantity_total);
+            }
+        
+            $check = mysqli_num_rows($prompt);
+            
+    
+            if ($check == 0 or $check == null) {
+                $conn->query("INSERT INTO CHECKOUT (imagee, shop_name, contact, price,quantity, email, product_name,user_id,status,total,product_id) 
+                VALUES('$imagee','$shop_name','$contact','$price','$quantityy','$email','$product_name','$user_id','$statuss','$totall','$product_id')") or die($conn->error);
+                 }
+            else {
+                $conn->query("UPDATE checkout SET quantity= '$quantity_total',total='$gtotall' WHERE id='$id_checkout'") or die($conn->error);
+                 }
+    
+            }
+
+
+
+        
+        
+        ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Selected Products Checked Out Successfully',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "my_cart_seller.php";
+                    })
+                    })
+        </script>
+        <?php
+    }
+    else {
+        echo"sadfsadfsdaf";
+    }
+}
+
+?>
+<?php
+//APPROVE-REJECT ORDER REQUEST
+if(isset($_GET['approve_product_id'])){
+    $getid = $_GET['approve_product_id'];
+    $get_cart_id = $_GET['cart_id'];
+    $query1 = "SELECT stock FROM products where id =". $getid;
+    $result1 = mysqli_query($conn, $query1);
+    $int_fetch_quan = null;
+    $int_get_quan = null;
+    while ($row1 = mysqli_fetch_array($result1)) {
+
+        //product stock
+        $int_fetch_quan = (int)$row1['stock'];
+
+        //request quantity
+        $int_get_quan = (int)$_GET['quantity'];
+
+    }
+    $sub_quantity = $int_fetch_quan-$int_get_quan;
+   
+    if ($sub_quantity>=0) {
+        $conn->query("UPDATE products SET stock= '$sub_quantity' WHERE id='$getid'") or die($conn->error);
+        $conn->query("UPDATE checkout SET status= 'TO RECEIVE' WHERE id='$get_cart_id'") or die($conn->error);
+
+    ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Order Approved',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "order_request_seller.php";
+                    })
+                    })
+        </script>
+    <?php
+    }else {
+        ?>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'error',
+                    title: 'Insufficient Stock',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "order_request_seller.php";
+                    })
+                    })
+        </script>
+        <?php
+    }
+}
+
+?>
+
+
+
+
+<?php
+if(isset($_GET['reject_cart_id'])){
+    $get_cart_id = $_GET['reject_cart_id'];
+    $conn->query("UPDATE checkout SET status= 'REJECT' WHERE id='$get_cart_id'") or die($conn->error);
+    ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Order Reject Successfully',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "order_request_seller.php";
+                    })
+                    })
+        </script>
+    <?php
+
+}
+
+?>

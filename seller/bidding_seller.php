@@ -53,19 +53,12 @@
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>Bidding</h1>
-               <p class="text-white">User: Sample Name</p>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'].' '.$_SESSION['data']['lastname']  ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -73,40 +66,50 @@
          <section class="shop wf100 p80">
             <div class="container">
                <div class="section-title-2 text-center">
-                  <h5>Our Available</h5>
-                  <h2>Cheapest Products</h2>
+                  <h5>Available</h5><!----do not use any third person word-->
+                  <h2>Top 5 Cheapest Products</h2>
                </div>
                <div class="row">
+                  <?php
+                  $query = "SELECT * FROM products ORDER BY price ASC LIMIT 5";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_array($result)) {
+                     $logged_email = $_SESSION['data']['email'];
+                     $getID2 = "process.php?id=". $row["id"];
+                     $getID = "product_details_seller.php?id=". $row["id"];
+                     if ($logged_email != $row['email']) {
+                        
+                     
+                  ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                        <div class="pro-thumb"> <a href="<?php echo $getID2; ?>">Add To Cart</a> <img src="<?php echo $row['image']?>" style = "width:500; height:150px;" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="#">Powders</a></h6>
-                           <p class="pro-price">P19.00</p>
+                           <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
+                           <p class="pro-price"><?php echo $row['price'] ?></p>
                         </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
+                        <a href="<?php echo $getID;?>" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
+                  <?php }
+                  else {
+                     
+                  
+                  ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
+                        <div class="pro-thumb"> <img src="<?php echo $row['image']?>" style = "width:500; height:150px;" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="#">Magic Gro Plus</a></h6>
-                           <p class="pro-price">P75.00</p>
+                           <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
+                           <p class="pro-price"><?php echo $row['price'] ?></p>
                         </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                           <p class="pro-price">P250.00</p>
-                        </div>
-                        <a href="product_details_seller.php" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
+                  <?php
+                  }
+                  }
+                  
+                  ?>
                </div>
             </div>
          </section>

@@ -128,7 +128,7 @@
                      <?php
                   }
                   ?>
-                  </div>
+                  </div><!-----end of row cv------>
                </div>
             </section>
          </section>
