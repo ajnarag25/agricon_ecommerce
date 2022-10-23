@@ -77,7 +77,8 @@
                            <div class="tab-pane fade show active" id="wildlife" role="tabpanel" aria-labelledby="wildlife-tab">
                               <div class="cpro-slider owl-carousel owl-theme">
                               <?php 
-                                 $query = "SELECT * FROM shops";
+                                 $get_email = $_SESSION['data']['email'];
+                                 $query = "SELECT * FROM shops where email <> '$get_email'";
                                  $result = mysqli_query($conn, $query);
                                  while ($row = mysqli_fetch_array($result)) {
                                     

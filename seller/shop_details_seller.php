@@ -75,6 +75,7 @@
             <div class="product-details">
                <div class="container">
                   <?php 
+                     $get_s_email = null;
                      $get_shop =  $_GET['shop'];
                      $query = "SELECT * FROM shops WHERE name='$get_shop'";
                      $result = mysqli_query($conn, $query);
@@ -91,7 +92,8 @@
                             <ul>
                                 <li>Address: <?php echo $row['address'] ?></li>
                                 <li>Contact: <?php echo $row['contact'] ?></li>
-                                <li>Email: <?php echo $row['email'] ?></li>
+                                <li>Email: <?php echo $row['email'] ?></li>.
+                                <?php $get_s_email = $row['email']?>
                             </ul>
                         </div>
                      </div>
@@ -107,34 +109,27 @@
                      </div>
                   </div>
                   <div class="row">
+                  <?php
+                  $query2 = "SELECT * FROM products WHERE  email = '$get_s_email' LIMIT 5";
+                  $result2 = mysqli_query($conn, $query2);
+                  while ($row2 = mysqli_fetch_array($result2)) {
+                     $getID2 = "process.php?id=". $row2["id"];
+                  ?>
                      <div class="col-md-3 col-sm-6">
                         <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                           <div class="pro-thumb"> <a href="<?php echo $getID2?>">Add To Cart</a> 
+                           <img src="<?php echo $row2['image']?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="#">Powders</a></h6>
-                              <p class="pro-price">P19.00</p>
+                              <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
+                              <p class="pro-price">P<?php echo $row2['price']?>.00</p>
                            </div>
                         </div>
+                       
                      </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                              <p class="pro-price">P250.00</p>
-                           </div>
-                        </div>
-                     </div>
-                     <div class="col-md-3 col-sm-6">
-                        <div class="product-box">
-                           <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
-                           <div class="pro-txt">
-                              <h6><a href="#">Magic Gro Plus</a></h6>
-                              <p class="pro-price">P75.00</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
+                     <?php
+                  }
+                  ?>
+                  </div><!--end of row---->
                </div>
             </section>
          </section>

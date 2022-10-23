@@ -114,26 +114,40 @@
                             <th scope="col">Image</th>
                             <th scope="col">Shop Name</th>
                             <th scope="col">Contact</th>
-                            <th scope="col">Variation</th>
-                            <th scope="col">Quanitity</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Product Price</th>
                             <th scope="col">Total Price</th>
                             <th scope="col">Status</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">Delete</th>
+                           
                           </tr>
                         </thead>
                         <tbody>
+                           <?php
+                           $user_id = $_SESSION['data']['id'];
+                           $populate_data="SELECT * FROM checkout where USER_ID = $user_id";
+                           $prompt = mysqli_query($conn, $populate_data);
+                           foreach ($prompt as $p_row) {
+                           ?>
                           <tr>
-                            <th scope="row"><img src="images/Products/product1.jpg" width="70px" alt=""></th>
-                            <td>Ortega Construction</td>
-                            <td>09123456789</td>
-                            <td>Powders</td>
-                            <td>2pc/s</td>
-                            <td>P40.00</td>
-                            <td>P80.00</td>
-                            <td>Received</td>
-                            <td><button class="btn btn-danger">Delete</button></td>
+                            <th scope="row"><img src="seller/<?= $p_row['imagee'];?>" width="70px" alt=""></th>
+                            <td><?= $p_row['shop_name'];?></td>
+                            <td><?= $p_row['contact'];?></td>
+                            <td><?= $p_row['product_name'];?></td>
+                            <td><?= $p_row['quantity'];?>pc/s</td>
+                            <td>P<?= $p_row['price'];?>.00</td>
+                            <td>P<?= $p_row['total'];?>.00</td>
+                            <td><?= $p_row['status'];?></td>
+                            <td>
+                              <?php $getID_del = "process.php?del_purchase=". $p_row["id"];?>
+                              <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
+                           </td>
+                           
                           </tr>
+                          <?php
+                           }
+                          ?>
                         </tbody>
                       </table>
                   </div>

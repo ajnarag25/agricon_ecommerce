@@ -65,7 +65,7 @@
          <section class="wf100 p100 inner-header">
             <div class="container">
                <h1>Order Requests</h1>
-               <p class="text-white">Seller: Sample Name</p>
+               <p class="text-white">Seller: <?php echo $_SESSION['data']['firstname'],' ', $_SESSION['data']['lastname'] ?></p>
             </div>
          </section>
          <!--Inner Header End--> 
@@ -76,36 +76,116 @@
                   <h2>Order Requests</h2>
                </div>
                <div class="row">
+               <?php 
+                  $get_email = $_SESSION['data']['email'];
+                  $query = "SELECT * FROM checkout where email = '$get_email' and status = 'PENDING'";
+                  $result = mysqli_query($conn, $query);
+                  $check = mysqli_num_rows($result);
+                  if ($check == 0 or $check == null) {
+                     echo "<center><h5> No Requests in the Database</h5></center>";
+                  }
+                  else {
+                  while ($row = mysqli_fetch_array($result)) {
+               ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product1.jpg" alt=""></div>
+                        <div class="pro-thumb"> <img src="<?php echo $row['imagee'] ?>" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="#">Powders</a></h6>
-                           <p class="pro-price">P19.00</p>
+                           <h6><a href="#"><?php echo $row['product_name'] ?></a></h6>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
-                        <a href="" class="btn btn-success w-100">View Request</a>
+                        <!-- <a href="" class="btn btn-success w-100">View Request</a> -->
+                        <button type="button" class="btn btn-success w-100" data-toggle="modal" data-target="#order<?php echo $row['id'] ?>">
+                        View Requests
+                        </button>
+
                      </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product4.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Magic Gro Plus</a></h6>
-                           <p class="pro-price">P75.00</p>
+
+
+                  <!-- Modal -->
+                  <div class="modal fade bd-example-modal-lg" id="order<?php echo $row['id'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog modal-lg" role="document">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Order Request for <?php echo $row['product_name'] ?></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                           <span aria-hidden="true">&times;</span>
+                        </button>
                         </div>
-                        <a href="" class="btn btn-success w-100">View Request</a>
+                        <div class="modal-body">
+                           <div class="row">
+                           <div class="container-fluid">
+                              <table class="table table-hover table-responsive">
+                              <thead>
+                              <tr>
+                                 <th scope="col">Buyer's Image</th>
+                                 <th scope="col">Buyer's Name</th>
+                                 <th scope="col">Delivery Address</th>
+                                 <th scope="col">Quantity</th>
+                                 <th scope="col">Product Price</th>
+                                 <th scope="col">Total Price</th>
+                                 <th scope="col">Action</th>
+                                 
+                              </tr>
+                              </thead>
+                              <tbody>
+                                 <?php
+                                 $id = $row['product_id'];
+
+                                 $populate_data="SELECT * FROM checkout where product_id = $id";
+                                 
+                                 $prompt = mysqli_query($conn, $populate_data);
+                                 foreach ($prompt as $p_row) {
+                                    $getID1 = "process.php?approve_product_id=".$id."&quantity=".$p_row['quantity']."&cart_id=".$p_row['id'];
+                                    $getID2 = "process.php?reject_cart_id=".$p_row['id'];
+                                 ?>
+                              <tr>
+                                 <?php
+                                 $query1 = "SELECT * FROM accounts where id =". $row['user_id'];
+                                 $result1 = mysqli_query($conn, $query1);
+                                 while ($row1 = mysqli_fetch_array($result1)) {
+                                 ?>
+                                 <th scope="row"><img src="../<?php echo $row1['valid_id'];?>" width="70px" alt=""></th>
+                                 <td><?php echo $row1['firstname']." ".$row1['middlename']." ".$row1['lastname'];?></td>
+                                 <td><?php echo $row1['delivery_address'];?></td>
+                                 <?php
+                                 }
+                                 ?>
+                                 <td><?= $p_row['quantity'];?>pc/s</td>
+                                 <td>P<?= $p_row['price'];?>.00</td>
+                                 <td>P<?= $p_row['total'];?>.00</td>
+                                 
+                                 <td scope = "col">
+                                 <a href = "<?php echo $getID1?>"type="button" class="btn btn-primary sm">
+                                       Approve
+                                 </a>
+                                 <a href = "<?php echo $getID2?>" type="button" class="btn btn-danger">
+                                       Reject   
+                                 </a>   
+                                 </td>
+                                 
+                              </tr>
+                              <?php
+                                 }
+                              ?>
+                              </tbody>
+                           </table>
+                           </div>
+                           </div>
+                        
+                        </div>
+                        <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                      </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="../images/Products/product3.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                           <p class="pro-price">P250.00</p>
-                        </div>
-                        <a href="" class="btn btn-success w-100">View Request</a>
-                     </div>
                   </div>
+                  <!---end of modal-->
+                  <?php
+                  }
+               }
+                  ?>
                </div>
             </div>
          </section>

@@ -68,37 +68,27 @@
                   <h2>Cheapest Products</h2>
                </div>
                <div class="row">
+               <?php
+                  $query = "SELECT * FROM products ORDER BY price ASC LIMIT 5";
+                  $result = mysqli_query($conn, $query);
+                  while ($row = mysqli_fetch_array($result)) {
+                  
+                  ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product1.jpg" alt=""></div>
+                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="seller/<?php echo $row['image'] ?>" alt=""></div>
                         <div class="pro-txt">
-                           <h6><a href="#">Powders</a></h6>
-                           <p class="pro-price">P19.00</p>
+                           <h6><a href="#"><?php echo $row['product'] ?></a></h6>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
                         <a href="#" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product4.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Magic Gro Plus</a></h6>
-                           <p class="pro-price">P75.00</p>
-                        </div>
-                        <a href="#" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
-                  <div class="col-lg-3 col-sm-6">
-                     <div class="product-box">
-                        <div class="pro-thumb"> <a href="#">Add To Cart</a> <img src="images/Products/product3.jpg" alt=""></div>
-                        <div class="pro-txt">
-                           <h6><a href="#">Organic & Natural All Purpose Fertilizers</a></h6>
-                           <p class="pro-price">P250.00</p>
-                        </div>
-                        <a href="#" class="btn btn-success w-100">Check Details</a>
-                     </div>
-                  </div>
+                  <?php
+                  }
+               ?>
                </div>
+
             </div>
          </section>
          <!--Footer Start-->

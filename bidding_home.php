@@ -40,7 +40,7 @@
                      
                   </ul>
                   <ul class="navbar-nav mr-auto">
-                    <li> <a class="search-icon" href="#search"> <i class="fas fa-search"></i> </a> </li>
+                    
                     <li class="dropdown">
                         <a class="cart-icon" href="my_cart.php"> <i class="fas fa-shopping-cart"></i></a>
                     </li>
@@ -49,13 +49,7 @@
                </div>
             </nav>
          </header>
-         <div id="search">
-            <button type="button" class="close">×</button>
-            <form class="search-overlay-form">
-               <input type="search" value="" placeholder="type keyword(s) here" />
-               <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i></button>
-            </form>
-         </div>
+         
          <!--Header End-->
          <!--Inner Header Start-->
          <section class="wf100 p100 inner-header">
@@ -78,15 +72,16 @@
                   $result = mysqli_query($conn, $query);
                   while ($row = mysqli_fetch_array($result)) {
                      $getID2 = "process.php?id=". $row["id"];
+                     $getID = "product_details.php?id=". $row["id"];
                   ?>
                   <div class="col-lg-3 col-sm-6">
                      <div class="product-box">
                         <div class="pro-thumb"> <a href="<?php echo $getID2; ?>">Add To Cart</a> <img src="seller/<?php echo $row['image']?>" style = "width:500; height:150px;" alt=""></div>
                         <div class="pro-txt">
                            <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
-                           <p class="pro-price"><?php echo $row['price'] ?></p>
+                           <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                         </div>
-                        <a href="product_details.php" class="btn btn-success w-100">Check Details</a>
+                        <a href="<?php echo $getID; ?>" class="btn btn-success w-100">Check Details</a>
                      </div>
                   </div>
                   <?php }?>

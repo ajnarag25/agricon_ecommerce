@@ -154,8 +154,12 @@
                                     <img src="assets/images/order.png" width="100" alt="">
                                     <br><br>
                                     <h2 class="card-title">Ordered Products</h2>
-               
-                                    <h2>134</h2>           
+                                    <?php 
+                                        $sql = "SELECT * FROM checkout WHERE status='TO RECEIVE'";
+                                        $result=mysqli_query($conn, $sql);
+                                        $row_order = mysqli_num_rows($result);
+                                    ?>
+                                    <h2><?php echo $row_order ?></h2>           
                                 </div>
                             </div>
                         </div>
