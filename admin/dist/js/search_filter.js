@@ -10,6 +10,7 @@ function userSearch() {
     tableO = document.getElementById("userTable");
     trO = tableO.getElementsByTagName("tr");
     for (i = 0; i < trO.length; i++) {
+      //aa
       tdO0 = trO[i].getElementsByTagName("td")[0];
       tdO1 = trO[i].getElementsByTagName("td")[1];
       tdO2 = trO[i].getElementsByTagName("td")[2];
