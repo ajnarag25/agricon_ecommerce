@@ -67,12 +67,16 @@
          <section class="shop wf100 p80">
             <div class="container">
                <div class="section-title-2 text-center">
+
                   <h5>Our Available</h5>
                   <h2>Products</h2>
+
                </div>
-               <div class="row">
+               <input type="text" id="myInput" onkeyup="filter_search_home()" placeholder="Search for Product Names.." style = "width: 280px;">
+               <br>
+               <br>
+               <div class="row" id = "p_row">
                   <?php 
-                     
                      $query = "SELECT * FROM products";
                      $result = mysqli_query($conn, $query);
                      while ($row = mysqli_fetch_array($result)) {
@@ -80,11 +84,11 @@
                         $getID2 = "process.php?id=". $row["id"];
                         
                   ?>
-                     <div class="col-lg-3 col-sm-6">
-                        <div class="product-box">
+                     <div class="col-lg-3 col-sm-6 prod_c">
+                        <div class="product-box datas">
                            <div class="pro-thumb"> <a href="<?php echo $getID2; ?>">Add To Cart</a> <img src="./seller/<?php echo $row['image'] ?>" alt=""></div>
                            <div class="pro-txt">
-                              <h6><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
+                              <h6 class = "prod_name"><a href="<?php echo $getID2; ?>"><?php echo $row['product'] ?></a></h6>
                               <p class="pro-price">P<?php echo $row['price'] ?>.00</p>
                            </div>
                            <a href="<?php echo $getID; ?>" class="btn btn-success w-100">Check Details</a>
@@ -92,7 +96,7 @@
                      </div>
                   
                   <?php } ?>
-               </div>
+               </div><!-----end of row--->
             </div>
          </section>
          <!--Footer Start-->
@@ -176,6 +180,7 @@
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
       <script src="js/custom.js"></script>
+      <script src="js/filter_search.js"></script>
    </body>
 
 </html>

@@ -118,6 +118,7 @@
                         <form method="POST" action="process.php" enctype="multipart/form-data">
                            <div class="modal-body">
                               <p><strong>*Note: 1 Shop only per account of seller*</strong></p>
+                              <p><strong>*Dont use Special Characters such as (',`,")*</strong></p>
                               <label for="">Owner:</label>
                               <input type="text" class="form-control" name="owner" value="<?php echo $row['firstname'] ?> <?php echo $row['middlename'] ?> <?php echo $row['lastname'] ?>" readonly>
                               <label for="">Address:</label>

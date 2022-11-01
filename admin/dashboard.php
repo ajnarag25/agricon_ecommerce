@@ -134,7 +134,7 @@
                                     <br>
                                     <img src="assets/images/user.png" width="100" alt="">
                                     <br><br>
-                                    <h2 class="card-title">Registered Users</h2>
+                                    <h2 class="card-title">Registered Buyers</h2>
                                                     
                                     <?php 
                                         $sql = "SELECT * FROM accounts WHERE type='USER'";

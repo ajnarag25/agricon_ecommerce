@@ -115,7 +115,7 @@
                     <div class="col-5 align-self-center">
                         <h4 class="page-title">Users Data</h4>
                         <div class="col-lg-10" style="display: inline-flex;">
-                            <input type="search" class="form-control rounded"  placeholder="Search" onkeyup="userSearch()" id="searchUser" />
+                            <input type="text" class="form-control rounded"  placeholder="Search" onkeyup="userSearch()" id="search_user_pd">
                             <span class="input-group-text bg-success text-white"><i class='mdi mdi-magnify'></i></span>
                         </div>
                     </div>
@@ -262,7 +262,7 @@
     <script src="dist/js/waves.js"></script>
     <script src="dist/js/sidebarmenu.js"></script>
     <script src="dist/js/custom.min.js"></script>
-    <script src="dist/js/functions.js"></script>
+    <script src="dist/js/search_filter.js"></script>
 </body>
 
 </html>

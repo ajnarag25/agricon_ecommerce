@@ -27,6 +27,8 @@
       <!-- CSS FILES End -->
    </head>
    <body>
+
+</div>
       <div class="wrapper">
          <!--Header Start-->
          <header class="header-style-2">
@@ -118,14 +120,47 @@
                                     <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
                                  </div>
                               </form>
-                           
-
-                        </div>
+                              <br>
+                              
+                              <h5>Recent Comments</h5>
+                              <br>
+                              <div class="overflow-auto" style="max-width: 300px; max-height: 250px;">
+                                 <!----start of comment div----> 
+                                 <?php 
+                                     $query3 = "SELECT * FROM rating WHERE  product_id = '$getid' ORDER BY rates";
+                                     $result3 = mysqli_query($conn, $query3);
+                                    while ($row3 = mysqli_fetch_array($result3)) {
+                                 ?>
+                                 <div class="d-flex justify-content">
+                                    <div class="second py-2 px-2"> <span class="text1"><?php echo $row3['comment'];?></span>   
+                                          <div class="d-flex justify-content-between py-1 pt-2">
+                                          <?php 
+                                             $getidd = $row3['user_id'];
+                                             
+                                             $query4 = "SELECT firstname,middlename,lastname,valid_id FROM accounts WHERE  id= '$getidd'";
+                                             $result4 = mysqli_query($conn, $query4);
+                                             while ($row4 = mysqli_fetch_array($result4)) {
+                                          ?>
+                                             <div><img src="<?php echo $row4['valid_id']?>" width="30px" height="30px"><span class="text2"><?php  echo $row4['firstname']." ".$row4['middlename']." ".$row4['lastname']?></span></div>
+                                             <?php
+                                             }
+                                             ?>
+                                             <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"> 3</span></div>
+                                          </div>
+                                          
+                                    </div>
+                                 </div><!--end of comments--->
+                                    <?php } ?>
+                                 </div><!-----end of conatainer justify------>
+                                 </div>
+                                 
                      </div><!---end of col-md-6--->
                      <?php
                      }
                      ?>
-                  </div><!----end of row--->>
+
+ 
+                  </div><!----end of row--->
                </div> <!---end of container----->
             </div><!---end of product details----->
             <section class="online-shop wf100">
@@ -149,8 +184,10 @@
                            <div class="pro-txt">
                               <h6><a href="<?php echo $getID2?>"><?php echo $row2['product']?></a></h6>
                               <p class="pro-price">P<?php echo $row2['price']?>.00</p>
+                              
                            </div>
                         </div>
+                        
                      </div>
                      <?php 
                   }
@@ -245,6 +282,7 @@
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
       <script src="js/custom.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
    </body>
 
 

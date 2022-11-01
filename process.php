@@ -708,7 +708,6 @@ if (isset($_GET["iddelzxc"])){
                 window.location.href = "my_cart.php";
             })
             })
-
 </script>    
 <?php
     }
@@ -840,7 +839,7 @@ if(isset($_POST['checkout'])){
             $quantity_total = null;
 
 
-            $check_exist="SELECT id,quantity FROM CHECKOUT WHERE user_id ='$user_id' and product_id = '$product_id' ";
+            $check_exist="SELECT id,quantity FROM CHECKOUT WHERE user_id ='$user_id' and product_id = '$product_id' and status = 'PENDING'";
             $prompt = mysqli_query($conn, $check_exist);
             while ($row1 = mysqli_fetch_array($prompt)) {
                 $id_checkout = $row1['id'];
@@ -891,4 +890,65 @@ if(isset($_POST['checkout'])){
     }
 }
 
+?>
+
+<?php
+//COMMENT AND RATE
+if(isset($_POST['comment_rate'])){
+    $id = $_POST['id'];
+    $user_id = $_POST['user_id'];
+    $product_id = $_POST['product_id'];
+    $ratee = $_POST['rates'];
+    $comment = $_POST['comment'];
+    //change the status to "RECEIVED"
+    $conn->query("UPDATE checkout SET status='RECEIVED' where id = '$id'") or die($conn->error);
+
+    $conn->query("INSERT INTO rating (user_id, product_id, comment, rates) 
+    VALUES('$user_id','$product_id','$comment','$ratee')") or die($conn->error);
+    ?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Comment Sent',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "my_purchases.php";
+                    })
+                    })
+        </script>
+    <?php
+}
+
+
+?>
+
+<?php
+if (isset($_GET["no_comment"])){
+    $fetched_id = $_GET['no_comment'];
+    $conn->query("UPDATE checkout SET status='RECEIVED' where id = '$fetched_id'") or die($conn->error);
+?>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+                $(document).ready(function(){
+                    Swal.fire({
+                    position: 'middle',
+                    icon: 'success',
+                    title: 'Status Updated',
+                    showConfirmButton: false,
+                    timer: 1000
+                    }).then((result)=>{
+
+                        window.location.href = "my_purchases.php";
+                    })
+                    })
+        </script>
+<?php
+}
 ?>
