@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2022 at 05:31 PM
+-- Generation Time: Nov 01, 2022 at 03:49 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -58,13 +58,6 @@ CREATE TABLE `admin` (
   `otp` int(11) NOT NULL,
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `admin`
---
-
-INSERT INTO `admin` (`id`, `username`, `password`, `about`, `otp`, `email`) VALUES
-(1, 'administrator', 'admin123', 'AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro.Launched in 2022, \r\n\r\nit is a platform specialized for the province, abling the customers enjoy an easy, fast, \r\n\r\nand secured online purchasing of agricultural and construction or hardware products.\r\n\r\nAgriCon Mart believes that those types of products should be easily accessible. \r\n\r\nThis is the vision we aspire to deliver and the Mindoreños deserve.\r\n', 0, 'cristcastillo14@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -139,6 +132,20 @@ CREATE TABLE `products` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `rating`
+--
+
+CREATE TABLE `rating` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `comment` varchar(300) NOT NULL,
+  `rates` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shops`
 --
 
@@ -194,6 +201,12 @@ ALTER TABLE `products`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `rating`
+--
+ALTER TABLE `rating`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `shops`
 --
 ALTER TABLE `shops`
@@ -207,7 +220,7 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -219,13 +232,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `feed`
@@ -237,13 +250,19 @@ ALTER TABLE `feed`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `rating`
+--
+ALTER TABLE `rating`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
