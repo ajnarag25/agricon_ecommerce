@@ -30,8 +30,7 @@
                                             <label for="floatingPassword">Password</label>
                                             <input type="password" class="form-control" name="password" placeholder="Enter Password" required>
                                         </div>
-                                        <a href="">Forgot Password?</a>
-                                        <br><br>
+                                        <br>
                                         <div class="d-grid">
                                             <button class="btn btn-lg btn-success btn-login w-100" name="login_admin" type="submit">Login</button>
                                         </div>

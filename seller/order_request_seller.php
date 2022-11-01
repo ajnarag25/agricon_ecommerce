@@ -1,6 +1,7 @@
 <?php 
    include('../dbconn.php');
    session_start();
+   error_reporting(0);
    if (!isset($_SESSION['data']['username'])) {
       header("Location: ../login.php");
    }
@@ -189,6 +190,57 @@
                </div>
             </div>
          </section>
+         <section class="shop wf100 p80">
+            <div class="container">
+                <h3>History</h3>
+                <table class="table table-hover">
+                    <thead>
+                    <tr>                                
+                        <th scope="col">Image</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Shop Name</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                     <?php 
+                        $get_email = $_SESSION['data']['email'];
+                        $query = "SELECT * FROM shops where email='$get_email'";
+                        $result = mysqli_query($conn, $query);
+                        $check = mysqli_num_rows($result);
+                        while ($row = mysqli_fetch_array($result)) {
+                           $get_shop = $row['name'];
+                        }
+                     ?>
+                        <?php 
+                           $query = "SELECT * FROM checkout where shop_name='$get_shop'";
+                           $result = mysqli_query($conn, $query);
+                           $check = mysqli_num_rows($result);
+                           while ($row = mysqli_fetch_array($result)) {
+                        ?>
+
+                        <tr>
+                           <td scope="row"><img src="<?php echo $row['imagee'] ?>" name = "image" style = "width:70px;height:80px;" alt=""></td>
+                           <td><?php echo $row['product_name'] ?></td>
+                           <td><?php echo $row['shop_name'] ?></td>
+                           <td><?php echo $row['contact'] ?></td>
+                           <td>
+                              <p class="input_qty"><?php echo $row['quantity'] ?></p>pc/s
+                           </td>
+                              
+                           <td><p>P <span class = "price"><?php echo $row['price'] ?></span>.00</p></td>
+                           <td><?php echo $row['status'] ?></td>
+                        </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+
+            </div>
+         </section>
+         
          <!--Footer Start-->
          <footer class="footer">
             <div class="footer-top wf100">

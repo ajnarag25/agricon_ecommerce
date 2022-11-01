@@ -2,7 +2,7 @@
 <?php
 include('../dbconn.php');
 session_start();
-// error_reporting(0);
+error_reporting(0);
 
 // update seller account
 if (isset($_POST['update_seller'])) {
