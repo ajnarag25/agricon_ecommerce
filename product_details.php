@@ -145,7 +145,7 @@
                                              <?php
                                              }
                                              ?>
-                                             <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"> 3</span></div>
+                                             <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"><?php echo $row3['rates'];?></span></div>
                                           </div>
                                           
                                     </div>
