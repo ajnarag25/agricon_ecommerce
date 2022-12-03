@@ -187,7 +187,7 @@
                                     </form>
                               </div><!----end of modal content------>
                            </div>
-                           </div>
+                           </div><!--------------end of modal fade---->
                           <?php
                            }
                           ?>

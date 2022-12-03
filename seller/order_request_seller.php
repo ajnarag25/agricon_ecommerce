@@ -134,7 +134,7 @@
                                  <?php
                                  $id = $row['product_id'];
 
-                                 $populate_data="SELECT * FROM checkout where product_id = $id";
+                                 $populate_data="SELECT * FROM checkout where product_id = $id and status = 'PENDING'";
                                  
                                  $prompt = mysqli_query($conn, $populate_data);
                                  foreach ($prompt as $p_row) {

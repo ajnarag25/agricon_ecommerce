@@ -120,7 +120,6 @@
                             <th scope="col">Total Price</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
-                            <th scope="col">Delete</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -139,15 +138,67 @@
                             <td>P<?= $p_row['price'];?>.00</td>
                             <td>P<?= $p_row['total'];?>.00</td>
                             <td><?= $p_row['status'];?></td>
+                            
+                           <?php
+                            if ($p_row['status']== "PENDING" or $p_row['status']== "RECEIVED" or $p_row['status']== "REJECT") {
+                            
+                            ?>
                             <td>
-                              <?php $getID_del = "process.php?del_purchase=". $p_row["id"];?>
-                              <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger"><i class="fa fa-trash me-2"></i> Delete</a>
+                            <?php $getID_del = "process.php?del_purchase=". $p_row["id"];?>
+                           <a href = "<?php echo $getID_del?>" type="submit" class="bura btn btn-danger">Delete</a>
                            </td>
-                           
-                          </tr>
+                           <?php
+                            }elseif ($p_row['status']== "TO RECEIVE") {
+                              ?>
+                                 <td>
+                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#rateModal<?php echo $p_row['id']?>">Order Received</button>
+                           </td>
+                           <?php
+                            }
+                           ?>
+                           </tr>
+                           <!-- Modal -->
+                           <div class="modal fade" id="rateModal<?php echo $p_row['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                           <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                 <div class="modal-header">
+                                 <h5 class="modal-title" id="exampleModalLabel">Rate and Comment</h5>
+                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                 </button>
+                                 </div>
+                                 <div class="modal-body">
+                                    <form action="process.php" method="post">
+                                    <input type="hidden" name = "id" value ='<?php echo $p_row['id'];?>'>
+                                       <input type="hidden" name = "user_id" value ='<?php echo $user_id?>'>
+                                       <input type="hidden" name = "product_id" value ='<?php echo $p_row['product_id'];?>'>
+                                       <label class="form-label" for="ratee">Rate:*</label>
+                                       <br>
+                                       <select id = "ratee" name = "rates" class="selectpicker show-menu-arrow" data-style="btn-info">
+                                          <option value = "5">5</option>
+                                          <option value = "4">4</option>
+                                          <option value = "3">3</option>
+                                          <option value = "2">2</option>
+                                          <option value = "1">1</option>
+                                       </select>
+                                       <div class="form-outline">
+                                       <label class="form-label" for="comment">Write a Comment:*</label>
+                                       <textarea class="form-control" name="comment" id="comment" rows="5" placeholder = "What's your Insight?" required></textarea>
+                                       </div><!----end of form outline.comment------>
+                                       </div>
+                                       <div class="modal-footer">
+                                       <?php $getID_no_comment = "process.php?no_comment=". $p_row["id"];?>
+                                       <a href = "<?php echo $getID_no_comment ?>" type="submit" class="bura btn btn-danger">Leave No Comment</a>
+                                       <button type="submit" name = "comment_rate" class="btn btn-primary">Send</button>
+                                       </div><!-----end of modal footer----->
+                                    </form>
+                              </div><!----end of modal content------>
+                           </div>
+                           </div><!--------------end of modal fade---->
                           <?php
                            }
                           ?>
+                          
                         </tbody>
                       </table>
                   </div>
