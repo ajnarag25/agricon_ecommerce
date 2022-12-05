@@ -293,14 +293,15 @@
 
       
       </script>
-      <script src="../js/jquery-3.3.1.min.js"></script> 
+      <!-- <script src="../js/jquery-3.3.1.min.js"></script>  -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="../js/jquery-migrate-1.4.1.min.js"></script> 
       <script src="../js/popper.min.js"></script> 
       <script src="../js/bootstrap.min.js"></script> 
       <script src="../js/owl.carousel.min.js"></script> 
       <script src="../js/jquery.prettyPhoto.js"></script> 
       <script src="../js/isotope.min.js"></script> 
-      <script src="../js/custom.js"></script>
+      <!-- <script src="../js/custom.js"></script> -->
    </body>
 
 </html>

@@ -574,6 +574,7 @@ if (isset($_POST['add_to_cart'])) {
     $quantity = $_POST['quantity'];
     $product_name = $_POST['product_name'];
     $user_id = $_POST['user_idd'];
+    $product_id = $_POST['product_id'];
 
     $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'AND user_id = '$user_id'";
     $prompt = mysqli_query($conn, $check_exist);
@@ -581,8 +582,8 @@ if (isset($_POST['add_to_cart'])) {
     
     
     if ($check == 0 or $check == null) {
-        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,user_id) 
-        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$user_id')") or die($conn->error);
+        $conn->query("INSERT INTO cart (imagee, shop_name, contact, price,quantity, email, product_name,product_id,user_id) 
+        VALUES('$imagee','$shop_name','$contact', '$price', '$quantity', '$email', '$product_name','$product_id','$user_id')") or die($conn->error);
     }
     else {
         $fetch = mysqli_fetch_array($prompt);

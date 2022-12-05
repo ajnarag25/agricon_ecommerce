@@ -91,6 +91,7 @@
                                  <input type="hidden" name = "email" value = "<?php echo $row['email'];$get_p_email =$row['email'] ?>">
                                  <input type="hidden" name = "imagee" value = "<?php echo $row['image']?>">
                                  <input type="hidden" name = "price" value = "<?php echo $row['price']?>">
+                                 <input type="hidden" name = "product_id" value = "<?php echo $getid?>">
                                  <?php 
                                     $emailget = $row['email'];
                                     $query1 = "SELECT name,contact FROM shops WHERE email = '$emailget'";
@@ -116,7 +117,7 @@
                                     }
                                  ?>
                                  <div class="add-2-cart"> <strong>Quantity:</strong>
-                                    <input type="number" name="quantity" min="1" max="<?php echo $row['stock']?>">
+                                    <input type="number" name="quantity" value = "1" min="1" max="<?php echo $row['stock']?>">
                                     <a type="button" href="home_seller.php" class="btn btn-secondary">Back</a>
                                     <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
                                  </div>
