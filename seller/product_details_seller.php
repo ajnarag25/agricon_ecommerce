@@ -122,7 +122,37 @@
                                     <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
                                  </div>
                               </form>
-                           
+                                    <br>
+                                    <h5>Recent Comments</h5>
+                              <br>
+                              <div class="overflow-auto" style="max-width: 300px; max-height: 250px;">
+                                 <!----start of comment div----> 
+                                 <?php 
+                                     $query3 = "SELECT * FROM rating WHERE  product_id = '$getid' ORDER BY rates";
+                                     $result3 = mysqli_query($conn, $query3);
+                                    while ($row3 = mysqli_fetch_array($result3)) {
+                                 ?>
+                                 <div class="d-flex justify-content">
+                                    <div class="second py-2 px-2"> <span class="text1"><?php echo $row3['comment'];?></span>   
+                                          <div class="d-flex justify-content-between py-1 pt-2">
+                                          <?php 
+                                             $getidd = $row3['user_id'];
+                                             
+                                             $query4 = "SELECT firstname,middlename,lastname,valid_id FROM accounts WHERE  id= '$getidd'";
+                                             $result4 = mysqli_query($conn, $query4);
+                                             while ($row4 = mysqli_fetch_array($result4)) {
+                                          ?>
+                                             <div><img src="<?php echo $row4['valid_id']?>" width="30px" height="30px"><span class="text2"><?php  echo $row4['firstname']." ".$row4['middlename']." ".$row4['lastname']?></span></div>
+                                             <?php
+                                             }
+                                             ?>
+                                             <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"><?php echo $row3['rates'];?></span></div>
+                                          </div>
+                                          
+                                    </div>
+                                 </div><!--end of comments--->
+                                    <?php } ?>
+                                 </div><!-----end of conatainer justify------>
 
                         </div>
                      </div><!---end of col-md-6--->
