@@ -98,7 +98,7 @@
                                  
                                  <input type="hidden" name = "shop_name" value = "<?php echo $row1['name']; ?>">
                                  <input type="hidden" name = "contact" value = "<?php echo $row1['contact']; ?>">
-                                 <input type="hidden" name = "user_id" value = "<?php echo $_SESSION['data']['id']?>">
+                                 <input type="hidden" name = "user_id" value = "<?php echo $_SESSION['data']['id'];?>">
                                  
                                  <?php 
                                     }
@@ -115,7 +115,7 @@
                                     }
                                  ?>
                                  <div class="add-2-cart"> <strong>Quantity:</strong>
-                                    <input type="number" name="quantity" min="1" max="<?php echo $row['stock']?>">
+                                    <input type="number" name="quantity" value = "1"  min="1" max="<?php echo $row['stock']?>">
                                     <a type="button" href="home.php" class="btn btn-secondary">Back</a>
                                     <button type="submit" name="add_to_cart" class="btn btn-success">Add to Cart</button>
                                  </div>

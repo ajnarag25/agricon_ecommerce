@@ -568,7 +568,7 @@ if (isset($_POST['add_to_cart'])) {
     $user_id = $_POST['user_id'];
     $product_id = $_POST['product_id'];
 
-    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name'";
+    $check_exist="SELECT id,quantity FROM cart WHERE email='$email' AND shop_name = '$shop_name' AND product_name = '$product_name' AND user_id = '$user_id'";
     $prompt = mysqli_query($conn, $check_exist);
     $check = mysqli_num_rows($prompt);
     
