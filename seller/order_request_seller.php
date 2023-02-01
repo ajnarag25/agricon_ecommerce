@@ -124,6 +124,7 @@
                                  <th scope="col">Buyer's Name</th>
                                  <th scope="col">Delivery Address</th>
                                  <th scope="col">Quantity</th>
+                                 <th scope="col">Date/Time</th>
                                  <th scope="col">Product Price</th>
                                  <th scope="col">Total Price</th>
                                  <th scope="col">Action</th>
@@ -154,6 +155,7 @@
                                  }
                                  ?>
                                  <td><?= $p_row['quantity'];?>pc/s</td>
+                                 <td><?= $p_row['date_checkout'];?></td>
                                  <td>P<?= $p_row['price'];?>.00</td>
                                  <td>P<?= $p_row['total'];?>.00</td>
                                  

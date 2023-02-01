@@ -845,6 +845,7 @@ if(isset($_POST['checkout'])){
                  }
     
             }
+            $conn->query("DELETE FROM cart WHERE id in($purchase_id)") or die($conn->error);
 
 
 

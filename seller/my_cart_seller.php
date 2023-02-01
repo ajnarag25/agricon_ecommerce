@@ -82,6 +82,7 @@
                         <th scope="col">Shop Name</th>
                         <th scope="col">Contact</th>
                         <th scope="col">Quantity</th>
+                        <th scope="col">Date/Time</th>
                         <th scope="col">Price</th>
                         <th scope="col">Subtotal</th>
                         <th scope="col">Action</th>
@@ -90,7 +91,7 @@
                     <tbody>
                     <?php
                            $user_id = $_SESSION['data']['id'];
-                           $populate_data="SELECT id,imagee,product_name,shop_name,contact,quantity,price,product_id FROM cart where USER_ID = $user_id";
+                           $populate_data="SELECT id,imagee,product_name,shop_name,contact,date_cart,quantity,price,product_id FROM cart where USER_ID = $user_id";
                            $prompt = mysqli_query($conn, $populate_data);
 
 
@@ -108,6 +109,7 @@
                            <td>
                               <p class="input_qty"> <?= $p_row['quantity'];?></p>pc/s
                            </td>
+                           <td><?= $p_row['date_cart'];?></td>
                               
                            <td><p>P <span class = "price"><?=$p_row['price']?></span>.00</p></td>
                            <td><p>P <span class = "subtotal"></span>.00</p></td>

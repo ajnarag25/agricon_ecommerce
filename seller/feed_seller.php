@@ -130,6 +130,7 @@
                            <div class="campaign-txt">
                               <h4><a href="shop_details_seller.php?shop=<?php echo $row['shop'] ?>"><?php echo $row['shop'] ?></a></h4>
                               <h5><?php echo $row['header'] ?></h5>
+                              <p>Date Published: <?php echo $row['date_feed'] ?></p>
                               <p><?php echo $row['description'] ?></p>
                               <a href="shop_details_seller.php?shop=<?php echo $row['shop'] ?>" class="dn-btn">Visit Shop</a> 
                            </div>

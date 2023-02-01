@@ -78,13 +78,25 @@
                            <div class="campaign-thumb"> <a href="shop_details.php"><i class="fas fa-link"></i></a> <img src="./seller/<?php echo $row['image'] ?>" alt=""> </div>
                            <div class="campaign-txt">
                               <h4><a href="shop_details.php"><?php echo $row['shop'] ?></a></h4>
+
                               <h5><?php echo $row['header'] ?></h5>
+                              <p>Date Published: <?php echo $row['date_feed'] ?></p>
                               <p><?php echo $row['description'] ?></p>
-                              <a href="shop_details.php" class="dn-btn">Visit Shop</a> 
+                              
+                              <?php 
+                                 $query = "SELECT * FROM shops";
+                                 $result = mysqli_query($conn, $query);
+                                 while ($row = mysqli_fetch_array($result)) {
+                                    $getID = "shop_details.php?id=". $row["id"];
+                                    
+                              ?>
+                              <a href="<?php echo $getID;?>" class="dn-btn">Visit Shop</a> 
                            </div>
                      </div>
 
-                     <?php } ?>
+                     <?php } 
+                        }
+                     ?>
                </div>
             </div>
          </section>

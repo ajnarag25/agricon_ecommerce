@@ -112,6 +112,7 @@
                             <th scope="col">Product Price</th>
                             <th scope="col">Total Price</th>
                             <th scope="col">Status</th>
+                            <th scope="col">Date/Time</th>
                             <th scope="col">Action</th>
                            
                           </tr>
@@ -132,6 +133,7 @@
                             <td>P<?= $p_row['price'];?>.00</td>
                             <td>P<?= $p_row['total'];?>.00</td>
                             <td><?= $p_row['status'];?></td>
+                            <td><?= $p_row['date_checkout'];?></td>
                             <?php
                             if ($p_row['status']== "PENDING" or $p_row['status']== "RECEIVED" or $p_row['status']== "REJECT") {
                             

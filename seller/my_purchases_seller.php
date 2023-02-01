@@ -115,7 +115,8 @@
                             <th scope="col">Shop Name</th>
                             <th scope="col">Contact</th>
                             <th scope="col">Variation</th>
-                            <th scope="col">Quanitity</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Date/Time</th>
                             <th scope="col">Product Price</th>
                             <th scope="col">Total Price</th>
                             <th scope="col">Status</th>
@@ -135,6 +136,7 @@
                             <td><?= $p_row['contact'];?></td>
                             <td><?= $p_row['product_name'];?></td>
                             <td><?= $p_row['quantity'];?>pc/s</td>
+                            <td><?= $p_row['date_checkout']?></td>
                             <td>P<?= $p_row['price'];?>.00</td>
                             <td>P<?= $p_row['total'];?>.00</td>
                             <td><?= $p_row['status'];?></td>
