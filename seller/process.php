@@ -12,18 +12,19 @@ if (isset($_POST['update_seller'])) {
     $lastname = $_POST['lname'];
     $username = $_POST['uname'];
     $email = $_POST['email'];
+    $contact = $_POST['contact'];
     $address = $_POST['address'];
     $birthday = $_POST['birthday'];
     $del_address = $_POST['del_address'];
 
-    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND
+    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND contact_no='$contact' AND
     address='$address' AND birthday='$birthday' AND delivery_address='$del_address'";
     $prompt = $conn->query($checking);
     $row = mysqli_num_rows($prompt);
 
 
     if ($row == 0){
-        $conn->query("UPDATE accounts SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email',
+        $conn->query("UPDATE accounts SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email', contact_no='$contact',
         address='$address', birthday='$birthday', delivery_address='$del_address' WHERE id='$id'") or die($conn->error);
 
         ?>

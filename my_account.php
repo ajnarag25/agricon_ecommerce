@@ -114,19 +114,19 @@
                               <li class="col-md-4">
                                  <label for="">Firstname</label>
                                  <div class="input-group">
-                                 <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>" required>
+                                 <input type="text" class="form-control" name="fname" onkeyup="lettersOnly(this)" value="<?php echo $row['firstname'] ?>" required>
                                  </div>
                               </li>
                               <li class="col-md-4">
                                  <label for="">Middlename</label>
                                  <div class="input-group">
-                                 <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>" required>
+                                 <input type="text" class="form-control" name="mname" onkeyup="lettersOnly(this)" value="<?php echo $row['middlename'] ?>" required>
                                  </div>
                               </li>
                               <li class="col-md-4">
                                  <label for="">Lastname</label>
                                  <div class="input-group">
-                                 <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>" required>
+                                 <input type="text" class="form-control" name="lname" onkeyup="lettersOnly(this)" value="<?php echo $row['lastname'] ?>" required>
                                  </div>
                               </li>
                               <li class="col-md-6">
@@ -139,6 +139,12 @@
                                  <label for="">Email</label>
                                  <div class="input-group">
                                  <input type="email" class="form-control" name="email" value="<?php echo $row['email'] ?>" required>
+                                 </div>
+                              </li>
+                              <li class="col-md-6">
+                                 <label for="">Contact no.</label>
+                                 <div class="input-group">
+                                 <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="11" class="form-control" name="contact" value="<?php echo $row['contact_no'] ?>" required>
                                  </div>
                               </li>
                               <li class="col-md-6">
@@ -332,6 +338,12 @@
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
       <!-- <script src="js/custom.js"></script> -->
+      <script>
+        function lettersOnly(input) {
+            var regex = /[^a-z ]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+    </script>
    </body>
 
 </html>

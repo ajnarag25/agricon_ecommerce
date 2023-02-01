@@ -84,6 +84,7 @@ if (isset($_POST['signup'])) {
     $lastname = $_POST['lname'];
     $username = $_POST['uname'];
     $emails = $_POST['email'];
+    $contact = $_POST['contact'];
     $address = $_POST['address'];
     $birthday = $_POST['birthday'];
     $pass1 = $_POST['pass1'];
@@ -135,8 +136,8 @@ if (isset($_POST['signup'])) {
                 </script>";
         }else {
           move_uploaded_file($_FILES["valid_id"]["tmp_name"], $target_file);
-          $conn->query("INSERT INTO accounts (firstname, middlename, lastname, username, email, address, birthday, valid_id, password, type, delivery_address, otp, status) 
-          VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."', '$type','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
+          $conn->query("INSERT INTO accounts (firstname, middlename, lastname, username, email, contact_no, address, birthday, valid_id, password, type, delivery_address, otp, status) 
+          VALUES('$firstname', '$middlename', '$lastname', '$username', '$emails', '$contact', '$address', '$birthday', '$target_file' , '".password_hash($pass1, PASSWORD_DEFAULT)."', '$type','$del_address', '0', 'UNVERIFIED')") or die($conn->error);
           include 'signup_email.php';
           ?>
           <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -221,18 +222,19 @@ if (isset($_POST['update_user'])) {
     $lastname = $_POST['lname'];
     $username = $_POST['uname'];
     $email = $_POST['email'];
+    $contact = $_POST['contact'];
     $address = $_POST['address'];
     $birthday = $_POST['birthday'];
     $del_address = $_POST['del_address'];
 
-    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND
+    $checking = "SELECT * FROM accounts WHERE firstname='$firstname' AND middlename='$middlename' AND lastname='$lastname' AND username='$username' AND email='$email' AND contact_no='$contact' AND
     address='$address' AND birthday='$birthday' AND delivery_address='$del_address'";
     $prompt = $conn->query($checking);
     $row = mysqli_num_rows($prompt);
 
 
     if ($row == 0){
-        $conn->query("UPDATE accounts SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email',
+        $conn->query("UPDATE accounts SET firstname='$firstname', middlename='$middlename', lastname='$lastname', username='$username', email='$email', contact_no='$contact',
         address='$address', birthday='$birthday', delivery_address='$del_address' WHERE id='$id'") or die($conn->error);
 
         ?>

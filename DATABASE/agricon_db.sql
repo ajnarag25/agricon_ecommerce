@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 01, 2023 at 04:27 AM
--- Server version: 10.4.25-MariaDB
--- PHP Version: 8.1.10
+-- Generation Time: Feb 01, 2023 at 04:04 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,6 +34,7 @@ CREATE TABLE `accounts` (
   `lastname` varchar(100) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `contact_no` varchar(100) NOT NULL,
   `address` varchar(100) NOT NULL,
   `birthday` varchar(100) NOT NULL,
   `valid_id` text NOT NULL,
@@ -48,9 +49,10 @@ CREATE TABLE `accounts` (
 -- Dumping data for table `accounts`
 --
 
-INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `address`, `birthday`, `valid_id`, `password`, `type`, `delivery_address`, `otp`, `status`) VALUES
-(6, 'Michael', 'Suarez', 'Rilan', 'mico', 'micorilan1999@gmail.com', 'gdfsfg', '1999-10-02', 'uploads/WIN_20230122_13_20_11_Pro.jpg', '$2y$10$k7EkDJ6evRAH/w6IR5l06.DQrzIBqjfSwxlkcUaxPmms44D6rkjGO', 'USER', 'gdfsfg', 0, 'VERIFIED'),
-(7, 'Alliah', 'Sasis', 'Nazaire', 'iah', 'alliiahfaithn@gmail.com', 'fsdfgdfg', '2000-01-31', 'uploads/WIN_20230122_13_18_38_Pro.jpg', '$2y$10$XykAAg.3q/UPsBkTVuuk3uLT2B.NgBo2nY2jtMW6a2aFrlmqi0XIm', 'SELLER', 'hfgghdfsgsdfg', 0, 'VERIFIED');
+INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `contact_no`, `address`, `birthday`, `valid_id`, `password`, `type`, `delivery_address`, `otp`, `status`) VALUES
+(6, 'Michael', 'Suarez', 'Rilan', 'mico', 'micorilan1999@gmail.com', '', 'gdfsfg', '1999-10-02', 'uploads/WIN_20230122_13_20_11_Pro.jpg', '$2y$10$k7EkDJ6evRAH/w6IR5l06.DQrzIBqjfSwxlkcUaxPmms44D6rkjGO', 'USER', 'gdfsfg', 0, 'VERIFIED'),
+(7, 'Alliah', 'Sasis', 'Nazaire', 'iah', 'alliiahfaithn@gmail.com', '', 'fsdfgdfg', '2000-01-31', 'uploads/WIN_20230122_13_18_38_Pro.jpg', '$2y$10$XykAAg.3q/UPsBkTVuuk3uLT2B.NgBo2nY2jtMW6a2aFrlmqi0XIm', 'SELLER', 'hfgghdfsgsdfg', 0, 'VERIFIED'),
+(9, 'Avor John', 'Atienza', 'Narag', 'ajnarag25', 'ajnarag25@gmail.com', '09089637505', 'blk 3 lot 8 meadow park subdivision, molino 4', '1999-08-25', 'uploads/78248093.jfif', '$2y$10$xrJqXLNPoWu6L.YDsQgi5OWzPkJf5q2PbYIeSmg1G0aoBzpFV6KVq', 'USER', 'blk 3 lot 8 meadow park subdivision, molino 4', 0, 'VERIFIED');
 
 -- --------------------------------------------------------
 
@@ -72,7 +74,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `about`, `otp`, `email`) VALUES
-(2, 'administrator', 'admin123', 'asdf', 5623, 'micorilan1999@gmail.com');
+(1, 'administrator', 'admin123', 'AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro.\r\n\r\nLaunched in 2022, it is a platform specialized for the province, abling the customers enjoy an easy, fast, and secured online purchasing of agricultural and construction or hardware products.\r\n\r\nAgriCon Mart believes that those types of products should be easily accessible. This is the vision we aspire to deliver and the Mindoreños deserve.', 5623, 'agriconmart@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -99,7 +101,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `imagee`, `shop_name`, `contact`, `price`, `quantity`, `email`, `product_name`, `user_id`, `product_id`, `date_cart`) VALUES
-(28, 'uploads/intructions_icon.jpg', 'shop ni iah', '324234', 300, 1, 'alliiahfaithn@gmail.com', 'are you winning', 7, 7, '2023-02-01 11:25:11');
+(28, 'uploads/intructions_icon.jpg', 'shop ni iah', '324234', 300, 1, 'alliiahfaithn@gmail.com', 'are you winning', 7, 7, '2023-02-01 11:25:11'),
+(31, 'uploads/exit.png', 'shop ni iah', '324234', 12, 1, 'alliiahfaithn@gmail.com', 'fgdsgdf', 9, 6, '2023-02-01 22:50:13');
 
 -- --------------------------------------------------------
 
@@ -266,7 +269,7 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `admin`
@@ -278,13 +281,13 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `feed`

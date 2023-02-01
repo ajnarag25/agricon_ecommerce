@@ -205,6 +205,8 @@
                                                     <input type="text" class="form-control"  value="<?php echo $row['username'] ?>" readonly>
                                                     <label for="">Email</label>
                                                     <input type="text" class="form-control"  value="<?php echo $row['email'] ?>" readonly>
+                                                    <label for="">Contact no.</label>
+                                                    <input type="text" class="form-control"  value="<?php echo $row['contact_no'] ?>" readonly>
                                                     <label for="">Address</label>
                                                     <input type="text" class="form-control"  value="<?php echo $row['address'] ?>" readonly>
                                                     <label for="">Birthday</label>

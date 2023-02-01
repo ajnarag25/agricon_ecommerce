@@ -65,19 +65,19 @@
                             <li class="col-md-4">
                               <label for="">Firstname <span style="color:red">*</span></label>
                               <div class="input-group">
-                              <input type="text" class="form-control" name="fname" placeholder="Enter First Name" required>
+                              <input type="text" class="form-control" name="fname" onkeyup="lettersOnly(this)" placeholder="Enter First Name" required>
                               </div>
                             </li>
                             <li class="col-md-4">
                               <label for="">Middlename <span style="color:red">*</span></label>
                               <div class="input-group">
-                              <input type="text" class="form-control" name="mname" placeholder="Enter Middle Name" required>
+                              <input type="text" class="form-control" name="mname" onkeyup="lettersOnly(this)" placeholder="Enter Middle Name" required>
                               </div>
                             </li>
                             <li class="col-md-4">
                               <label for="">Lastname <span style="color:red">*</span></label>
                               <div class="input-group">
-                              <input type="text" class="form-control" name="lname" placeholder="Enter Lastname" required>
+                              <input type="text" class="form-control" name="lname" onkeyup="lettersOnly(this)" placeholder="Enter Lastname" required>
                               </div>
                             </li>
                             <li class="col-md-6">
@@ -90,6 +90,12 @@
                               <label for="">Email <span style="color:red">*</span></label>
                               <div class="input-group">
                               <input type="email" class="form-control" name="email" placeholder="Enter Email" required>
+                              </div>
+                            </li>
+                            <li class="col-md-6">
+                              <label for="">Contact no. <span style="color:red">*</span></label>
+                              <div class="input-group">
+                              <input type="text" class="form-control" name="contact" onkeyup="this.value=this.value.replace(/[^\d]/,'')" maxlength="11" placeholder="Enter Contact no." required>
                               </div>
                             </li>
                             <li class="col-md-6">
@@ -131,7 +137,7 @@
                                  </select>
                               </div>
                             </li>
-                            <li class="col-md-8">
+                            <li class="col-md-12">
                               <label for="">Delivery Address <span style="color:red">*</span></label>
                               <div class="input-group">
                               <textarea class="form-control" name="del_address" placeholder="Delivery Address" id="" cols="30" rows="5" required></textarea>
@@ -233,6 +239,12 @@
       <script src="js/jquery.prettyPhoto.js"></script> 
       <script src="js/isotope.min.js"></script> 
       <script src="js/custom.js"></script>
+      <script>
+        function lettersOnly(input) {
+            var regex = /[^a-z ]/gi;
+            input.value = input.value.replace(regex, "");
+        }
+    </script>
    </body>
 
 
