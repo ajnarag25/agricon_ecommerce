@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 01, 2022 at 04:17 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Feb 01, 2023 at 04:27 AM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 8.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -44,6 +44,14 @@ CREATE TABLE `accounts` (
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`id`, `firstname`, `middlename`, `lastname`, `username`, `email`, `address`, `birthday`, `valid_id`, `password`, `type`, `delivery_address`, `otp`, `status`) VALUES
+(6, 'Michael', 'Suarez', 'Rilan', 'mico', 'micorilan1999@gmail.com', 'gdfsfg', '1999-10-02', 'uploads/WIN_20230122_13_20_11_Pro.jpg', '$2y$10$k7EkDJ6evRAH/w6IR5l06.DQrzIBqjfSwxlkcUaxPmms44D6rkjGO', 'USER', 'gdfsfg', 0, 'VERIFIED'),
+(7, 'Alliah', 'Sasis', 'Nazaire', 'iah', 'alliiahfaithn@gmail.com', 'fsdfgdfg', '2000-01-31', 'uploads/WIN_20230122_13_18_38_Pro.jpg', '$2y$10$XykAAg.3q/UPsBkTVuuk3uLT2B.NgBo2nY2jtMW6a2aFrlmqi0XIm', 'SELLER', 'hfgghdfsgsdfg', 0, 'VERIFIED');
+
 -- --------------------------------------------------------
 
 --
@@ -64,7 +72,7 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`id`, `username`, `password`, `about`, `otp`, `email`) VALUES
-(1, 'administrator', 'admin123', 'AgriCon Mart is the first and only e-commerce platform exclusively in Oriental Mindoro.\r\n\r\nLaunched in 2022, it is a platform specialized for the province, abling the customers enjoy an easy, fast, and secured online purchasing of agricultural and construction or hardware products.\r\n\r\nAgriCon Mart believes that those types of products should be easily accessible. This is the vision we aspire to deliver and the Mindoreños deserve.', 0, 'cristcastillo14@gmail.com');
+(2, 'administrator', 'admin123', 'asdf', 5623, 'micorilan1999@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -82,8 +90,16 @@ CREATE TABLE `cart` (
   `email` varchar(200) DEFAULT NULL,
   `product_name` varchar(50) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `product_id` int(11) DEFAULT NULL
+  `product_id` int(11) DEFAULT NULL,
+  `date_cart` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `imagee`, `shop_name`, `contact`, `price`, `quantity`, `email`, `product_name`, `user_id`, `product_id`, `date_cart`) VALUES
+(28, 'uploads/intructions_icon.jpg', 'shop ni iah', '324234', 300, 1, 'alliiahfaithn@gmail.com', 'are you winning', 7, 7, '2023-02-01 11:25:11');
 
 -- --------------------------------------------------------
 
@@ -103,8 +119,16 @@ CREATE TABLE `checkout` (
   `user_id` int(11) NOT NULL,
   `status` varchar(20) NOT NULL,
   `total` int(11) NOT NULL,
-  `product_id` int(11) DEFAULT NULL
+  `product_id` int(11) DEFAULT NULL,
+  `date_checkout` datetime DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `checkout`
+--
+
+INSERT INTO `checkout` (`id`, `imagee`, `shop_name`, `contact`, `price`, `quantity`, `email`, `product_name`, `user_id`, `status`, `total`, `product_id`, `date_checkout`) VALUES
+(24, 'uploads/intructions_icon.jpg', 'shop ni iah', '324234', 300, 1, 'alliiahfaithn@gmail.com', 'are you winning', 6, 'TO RECEIVE', 300, 7, '2023-02-01 10:58:44');
 
 -- --------------------------------------------------------
 
@@ -136,6 +160,14 @@ CREATE TABLE `products` (
   `email` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`id`, `product`, `image`, `price`, `stock`, `details`, `email`) VALUES
+(6, 'fgdsgdf', 'uploads/exit.png', 12, 500, 'fsdfdf', 'alliiahfaithn@gmail.com'),
+(7, 'are you winning', 'uploads/intructions_icon.jpg', 300, 499, 'gfdgdsfg', 'alliiahfaithn@gmail.com');
+
 -- --------------------------------------------------------
 
 --
@@ -166,6 +198,13 @@ CREATE TABLE `shops` (
   `contact` varchar(100) NOT NULL,
   `details` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `shops`
+--
+
+INSERT INTO `shops` (`id`, `owner`, `address`, `email`, `image`, `name`, `contact`, `details`) VALUES
+(4, 'Alliah Sasis Nazaire', 'fsdfgdfg', 'alliiahfaithn@gmail.com', 'uploads/intructions_icon.jpg', 'shop ni iah', '324234', 'fsdffdasf');
 
 --
 -- Indexes for dumped tables
@@ -227,25 +266,25 @@ ALTER TABLE `shops`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `feed`
@@ -257,19 +296,19 @@ ALTER TABLE `feed`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `shops`
 --
 ALTER TABLE `shops`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
