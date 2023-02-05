@@ -146,6 +146,7 @@
                                              <?php
                                              }
                                              ?>
+                                             <span class="text3"> Date:<span class="text4"><?php echo $row3['date_rate'];?></span>
                                              <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"><?php echo $row3['rates'];?></span></div>
                                           </div>
                                           
