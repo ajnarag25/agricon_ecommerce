@@ -132,8 +132,8 @@
                                     while ($row3 = mysqli_fetch_array($result3)) {
                                  ?>
                                  <div class="d-flex justify-content">
-                                    <div class="second py-2 px-2"> <span class="text1"><?php echo $row3['comment'];?></span>   
-                                          <div class="d-flex justify-content-between py-1 pt-2">
+                                    <div class="second py-2 px-1"> <span class="text1"><?php echo $row3['comment'];?></span>   
+                                          <div class="d-flex justify-content-between py-2 pt-3">
                                           <?php 
                                              $getidd = $row3['user_id'];
                                              
@@ -145,7 +145,13 @@
                                              <?php
                                              }
                                              ?>
-                                             <div><br><span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"><?php echo $row3['rates'];?></span></div>
+                                             <div><br>
+                                             <span class="text3"> Date:<span class="text4"><?php echo $row3['date_rate'];?></span>
+                                             <span class="text3"> Rate<i class="fa fa-star" aria-hidden="true"></i><span class="text4"><?php echo $row3['rates'];?></span><br>
+                                            
+                                             </div>
+                                             <div><br></div>
+
                                           </div>
                                           
                                     </div>

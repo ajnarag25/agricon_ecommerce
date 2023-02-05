@@ -204,7 +204,9 @@
                         <th scope="col">Contact</th>
                         <th scope="col">Quantity</th>
                         <th scope="col">Price</th>
+                        <th scope="col">Date and Time</th>
                         <th scope="col">Status</th>
+                        
                         </tr>
                     </thead>
                     <tbody>
@@ -234,6 +236,7 @@
                            </td>
                               
                            <td><p>P <span class = "price"><?php echo $row['price'] ?></span>.00</p></td>
+                           <td><?php echo $row['date_checkout'] ?></td>
                            <td><?php echo $row['status'] ?></td>
                         </tr>
                         <?php } ?>
