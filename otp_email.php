@@ -17,7 +17,7 @@
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
     $mail->Username = "agriconmart@gmail.com";
-    $mail->Password = "bmyortikksyberfy";
+    $mail->Password = "app pass goes here";
     $mail->Port = 587; //465 for ssl and 587 for tls
     $mail->SMTPSecure = "tls";
 
